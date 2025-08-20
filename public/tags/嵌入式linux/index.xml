@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>嵌入式Linux on Donge Blog</title>
-    <link>https://uniondong.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/</link>
-    <description>Recent content in 嵌入式Linux on Donge Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>嵌入式Linux on 悠创</title>
+    <link>http://localhost:1313/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/</link>
+    <description>Recent content in 嵌入式Linux on 悠创</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://uniondong.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Soc的Bring Up流程</title>
-      <link>https://uniondong.github.io/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/</link>
+      <link>http://localhost:1313/Yocreative.github.io/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/</link>
       <pubDate>Sun, 12 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://uniondong.github.io/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/</guid>
-      <description>1、Bring Up流程 #  SOC (System on a Chip) bring-up是一个复杂的过程，涉及到硬件、固件和软件的集成和验证，以下是一个基于BROM，SPL，UBOOT和Linux的启动流程的概述：
- BROM (Boot Read-Only Memory)启动：启动的最初阶段，在这个阶段，系统会执行芯片ROM里面的代码，这部分代码主要用来检查启动模式，包括NOR、Nand、Emmc等，然后从对应的存储介质中加载SPL(Secondary Program Loader)代码。 SPL (Secondary Program Loader)启动：SPL属于Uboot的一部分，它的主要作用就是：初始化硬件并加载完整的U-boot，主要体现在初始化时钟、看门狗、DDR、GPIO以及存储外设，最后将U-boot代码加载到DDR中执行。 U-Boot启动：U-boot的主要作用是：引导加载Kernel和DTS。U-boot在启动之后，同样初始化Soc硬件资源，然后会计时等待，并执行默认的启动命令，将Kernel和DTS信息从存储介质中读取出来并加载到内存中执行。 Kernel启动：在U-Boot加载了内核映像和设备树之后，系统会启动Linux。在这个阶段，系统会初始化各种硬件设备，加载驱动程序并启动用户空间应用程序。   更多干货可见：高级工程师聚集地，助力大家更上一层楼！
-  2、常见问题 #  Q：为什么上一个阶段已经初始化了硬件资源，下一个阶段为何重复初始化？
-A：
-  每个阶段的硬件初始化，其目标和需求都不同，硬件配置也会不一样，因此在不同阶段进行不同的初始化。
-  硬件状态可能会改变，在SOC启动过程中，硬件状态可能会因为电源管理、时钟管理等原因而改变，这可能需要在每个阶段都重新初始化以确保其正确工作
-  为了保证硬件资源的可靠性，最好每个阶段都重新初始化一次
-   Q：U-boot加载内核时，会进行重定位的操作，这一操作有何意义？
-A：
- U-boot的重定位，主要作用是为了 给内核提供一个连续的、大的内存空间，供内核和其他应用程序使用 U-boot的加载过程分两个阶段，即：SPL和U-boot，   在SPL阶段，主要将U-boot代码从Flash中加载到RAM指定位置 在U-boot阶段，U-boot会将自身从RAM的开始部分移动到RAM的末尾，占用高地址空间，从而让低地址空间可以作为一个连续的，大的内存空间供内核和其他应用程序使用。   Q：在Bring Up中，为了保证启动时间，如何裁剪？
-A：
- 启动时间的裁剪是一个重要的步骤，其主要目标是缩短从电源打开到操作系统完全启动的时间。
-  优化Bootloader：减小Bootloader的代码大小，减少硬件初始化（只初始化必要硬件设备）等 优化Kernel：减少启动服务数量，优化服务的启动顺序，使用预加载技术等方法来实现。 使用快速启动模式：一些SOC支持快速启动模式，这种模式下，SOC会跳过一些不必要的硬件初始化和自检过程，从而更快地启动。 使用休眠和唤醒技术：一些SOC还支持休眠和唤醒技术，这种技术可以将系统的状态保存到非易失性存储器中，然后关闭系统。当系统再次启动时，可以直接从非易失性存储器中恢复系统的状态，从而更快地启动。  &amp;nbsp;</description>
+      <guid>http://localhost:1313/Yocreative.github.io/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/</guid>
+      <description>&lt;h2 id=&#34;1bring-up流程&#34;&gt;&#xA;  1、Bring Up流程&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#1bring-up%e6%b5%81%e7%a8%8b&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://img2.baidu.com/it/u=1228692277,1647023594&amp;amp;fm=253&amp;amp;fmt=auto&amp;amp;app=138&amp;amp;f=PNG?w=681&amp;amp;h=294&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;SOC (System on a Chip) bring-up&lt;/code&gt;是一个复杂的过程，涉及到硬件、固件和软件的集成和验证，以下是一个基于&lt;code&gt;BROM&lt;/code&gt;，&lt;code&gt;SPL&lt;/code&gt;，&lt;code&gt;UBOOT&lt;/code&gt;和&lt;code&gt;Linux&lt;/code&gt;的启动流程的概述：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;code&gt;BROM (Boot Read-Only Memory)&lt;/code&gt;启动&lt;/strong&gt;：启动的最初阶段，在这个阶段，系统会执行芯片&lt;code&gt;ROM&lt;/code&gt;里面的代码，这部分代码主要用来检查启动模式，包括&lt;code&gt;NOR&lt;/code&gt;、&lt;code&gt;Nand&lt;/code&gt;、&lt;code&gt;Emmc&lt;/code&gt;等，然后从对应的存储介质中加载&lt;code&gt;SPL(Secondary Program Loader)&lt;/code&gt;代码。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;code&gt;SPL (Secondary Program Loader)&lt;/code&gt;启动&lt;/strong&gt;：&lt;code&gt;SPL&lt;/code&gt;属于&lt;code&gt;Uboot&lt;/code&gt;的一部分，它的主要作用就是：&lt;strong&gt;初始化硬件并加载完整的&lt;code&gt;U-boot&lt;/code&gt;&lt;/strong&gt;，主要体现在初始化时钟、看门狗、&lt;code&gt;DDR&lt;/code&gt;、&lt;code&gt;GPIO&lt;/code&gt;以及存储外设，最后将&lt;code&gt;U-boot&lt;/code&gt;代码加载到&lt;code&gt;DDR&lt;/code&gt;中执行。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;code&gt;U-Boot&lt;/code&gt;启动&lt;/strong&gt;：&lt;code&gt;U-boot&lt;/code&gt;的主要作用是：引导加载&lt;code&gt;Kernel&lt;/code&gt;和&lt;code&gt;DTS&lt;/code&gt;。&lt;code&gt;U-boot&lt;/code&gt;在启动之后，同样初始化&lt;code&gt;Soc&lt;/code&gt;硬件资源，然后会计时等待，并执行默认的启动命令，将&lt;code&gt;Kernel&lt;/code&gt;和&lt;code&gt;DTS&lt;/code&gt;信息从存储介质中读取出来并加载到内存中执行。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;code&gt;Kernel&lt;/code&gt;启动&lt;/strong&gt;：在&lt;code&gt;U-Boot&lt;/code&gt;加载了内核映像和设备树之后，系统会启动&lt;code&gt;Linux&lt;/code&gt;。在这个阶段，系统会初始化各种硬件设备，加载驱动程序并启动用户空间应用程序。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;更多干货可见：&lt;a href=&#34;https://t.zsxq.com/0eUcTOhdO&#34;&gt;高级工程师聚集地&lt;/a&gt;，助力大家更上一层楼！&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;&lt;h2 id=&#34;2常见问题&#34;&gt;&#xA;  2、常见问题&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#2%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://img1.baidu.com/it/u=1356081243,31945078&amp;amp;fm=253&amp;amp;fmt=auto&amp;amp;app=138&amp;amp;f=JPEG?w=852&amp;amp;h=500&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;Q&lt;/code&gt;：为什么上一个阶段已经初始化了硬件资源，下一个阶段为何重复初始化？&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;A&lt;/code&gt;：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;每个阶段的硬件初始化，其目标和需求都不同，硬件配置也会不一样，因此在不同阶段进行不同的初始化。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;硬件状态可能会改变，在&lt;code&gt;SOC&lt;/code&gt;启动过程中，硬件状态可能会因为电源管理、时钟管理等原因而改变，这可能需要在每个阶段都重新初始化以确保其正确工作&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;为了保证硬件资源的可靠性，最好每个阶段都重新初始化一次&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;Q&lt;/code&gt;：&lt;code&gt;U-boot&lt;/code&gt;加载内核时，会进行重定位的操作，这一操作有何意义？&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;A&lt;/code&gt;：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;U-boot&lt;/code&gt;的重定位，主要作用是为了 &lt;strong&gt;给内核提供一个连续的、大的内存空间，供内核和其他应用程序使用&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;U-boot&lt;/code&gt;的加载过程分两个阶段，即：&lt;code&gt;SPL&lt;/code&gt;和&lt;code&gt;U-boot&lt;/code&gt;，&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;在&lt;code&gt;SPL&lt;/code&gt;阶段，主要将&lt;code&gt;U-boot&lt;/code&gt;代码从&lt;code&gt;Flash&lt;/code&gt;中加载到&lt;code&gt;RAM&lt;/code&gt;指定位置&lt;/li&gt;&#xA;&lt;li&gt;在&lt;code&gt;U-boot&lt;/code&gt;阶段，&lt;code&gt;U-boot&lt;/code&gt;会将自身从&lt;code&gt;RAM&lt;/code&gt;的开始部分移动到&lt;code&gt;RAM&lt;/code&gt;的末尾，占用高地址空间，从而让低地址空间可以作为一个连续的，大的内存空间供内核和其他应用程序使用。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;Q&lt;/code&gt;：在&lt;code&gt;Bring Up&lt;/code&gt;中，为了保证启动时间，如何裁剪？&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;A&lt;/code&gt;：&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;启动时间的裁剪是一个重要的步骤，其主要目标是缩短从电源打开到操作系统完全启动的时间。&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;优化&lt;code&gt;Bootloader&lt;/code&gt;：减小&lt;code&gt;Bootloader&lt;/code&gt;的代码大小，减少硬件初始化（只初始化必要硬件设备）等&lt;/li&gt;&#xA;&lt;li&gt;优化&lt;code&gt;Kernel&lt;/code&gt;：减少启动服务数量，优化服务的启动顺序，使用预加载技术等方法来实现。&lt;/li&gt;&#xA;&lt;li&gt;使用快速启动模式：一些&lt;code&gt;SOC&lt;/code&gt;支持快速启动模式，这种模式下，&lt;code&gt;SOC&lt;/code&gt;会跳过一些不必要的硬件初始化和自检过程，从而更快地启动。&lt;/li&gt;&#xA;&lt;li&gt;使用休眠和唤醒技术：一些&lt;code&gt;SOC&lt;/code&gt;还支持休眠和唤醒技术，这种技术可以将系统的状态保存到非易失性存储器中，然后关闭系统。当系统再次启动时，可以直接从非易失性存储器中恢复系统的状态，从而更快地启动。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div align=center&gt;&lt;img src=&#34;https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/blog.png&#34; alt=&#34;img&#34; width = &#34;60%&#34; height =&#34;10%&#34;/&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&amp;nbsp;</description>
     </item>
-    
   </channel>
 </rss>

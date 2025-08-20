@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Donge Blog</title>
-    <link>https://uniondong.github.io/categories/</link>
-    <description>Recent content in Categories on Donge Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Categories on 悠创</title>
+    <link>http://localhost:1313/Yocreative.github.io/categories/</link>
+    <description>Recent content in Categories on 悠创</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Jan 2024 10:39:03 +0800</lastBuildDate><atom:link href="https://uniondong.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Jan 2024 10:39:03 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/Yocreative.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tech</title>
-      <link>https://uniondong.github.io/categories/tech/</link>
+      <link>http://localhost:1313/Yocreative.github.io/categories/tech/</link>
       <pubDate>Sat, 20 Jan 2024 10:39:03 +0800</pubDate>
-      
-      <guid>https://uniondong.github.io/categories/tech/</guid>
+      <guid>http://localhost:1313/Yocreative.github.io/categories/tech/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

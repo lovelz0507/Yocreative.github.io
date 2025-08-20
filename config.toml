@@ -1,6 +1,6 @@
-baseurl = "https://uniondong.github.io/"
+baseurl = "https://lovelz0507.github.io/Yocreative.github.io/"
 languageCode = 'en-us'
-title = 'Donge Blog'
+title = '悠创'
 theme = 'hugo-book'
 enableEmoji = true
 
@@ -68,7 +68,7 @@ home = ["HTML", "RSS"]
 
 	# Set source repository location.
 	# Used for 'Last Modified' and 'Edit this page' links.
-	BookRepo = 'https://github.com/UNIONDONG/UNIONDONG.github.io'
+	BookRepo = 'https://github.com/lovelz0507/Yocreative.github.io.git'
 
 	# (Optional, default January 2, 2006) Configure the date format used on the pages
 	# - In git information

@@ -1,36 +1,93 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head>
+<head><script src="/Yocreative.github.io/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Yocreative.github.io/livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="【深入理解Linux内核锁】三、原子操作 #  1、原子操作思想 #  原子操作（atomic operation），不可分割的操作。其通过原子变量来实现，以保证单个CPU周期内，读写该变量不能被打断，进而判断该变量的值，来解决并发引起的互斥。
+<meta name="description" content="
+  【深入理解Linux内核锁】三、原子操作
+  #
+
+
+
+  1、原子操作思想
+  #
+
+原子操作（atomic operation），不可分割的操作。其通过原子变量来实现，以保证单个CPU周期内，读写该变量不能被打断，进而判断该变量的值，来解决并发引起的互斥。
 Atomic类型的变量可以在执行期间禁止中断，并保证在访问变量时的原子性。
- 简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。
+
+简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。
 其原子性表现在：操作该标志位的值，不可被打断。
- 在Linux内核中，提供了两类原子操作的接口，分别是针对位和整型变量的原子操作。
-2、整型变量原子操作 #  2.1 API接口 #   对于整形变量的原子操作，内核提供了一系列的 API接口
- /*设置原子变量的值*/ atomic_t v = ATOMIC_INIT(0); /* 定义原子变量v并初始化为0 */ void atomic_set(atomic_t *v, int i); /* 设置原子变量的值为i */ /*获取原子变量的值*/ atomic_read(atomic_t *v); /* 返回原子变量的值*/ /*原子变量的加减*/ void atomic_add(int i, atomic_t *v); /* 原子变量增加i */ void atomic_sub(int i, atomic_t *v); /* 原子变量减少i */ /*原子变量的自增，自减*/ void atomic_inc(atomic_t *v);	/* 原子变量增加1 */ void atomic_dec(atomic_t *v); /* 原子变量减少1 */ /*原子变量的操作并测试*/ int atomic_inc_and_test(atomic_t *v);	/*进行对应操作后，测试原子变量值是否为0*/ int atomic_dec_and_test(atomic_t *v); int atomic_sub_and_test(int i, atomic_t *v); /*原子变量的操作并返回*/ int atomic_add_return(int i, atomic_t *v);	/*进行对应操作后，返回新的值*/ int atomic_sub_return(int i, atomic_t *v); int atomic_inc_return(atomic_t *v); int atomic_dec_return(atomic_t *v); 2.">
+在Linux内核中，提供了两类原子操作的接口，分别是针对位和整型变量的原子操作。
+
+
+  2、整型变量原子操作
+  #
+
+
+  2.1 API接口
+  #
+
+
+对于整形变量的原子操作，内核提供了一系列的 API接口
+/*设置原子变量的值*/
+atomic_t v = ATOMIC_INIT(0);            /* 定义原子变量v并初始化为0 */
+void atomic_set(atomic_t *v, int i);    /* 设置原子变量的值为i */
+
+/*获取原子变量的值*/
+atomic_read(atomic_t *v);        		/* 返回原子变量的值*/
+
+/*原子变量的加减*/
+void atomic_add(int i, atomic_t *v);      /* 原子变量增加i */
+void atomic_sub(int i, atomic_t *v);      /* 原子变量减少i */
+
+/*原子变量的自增，自减*/
+void atomic_inc(atomic_t *v);				/* 原子变量增加1 */
+void atomic_dec(atomic_t *v);     			/* 原子变量减少1 */
+
+/*原子变量的操作并测试*/
+int atomic_inc_and_test(atomic_t *v);		/*进行对应操作后，测试原子变量值是否为0*/
+int atomic_dec_and_test(atomic_t *v);
+int atomic_sub_and_test(int i, atomic_t *v);
+
+/*原子变量的操作并返回*/
+int atomic_add_return(int i, atomic_t *v);	/*进行对应操作后，返回新的值*/
+int atomic_sub_return(int i, atomic_t *v);
+int atomic_inc_return(atomic_t *v);
+int atomic_dec_return(atomic_t *v);
+
+  2.2 API实现
+  #
+
+
+我们下面就介绍几个稍微有代表性的接口实现">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="【深入理解Linux锁机制】三、原子操作" />
-<meta property="og:description" content="【深入理解Linux内核锁】三、原子操作 #  1、原子操作思想 #  原子操作（atomic operation），不可分割的操作。其通过原子变量来实现，以保证单个CPU周期内，读写该变量不能被打断，进而判断该变量的值，来解决并发引起的互斥。
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/">
+  <meta property="og:site_name" content="悠创">
+  <meta property="og:title" content="【深入理解Linux锁机制】三、原子操作">
+  <meta property="og:description" content="【深入理解Linux内核锁】三、原子操作 # 1、原子操作思想 # 原子操作（atomic operation），不可分割的操作。其通过原子变量来实现，以保证单个CPU周期内，读写该变量不能被打断，进而判断该变量的值，来解决并发引起的互斥。
 Atomic类型的变量可以在执行期间禁止中断，并保证在访问变量时的原子性。
- 简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。
+简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。
 其原子性表现在：操作该标志位的值，不可被打断。
- 在Linux内核中，提供了两类原子操作的接口，分别是针对位和整型变量的原子操作。
-2、整型变量原子操作 #  2.1 API接口 #   对于整形变量的原子操作，内核提供了一系列的 API接口
- /*设置原子变量的值*/ atomic_t v = ATOMIC_INIT(0); /* 定义原子变量v并初始化为0 */ void atomic_set(atomic_t *v, int i); /* 设置原子变量的值为i */ /*获取原子变量的值*/ atomic_read(atomic_t *v); /* 返回原子变量的值*/ /*原子变量的加减*/ void atomic_add(int i, atomic_t *v); /* 原子变量增加i */ void atomic_sub(int i, atomic_t *v); /* 原子变量减少i */ /*原子变量的自增，自减*/ void atomic_inc(atomic_t *v);	/* 原子变量增加1 */ void atomic_dec(atomic_t *v); /* 原子变量减少1 */ /*原子变量的操作并测试*/ int atomic_inc_and_test(atomic_t *v);	/*进行对应操作后，测试原子变量值是否为0*/ int atomic_dec_and_test(atomic_t *v); int atomic_sub_and_test(int i, atomic_t *v); /*原子变量的操作并返回*/ int atomic_add_return(int i, atomic_t *v);	/*进行对应操作后，返回新的值*/ int atomic_sub_return(int i, atomic_t *v); int atomic_inc_return(atomic_t *v); int atomic_dec_return(atomic_t *v); 2." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://uniondong.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" /><meta property="article:section" content="docs" />
-<meta property="article:published_time" content="2024-01-18T23:02:13+08:00" />
-<meta property="article:modified_time" content="2024-01-18T23:02:13+08:00" />
-
-<title>【深入理解Linux锁机制】三、原子操作 | Donge Blog</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/favicon.png" >
-<link rel="stylesheet" href="/book.min.b4905ed755e1c0335b3e405fbf0366df4ad2fc56a3731c6ad87e843b20296de1.css" integrity="sha256-tJBe11XhwDNbPkBfvwNm30rS/Fajcxxq2H6EOyApbeE=" crossorigin="anonymous">
-  <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.a72538c8a0bc372faa5c97cbec2f4e7236f2a92710063dfde31965b9a0bfe977.js" integrity="sha256-pyU4yKC8Ny&#43;qXJfL7C9OcjbyqScQBj394xlluaC/6Xc=" crossorigin="anonymous"></script>
+在Linux内核中，提供了两类原子操作的接口，分别是针对位和整型变量的原子操作。
+2、整型变量原子操作 # 2.1 API接口 # 对于整形变量的原子操作，内核提供了一系列的 API接口
+/*设置原子变量的值*/ atomic_t v = ATOMIC_INIT(0); /* 定义原子变量v并初始化为0 */ void atomic_set(atomic_t *v, int i); /* 设置原子变量的值为i */ /*获取原子变量的值*/ atomic_read(atomic_t *v); /* 返回原子变量的值*/ /*原子变量的加减*/ void atomic_add(int i, atomic_t *v); /* 原子变量增加i */ void atomic_sub(int i, atomic_t *v); /* 原子变量减少i */ /*原子变量的自增，自减*/ void atomic_inc(atomic_t *v);	/* 原子变量增加1 */ void atomic_dec(atomic_t *v); /* 原子变量减少1 */ /*原子变量的操作并测试*/ int atomic_inc_and_test(atomic_t *v);	/*进行对应操作后，测试原子变量值是否为0*/ int atomic_dec_and_test(atomic_t *v); int atomic_sub_and_test(int i, atomic_t *v); /*原子变量的操作并返回*/ int atomic_add_return(int i, atomic_t *v);	/*进行对应操作后，返回新的值*/ int atomic_sub_return(int i, atomic_t *v); int atomic_inc_return(atomic_t *v); int atomic_dec_return(atomic_t *v); 2.2 API实现 # 我们下面就介绍几个稍微有代表性的接口实现">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-01-18T23:02:13+08:00">
+    <meta property="article:modified_time" content="2024-01-18T23:02:13+08:00">
+    <meta property="article:tag" content="内核锁">
+    <meta property="article:tag" content="Linux 锁机制">
+    <meta property="article:tag" content="操作系统锁">
+    <meta property="article:tag" content=" Linux 系统开发">
+    <meta property="article:tag" content="Linux 内核">
+<title>【深入理解Linux锁机制】三、原子操作 | 悠创</title>
+<link rel="manifest" href="/Yocreative.github.io/manifest.json">
+<link rel="icon" href="/Yocreative.github.io/favicon.png" >
+<link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
+  <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -47,13 +104,13 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="/"><img src="/img/logo.png" alt="Logo" /><span>Donge Blog</span>
+  <a class="flex align-center" href="/Yocreative.github.io/"><img src="/Yocreative.github.io/img/logo.png" alt="Logo" /><span>悠创</span>
   </a>
 </h2>
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -120,8 +177,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-3ebd3b438738bd5ab63f55999004f0e7" class="toggle"  />
-    <label for="section-3ebd3b438738bd5ab63f55999004f0e7" class="flex justify-between">
+    <input type="checkbox" id="section-83397ec96fd1ea3917390521ed986f95" class="toggle"  />
+    <label for="section-83397ec96fd1ea3917390521ed986f95" class="flex justify-between">
       <a role="button" class="">嵌入式工程师养成记</a>
     </label>
   
@@ -136,7 +193,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/embeded_tech/self_improve/10w&#43;%E9%98%85%E8%AF%BB%E8%80%97%E6%97%B6%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E8%B6%85%E8%AF%A6%E7%BB%86/" class="">【10W&#43;阅读】耗时一周总结的嵌入式学习路线，超详细</a>
+    <a href="/Yocreative.github.io/docs/embeded_tech/self_improve/10w&#43;%E9%98%85%E8%AF%BB%E8%80%97%E6%97%B6%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E8%B6%85%E8%AF%A6%E7%BB%86/" class="">【10W&#43;阅读】耗时一周总结的嵌入式学习路线，超详细</a>
   
 
         </li>
@@ -154,8 +211,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-979254fc07de711332325335a96d33d1" class="toggle"  />
-    <label for="section-979254fc07de711332325335a96d33d1" class="flex justify-between">
+    <input type="checkbox" id="section-12e8de9bec1a6a05dded471550b1fca1" class="toggle"  />
+    <label for="section-12e8de9bec1a6a05dded471550b1fca1" class="flex justify-between">
       <a role="button" class="">嵌入式面经</a>
     </label>
   
@@ -170,7 +227,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/" class="">Soc的Bring Up流程</a>
+    <a href="/Yocreative.github.io/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/" class="">Soc的Bring Up流程</a>
   
 
         </li>
@@ -183,7 +240,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/embeded_tech/embeded_interview/cpu%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" class="">CPU体系架构</a>
+    <a href="/Yocreative.github.io/docs/embeded_tech/embeded_interview/cpu%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" class="">CPU体系架构</a>
   
 
         </li>
@@ -196,7 +253,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/embeded_tech/embeded_interview/linux%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="">Linux用户态和内核态交互的几种方式</a>
+    <a href="/Yocreative.github.io/docs/embeded_tech/embeded_interview/linux%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="">Linux用户态和内核态交互的几种方式</a>
   
 
         </li>
@@ -232,7 +289,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/uboot/%E4%B8%80uboot%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" class="">一、uboot基础了解</a>
+    <a href="/Yocreative.github.io/docs/uboot/%E4%B8%80uboot%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" class="">一、uboot基础了解</a>
   
 
         </li>
@@ -245,7 +302,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/uboot/%E4%BA%8Cuboot%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="">二、uboot启动流程分析</a>
+    <a href="/Yocreative.github.io/docs/uboot/%E4%BA%8Cuboot%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="">二、uboot启动流程分析</a>
   
 
         </li>
@@ -258,7 +315,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/uboot/%E4%B8%89uboot%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/" class="">三、Uboot驱动模型</a>
+    <a href="/Yocreative.github.io/docs/uboot/%E4%B8%89uboot%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/" class="">三、Uboot驱动模型</a>
   
 
         </li>
@@ -271,7 +328,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/uboot/%E5%9B%9Buboot%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90/" class="">四、Uboot命令行模式分析</a>
+    <a href="/Yocreative.github.io/docs/uboot/%E5%9B%9Buboot%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90/" class="">四、Uboot命令行模式分析</a>
   
 
         </li>
@@ -302,8 +359,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-00ea238a2f9544b32c1424d14ac8d5b7" class="toggle"  />
-    <label for="section-00ea238a2f9544b32c1424d14ac8d5b7" class="flex justify-between">
+    <input type="checkbox" id="section-a1949511b91c821e0f36b6a0946f3316" class="toggle"  />
+    <label for="section-a1949511b91c821e0f36b6a0946f3316" class="flex justify-between">
       <a role="button" class="">Linux 驱动开发基础</a>
     </label>
   
@@ -318,7 +375,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/" class="">【一文秒懂】Linux字符设备驱动</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/" class="">【一文秒懂】Linux字符设备驱动</a>
   
 
         </li>
@@ -331,7 +388,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux设备树详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux设备树详解</a>
   
 
         </li>
@@ -344,7 +401,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E4%B8%BA%E4%BB%80%E4%B9%88linux%E5%86%85%E6%A0%B8%E4%B8%AD%E4%B8%8D%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8typedef/" class="">【一文秒懂】为什么Linux内核中不经常使用typedef</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E4%B8%BA%E4%BB%80%E4%B9%88linux%E5%86%85%E6%A0%B8%E4%B8%AD%E4%B8%8D%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8typedef/" class="">【一文秒懂】为什么Linux内核中不经常使用typedef</a>
   
 
         </li>
@@ -362,8 +419,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-3eeeb8a1a5c1ce449ec7070209d774d9" class="toggle"  />
-    <label for="section-3eeeb8a1a5c1ce449ec7070209d774d9" class="flex justify-between">
+    <input type="checkbox" id="section-afd4803a46f291255c33d51315aa650a" class="toggle"  />
+    <label for="section-afd4803a46f291255c33d51315aa650a" class="flex justify-between">
       <a role="button" class="">Linux API 揭秘</a>
     </label>
   
@@ -378,7 +435,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98module_init%E4%B8%8Emodule_exit/" class="">【Linux API 揭秘】module_init与module_exit</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98module_init%E4%B8%8Emodule_exit/" class="">【Linux API 揭秘】module_init与module_exit</a>
   
 
         </li>
@@ -391,7 +448,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98container_of%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" class="">【Linux API 揭秘】container_of函数详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98container_of%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" class="">【Linux API 揭秘】container_of函数详解</a>
   
 
         </li>
@@ -409,8 +466,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-cad08b32e77ccfb31b07972873519838" class="toggle"  />
-    <label for="section-cad08b32e77ccfb31b07972873519838" class="flex justify-between">
+    <input type="checkbox" id="section-b7fd81501e53bad4f93d9ee3c27b0e9c" class="toggle"  />
+    <label for="section-b7fd81501e53bad4f93d9ee3c27b0e9c" class="flex justify-between">
       <a role="button" class="">Linux 调试工具</a>
     </label>
   
@@ -425,7 +482,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7devmem/" class="">【一文秒懂】Linux内核调试工具——devmem</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7devmem/" class="">【一文秒懂】Linux内核调试工具——devmem</a>
   
 
         </li>
@@ -438,7 +495,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82ftrace%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97/" class="">【一文秒懂】Ftrace系统调试工具使用终极指南</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82ftrace%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97/" class="">【一文秒懂】Ftrace系统调试工具使用终极指南</a>
   
 
         </li>
@@ -451,7 +508,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82top%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】TOP命令详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82top%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】TOP命令详解</a>
   
 
         </li>
@@ -464,7 +521,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7debugfs/" class="">【一文秒懂】Linux内核调试工具——Debugfs</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7debugfs/" class="">【一文秒懂】Linux内核调试工具——Debugfs</a>
   
 
         </li>
@@ -477,7 +534,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7iperf/" class="">【一文秒懂】Linux网络性能测试工具——Iperf</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7iperf/" class="">【一文秒懂】Linux网络性能测试工具——Iperf</a>
   
 
         </li>
@@ -490,7 +547,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdb%E4%BB%8B%E7%BB%8D/" class="">【一文秒懂】Linux调试工具——GDB介绍</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdb%E4%BB%8B%E7%BB%8D/" class="">【一文秒懂】Linux调试工具——GDB介绍</a>
   
 
         </li>
@@ -503,7 +560,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdbserver/" class="">【一文秒懂】Linux远程调试工具——gdbserver</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdbserver/" class="">【一文秒懂】Linux远程调试工具——gdbserver</a>
   
 
         </li>
@@ -516,7 +573,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B/" class="">【一文秒懂】Linux内核死锁检测</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B/" class="">【一文秒懂】Linux内核死锁检测</a>
   
 
         </li>
@@ -529,7 +586,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90core-dump%E6%96%87%E4%BB%B6/" class="">【一文秒懂】如何生成core Dump文件</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90core-dump%E6%96%87%E4%BB%B6/" class="">【一文秒懂】如何生成core Dump文件</a>
   
 
         </li>
@@ -542,7 +599,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E4%B9%8Bcore-dump%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux之Core Dump文件详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E4%B9%8Bcore-dump%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux之Core Dump文件详解</a>
   
 
         </li>
@@ -555,7 +612,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%80%81%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/" class="">【一文秒懂】Linux内核态内存泄露检测工具</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%80%81%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/" class="">【一文秒懂】Linux内核态内存泄露检测工具</a>
   
 
         </li>
@@ -573,8 +630,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-b3bfa0c2506d9fd89a39b0698e122f31" class="toggle"  />
-    <label for="section-b3bfa0c2506d9fd89a39b0698e122f31" class="flex justify-between">
+    <input type="checkbox" id="section-8563e19d06998e6920b649c7704304c2" class="toggle"  />
+    <label for="section-8563e19d06998e6920b649c7704304c2" class="flex justify-between">
       <a role="button" class="">Linux 内存管理</a>
     </label>
   
@@ -589,7 +646,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E4%B8%80%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E7%94%B1%E6%9D%A5%E5%8F%8A%E6%80%9D%E6%83%B3/" class="">一、内存管理的由来及思想</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E4%B8%80%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E7%94%B1%E6%9D%A5%E5%8F%8A%E6%80%9D%E6%83%B3/" class="">一、内存管理的由来及思想</a>
   
 
         </li>
@@ -602,7 +659,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/" class="">二、虚拟地址空间布局</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/" class="">二、虚拟地址空间布局</a>
   
 
         </li>
@@ -615,7 +672,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E4%B8%89%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/" class="">三、虚拟地址空间管理</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E4%B8%89%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/" class="">三、虚拟地址空间管理</a>
   
 
         </li>
@@ -628,7 +685,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E5%9B%9B%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%9E%8B/" class="">四、物理地址空间设计模型</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E5%9B%9B%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%9E%8B/" class="">四、物理地址空间设计模型</a>
   
 
         </li>
@@ -641,7 +698,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E4%BA%94%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80%E5%8F%8A%E7%AE%A1%E7%90%86/" class="">五、物理内存空间布局及管理</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E4%BA%94%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80%E5%8F%8A%E7%AE%A1%E7%90%86/" class="">五、物理内存空间布局及管理</a>
   
 
         </li>
@@ -654,7 +711,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E5%85%AD%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F/" class="">六、物理内存分配——伙伴系统</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E5%85%AD%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F/" class="">六、物理内存分配——伙伴系统</a>
   
 
         </li>
@@ -672,8 +729,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-2455edf5b3ea22c6053a61d28029cb9a" class="toggle" checked />
-    <label for="section-2455edf5b3ea22c6053a61d28029cb9a" class="flex justify-between">
+    <input type="checkbox" id="section-f435ee78d552247e6379477cd2bbc0e2" class="toggle" checked />
+    <label for="section-f435ee78d552247e6379477cd2bbc0e2" class="flex justify-between">
       <a role="button" class="">Linux 内核锁详解</a>
     </label>
   
@@ -688,7 +745,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%80%E5%86%85%E6%A0%B8%E9%94%81%E7%9A%84%E7%94%B1%E6%9D%A5/" class="">【深入理解Linux锁机制】一、内核锁的由来</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%80%E5%86%85%E6%A0%B8%E9%94%81%E7%9A%84%E7%94%B1%E6%9D%A5/" class="">【深入理解Linux锁机制】一、内核锁的由来</a>
   
 
         </li>
@@ -701,7 +758,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD/" class="">【深入理解Linux锁机制】二、中断屏蔽</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD/" class="">【深入理解Linux锁机制】二、中断屏蔽</a>
   
 
         </li>
@@ -714,7 +771,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" class="active">【深入理解Linux锁机制】三、原子操作</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" class="active">【深入理解Linux锁机制】三、原子操作</a>
   
 
         </li>
@@ -727,7 +784,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%9B%9B%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】四、自旋锁</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%9B%9B%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】四、自旋锁</a>
   
 
         </li>
@@ -740,7 +797,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%94%E8%A1%8D%E7%94%9F%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】五、衍生自旋锁</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%94%E8%A1%8D%E7%94%9F%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】五、衍生自旋锁</a>
   
 
         </li>
@@ -753,7 +810,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AD%E4%BF%A1%E5%8F%B7%E9%87%8F/" class="">【深入理解Linux锁机制】六、信号量</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AD%E4%BF%A1%E5%8F%B7%E9%87%8F/" class="">【深入理解Linux锁机制】六、信号量</a>
   
 
         </li>
@@ -766,7 +823,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%83%E4%BA%92%E6%96%A5%E4%BD%93/" class="">【深入理解Linux锁机制】七、互斥体</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%83%E4%BA%92%E6%96%A5%E4%BD%93/" class="">【深入理解Linux锁机制】七、互斥体</a>
   
 
         </li>
@@ -779,7 +836,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AB%E5%AE%8C%E6%88%90%E9%87%8F/" class="">【深入理解Linux锁机制】八、完成量</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AB%E5%AE%8C%E6%88%90%E9%87%8F/" class="">【深入理解Linux锁机制】八、完成量</a>
   
 
         </li>
@@ -797,8 +854,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-3e346f9c1e7b71569b8cd088121d9787" class="toggle"  />
-    <label for="section-3e346f9c1e7b71569b8cd088121d9787" class="flex justify-between">
+    <input type="checkbox" id="section-8fdb7e7c5e97c6cab0cd075b850b2ab6" class="toggle"  />
+    <label for="section-8fdb7e7c5e97c6cab0cd075b850b2ab6" class="flex justify-between">
       <a role="button" class="">Linux NVMEM 子系统</a>
     </label>
   
@@ -813,7 +870,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%80efuse%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8%E6%B5%85%E6%9E%90/" class="">【NVMEM子系统深入剖析】一、Efuse介绍及安全启动浅析</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%80efuse%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8%E6%B5%85%E6%9E%90/" class="">【NVMEM子系统深入剖析】一、Efuse介绍及安全启动浅析</a>
   
 
         </li>
@@ -826,7 +883,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%BA%8Cnvmem%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" class="">【NVMEM子系统深入剖析】二、NVMEM驱动框架</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%BA%8Cnvmem%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" class="">【NVMEM子系统深入剖析】二、NVMEM驱动框架</a>
   
 
         </li>
@@ -839,7 +896,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%89%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%86%85%E5%9C%A8%E5%85%B3%E8%81%94/" class="">【NVMEM子系统深入剖析】三、核心数据结构及内在关联</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%89%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%86%85%E5%9C%A8%E5%85%B3%E8%81%94/" class="">【NVMEM子系统深入剖析】三、核心数据结构及内在关联</a>
   
 
         </li>
@@ -852,7 +909,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%9B%9Befuse%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B/" class="">【NVMEM子系统深入剖析】四、efuse驱动实现流程</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%9B%9Befuse%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B/" class="">【NVMEM子系统深入剖析】四、efuse驱动实现流程</a>
   
 
         </li>
@@ -870,8 +927,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-9ae83851c5fe25a6d227e96b400b1ab9" class="toggle"  />
-    <label for="section-9ae83851c5fe25a6d227e96b400b1ab9" class="flex justify-between">
+    <input type="checkbox" id="section-55cd856914d3869f8de37a44fe2c2d31" class="toggle"  />
+    <label for="section-55cd856914d3869f8de37a44fe2c2d31" class="flex justify-between">
       <a role="button" class="">Linux LED子系统</a>
     </label>
   
@@ -886,7 +943,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%80linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%BF%85%E8%AF%BB/" class="">【LED子系统深度剖析】一、开篇词|Linux驱动开发新手必读</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%80linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%BF%85%E8%AF%BB/" class="">【LED子系统深度剖析】一、开篇词|Linux驱动开发新手必读</a>
   
 
         </li>
@@ -899,7 +956,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%8Cled%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" class="">【LED子系统深度剖析】二、LED子系统框架分析</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%8Cled%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" class="">【LED子系统深度剖析】二、LED子系统框架分析</a>
   
 
         </li>
@@ -912,7 +969,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%89%E7%A1%AC%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%B1%82%E8%AF%A6%E8%A7%A3/" class="">【LED子系统深度剖析】三、硬件驱动层详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%89%E7%A1%AC%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%B1%82%E8%AF%A6%E8%A7%A3/" class="">【LED子系统深度剖析】三、硬件驱动层详解</a>
   
 
         </li>
@@ -925,7 +982,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%9B%9B%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%80/" class="">【LED子系统深度剖析】四、核心层详解（一）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%9B%9B%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%80/" class="">【LED子系统深度剖析】四、核心层详解（一）</a>
   
 
         </li>
@@ -938,7 +995,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%94%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%BA%8C/" class="">【LED子系统深度剖析】五、核心层详解（二）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%94%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%BA%8C/" class="">【LED子系统深度剖析】五、核心层详解（二）</a>
   
 
         </li>
@@ -951,7 +1008,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AD%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%89/" class="">【LED子系统深度剖析】六、核心层详解（三）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AD%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%89/" class="">【LED子系统深度剖析】六、核心层详解（三）</a>
   
 
         </li>
@@ -964,7 +1021,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%83%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9E%E7%8E%B0/" class="">【LED子系统深度剖析】七、触发器实现</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%83%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9E%E7%8E%B0/" class="">【LED子系统深度剖析】七、触发器实现</a>
   
 
         </li>
@@ -977,7 +1034,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AB%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/" class="">【LED子系统深度剖析】八、小试牛刀</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AB%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/" class="">【LED子系统深度剖析】八、小试牛刀</a>
   
 
         </li>
@@ -990,7 +1047,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B9%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】九、数据结构详解（番外篇）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B9%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】九、数据结构详解（番外篇）</a>
   
 
         </li>
@@ -1003,7 +1060,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%8D%81%E8%AF%A6%E7%BB%86%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】十、详细实现流程（番外篇）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%8D%81%E8%AF%A6%E7%BB%86%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】十、详细实现流程（番外篇）</a>
   
 
         </li>
@@ -1021,8 +1078,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-bf0229851221605a75715f5f9633256a" class="toggle"  />
-    <label for="section-bf0229851221605a75715f5f9633256a" class="flex justify-between">
+    <input type="checkbox" id="section-e02acc82bb9269fdf5f35403746673a7" class="toggle"  />
+    <label for="section-e02acc82bb9269fdf5f35403746673a7" class="flex justify-between">
       <a role="button" class="">Linux MMC 子系统</a>
     </label>
   
@@ -1037,7 +1094,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%80mmc_sd_sdio%E4%BB%8B%E7%BB%8D/" class="">【MMC子系统】一、MMC_SD_SDIO介绍</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%80mmc_sd_sdio%E4%BB%8B%E7%BB%8D/" class="">【MMC子系统】一、MMC_SD_SDIO介绍</a>
   
 
         </li>
@@ -1050,7 +1107,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%8Cemmc%E5%8D%8F%E8%AE%AE/" class="">【MMC子系统】二、EMMC协议</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%8Cemmc%E5%8D%8F%E8%AE%AE/" class="">【MMC子系统】二、EMMC协议</a>
   
 
         </li>
@@ -1063,7 +1120,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%89mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/" class="">【MMC子系统】三、MMC子系统框架</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%89mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/" class="">【MMC子系统】三、MMC子系统框架</a>
   
 
         </li>
@@ -1076,7 +1133,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%9B%9Bmmc%E6%8E%A7%E5%88%B6%E5%99%A8%E9%A9%B1%E5%8A%A8%E5%B1%82/" class="">【MMC子系统】四、MMC控制器驱动层</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%9B%9Bmmc%E6%8E%A7%E5%88%B6%E5%99%A8%E9%A9%B1%E5%8A%A8%E5%B1%82/" class="">【MMC子系统】四、MMC控制器驱动层</a>
   
 
         </li>
@@ -1089,7 +1146,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%94mmc%E6%A0%B8%E5%BF%83%E5%B1%82/" class="">【MMC子系统】五、MMC核心层</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%94mmc%E6%A0%B8%E5%BF%83%E5%B1%82/" class="">【MMC子系统】五、MMC核心层</a>
   
 
         </li>
@@ -1102,7 +1159,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%85%ADmmc%E5%9D%97%E8%AE%BE%E5%A4%87%E5%B1%82/" class="">【MMC子系统】六、MMC块设备层</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%85%ADmmc%E5%9D%97%E8%AE%BE%E5%A4%87%E5%B1%82/" class="">【MMC子系统】六、MMC块设备层</a>
   
 
         </li>
@@ -1120,8 +1177,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-541874a152001b263009202c99a285c4" class="toggle"  />
-    <label for="section-541874a152001b263009202c99a285c4" class="flex justify-between">
+    <input type="checkbox" id="section-361f4c4127000ab1d21e7e0cdf1aa513" class="toggle"  />
+    <label for="section-361f4c4127000ab1d21e7e0cdf1aa513" class="flex justify-between">
       <a role="button" class="">Bluetooth蓝牙开发详解</a>
     </label>
   
@@ -1136,7 +1193,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%80%E6%89%93%E9%80%A0%E5%85%A8%E7%BD%91%E6%9C%80%E8%AF%A6%E7%BB%86%E7%9A%84bluetooth%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="">【Bluetooth蓝牙开发】一、打造全网最详细的Bluetooth开发教程</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%80%E6%89%93%E9%80%A0%E5%85%A8%E7%BD%91%E6%9C%80%E8%AF%A6%E7%BB%86%E7%9A%84bluetooth%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="">【Bluetooth蓝牙开发】一、打造全网最详细的Bluetooth开发教程</a>
   
 
         </li>
@@ -1149,7 +1206,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%8C%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" class="">【Bluetooth蓝牙开发】二、蓝牙开发入门</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%8C%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" class="">【Bluetooth蓝牙开发】二、蓝牙开发入门</a>
   
 
         </li>
@@ -1162,7 +1219,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%89%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E6%80%BB%E8%A7%88%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE/" class="">【Bluetooth蓝牙开发】三、一篇文章，带你总览蓝牙协议</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%89%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E6%80%BB%E8%A7%88%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE/" class="">【Bluetooth蓝牙开发】三、一篇文章，带你总览蓝牙协议</a>
   
 
         </li>
@@ -1175,7 +1232,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%9B%9Bble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E7%89%A9%E7%90%86%E5%B1%82%E6%B5%85%E6%9E%90/" class="">【Bluetooth蓝牙开发】四、BLE协议之物理层浅析</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%9B%9Bble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E7%89%A9%E7%90%86%E5%B1%82%E6%B5%85%E6%9E%90/" class="">【Bluetooth蓝牙开发】四、BLE协议之物理层浅析</a>
   
 
         </li>
@@ -1188,7 +1245,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%94ble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%93%BE%E8%B7%AF%E5%B1%82/" class="">【Bluetooth蓝牙开发】五、BLE协议之链路层</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%94ble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%93%BE%E8%B7%AF%E5%B1%82/" class="">【Bluetooth蓝牙开发】五、BLE协议之链路层</a>
   
 
         </li>
@@ -1201,7 +1258,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ADble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%BC%A0%E8%BE%93%E5%B1%82/" class="">【Bluetooth蓝牙开发】六、BLE协议之传输层</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ADble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%BC%A0%E8%BE%93%E5%B1%82/" class="">【Bluetooth蓝牙开发】六、BLE协议之传输层</a>
   
 
         </li>
@@ -1214,7 +1271,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%83ble%E5%8D%8F%E8%AE%AE%E4%B9%8Bl2cap/" class="">【Bluetooth蓝牙开发】七、BLE协议之L2CAP</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%83ble%E5%8D%8F%E8%AE%AE%E4%B9%8Bl2cap/" class="">【Bluetooth蓝牙开发】七、BLE协议之L2CAP</a>
   
 
         </li>
@@ -1227,7 +1284,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ABble%E5%8D%8F%E8%AE%AE%E4%B9%8Batt/" class="">【Bluetooth蓝牙开发】八、BLE协议之ATT</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ABble%E5%8D%8F%E8%AE%AE%E4%B9%8Batt/" class="">【Bluetooth蓝牙开发】八、BLE协议之ATT</a>
   
 
         </li>
@@ -1240,7 +1297,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B9%9Dble%E5%8D%8F%E8%AE%AEgatt/" class="">【Bluetooth蓝牙开发】九、BLE协议——GATT</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B9%9Dble%E5%8D%8F%E8%AE%AEgatt/" class="">【Bluetooth蓝牙开发】九、BLE协议——GATT</a>
   
 
         </li>
@@ -1253,7 +1310,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81ble%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%B9%BF%E6%92%AD%E6%89%AB%E6%8F%8F%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5/" class="">【Bluetooth蓝牙开发】十、BLE蓝牙通信流程（建立连接，广播，扫描，断开连接）</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81ble%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%B9%BF%E6%92%AD%E6%89%AB%E6%8F%8F%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5/" class="">【Bluetooth蓝牙开发】十、BLE蓝牙通信流程（建立连接，广播，扫描，断开连接）</a>
   
 
         </li>
@@ -1266,7 +1323,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%B8%80%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84bluez%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" class="">【Bluetooth蓝牙开发】十一、超详细的Bluez交叉编译</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%B8%80%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84bluez%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" class="">【Bluetooth蓝牙开发】十一、超详细的Bluez交叉编译</a>
   
 
         </li>
@@ -1279,7 +1336,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%BA%8C%E8%93%9D%E7%89%99%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/" class="">【Bluetooth蓝牙开发】十二、蓝牙调试工具【集合汇总】</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%BA%8C%E8%93%9D%E7%89%99%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/" class="">【Bluetooth蓝牙开发】十二、蓝牙调试工具【集合汇总】</a>
   
 
         </li>
@@ -1297,8 +1354,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-3962d06d522e4ac6aca7d70bdb913d71" class="toggle"  />
-    <label for="section-3962d06d522e4ac6aca7d70bdb913d71" class="flex justify-between">
+    <input type="checkbox" id="section-213e548a5ed64c190d6cd532c8786974" class="toggle"  />
+    <label for="section-213e548a5ed64c190d6cd532c8786974" class="flex justify-between">
       <a role="button" class="">WiFi开发详解</a>
     </label>
   
@@ -1313,7 +1370,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/wifi/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="">WIFI基础知识汇总</a>
+    <a href="/Yocreative.github.io/docs/linux/wifi/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="">WIFI基础知识汇总</a>
   
 
         </li>
@@ -1326,7 +1383,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/wifi/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" class="">一文详解路由器配置信息</a>
+    <a href="/Yocreative.github.io/docs/linux/wifi/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" class="">一文详解路由器配置信息</a>
   
 
         </li>
@@ -1339,7 +1396,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/wifi/wifi%E6%97%A0%E7%BC%9D%E6%BC%AB%E6%B8%B8%E8%AF%A6%E8%A7%A3/" class="">WiFi无缝漫游详解</a>
+    <a href="/Yocreative.github.io/docs/linux/wifi/wifi%E6%97%A0%E7%BC%9D%E6%BC%AB%E6%B8%B8%E8%AF%A6%E8%A7%A3/" class="">WiFi无缝漫游详解</a>
   
 
         </li>
@@ -1376,7 +1433,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -1388,14 +1445,14 @@ https://github.com/alex-shpak/hugo-book
         
   <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+    <img src="/Yocreative.github.io/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
   <strong>【深入理解Linux锁机制】三、原子操作</strong>
 
   <label for="toc-control">
     
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    <img src="/Yocreative.github.io/svg/toc.svg" class="book-icon" alt="Table of Contents" />
     
   </label>
 </div>
@@ -1475,8 +1532,7 @@ https://github.com/alex-shpak/hugo-book
 <p><strong><code>Atomic</code>类型的变量可以在执行期间禁止中断，并保证在访问变量时的原子性。</strong></p>
 <blockquote>
 <p>简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。</p>
-<p>其原子性表现在：操作该标志位的值，不可被打断。</p>
-</blockquote>
+<p>其原子性表现在：操作该标志位的值，不可被打断。</p></blockquote>
 <p>在<code>Linux</code>内核中，提供了两类原子操作的接口，分别是针对<strong>位</strong>和<strong>整型变量</strong>的原子操作。</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230730171728090.png" alt="image-20230730171728090" /></p>
 <h2 id="2整型变量原子操作">
@@ -1488,49 +1544,47 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#21-api%e6%8e%a5%e5%8f%a3">#</a>
 </h3>
 <blockquote>
-<p>对于整形变量的原子操作，内核提供了一系列的 <code>API</code>接口</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#6272a4">/*设置原子变量的值*/</span>
-atomic_t v <span style="color:#ff79c6">=</span> ATOMIC_INIT(<span style="color:#bd93f9">0</span>);            <span style="color:#6272a4">/* 定义原子变量v并初始化为0 */</span>
-<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_set</span>(atomic_t <span style="color:#ff79c6">*</span>v, <span style="color:#8be9fd">int</span> i);    <span style="color:#6272a4">/* 设置原子变量的值为i */</span>
-
-<span style="color:#6272a4">/*获取原子变量的值*/</span>
-atomic_read(atomic_t <span style="color:#ff79c6">*</span>v);        		<span style="color:#6272a4">/* 返回原子变量的值*/</span>
-
-<span style="color:#6272a4">/*原子变量的加减*/</span>
-<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_add</span>(<span style="color:#8be9fd">int</span> i, atomic_t <span style="color:#ff79c6">*</span>v);      <span style="color:#6272a4">/* 原子变量增加i */</span>
-<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_sub</span>(<span style="color:#8be9fd">int</span> i, atomic_t <span style="color:#ff79c6">*</span>v);      <span style="color:#6272a4">/* 原子变量减少i */</span>
-
-<span style="color:#6272a4">/*原子变量的自增，自减*/</span>
-<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_inc</span>(atomic_t <span style="color:#ff79c6">*</span>v);				<span style="color:#6272a4">/* 原子变量增加1 */</span>
-<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_dec</span>(atomic_t <span style="color:#ff79c6">*</span>v);     			<span style="color:#6272a4">/* 原子变量减少1 */</span>
-
-<span style="color:#6272a4">/*原子变量的操作并测试*/</span>
-<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_inc_and_test</span>(atomic_t <span style="color:#ff79c6">*</span>v);		<span style="color:#6272a4">/*进行对应操作后，测试原子变量值是否为0*/</span>
-<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_dec_and_test</span>(atomic_t <span style="color:#ff79c6">*</span>v);
-<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_sub_and_test</span>(<span style="color:#8be9fd">int</span> i, atomic_t <span style="color:#ff79c6">*</span>v);
-
-<span style="color:#6272a4">/*原子变量的操作并返回*/</span>
-<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_add_return</span>(<span style="color:#8be9fd">int</span> i, atomic_t <span style="color:#ff79c6">*</span>v);	<span style="color:#6272a4">/*进行对应操作后，返回新的值*/</span>
-<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_sub_return</span>(<span style="color:#8be9fd">int</span> i, atomic_t <span style="color:#ff79c6">*</span>v);
-<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_inc_return</span>(atomic_t <span style="color:#ff79c6">*</span>v);
-<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_dec_return</span>(atomic_t <span style="color:#ff79c6">*</span>v);
-</code></pre></div><h3 id="22-api实现">
+<p>对于整形变量的原子操作，内核提供了一系列的 <code>API</code>接口</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6272a4">/*设置原子变量的值*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">atomic_t</span> v <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">ATOMIC_INIT</span>(<span style="color:#bd93f9">0</span>);            <span style="color:#6272a4">/* 定义原子变量v并初始化为0 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_set</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v, <span style="color:#8be9fd">int</span> i);    <span style="color:#6272a4">/* 设置原子变量的值为i */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/*获取原子变量的值*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">atomic_read</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);        		<span style="color:#6272a4">/* 返回原子变量的值*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/*原子变量的加减*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_add</span>(<span style="color:#8be9fd">int</span> i, <span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);      <span style="color:#6272a4">/* 原子变量增加i */</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_sub</span>(<span style="color:#8be9fd">int</span> i, <span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);      <span style="color:#6272a4">/* 原子变量减少i */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/*原子变量的自增，自减*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_inc</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);				<span style="color:#6272a4">/* 原子变量增加1 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_dec</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);     			<span style="color:#6272a4">/* 原子变量减少1 */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/*原子变量的操作并测试*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_inc_and_test</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);		<span style="color:#6272a4">/*进行对应操作后，测试原子变量值是否为0*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_dec_and_test</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_sub_and_test</span>(<span style="color:#8be9fd">int</span> i, <span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/*原子变量的操作并返回*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_add_return</span>(<span style="color:#8be9fd">int</span> i, <span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);	<span style="color:#6272a4">/*进行对应操作后，返回新的值*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_sub_return</span>(<span style="color:#8be9fd">int</span> i, <span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_inc_return</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">atomic_dec_return</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v);
+</span></span></code></pre></div><h3 id="22-api实现">
   2.2 API实现
   <a class="anchor" href="#22-api%e5%ae%9e%e7%8e%b0">#</a>
 </h3>
 <blockquote>
 <p>我们下面就介绍几个稍微有代表性的接口实现</p>
-<p>以下基于<code>Linux</code>内核源码<code>4.19</code>，刚看是看的时候，有点摸不着头脑，因为定义的地方和引用的地方较多，不太容易找到，后来才慢慢得窥门径。</p>
-</blockquote>
+<p>以下基于<code>Linux</code>内核源码<code>4.19</code>，刚看是看的时候，有点摸不着头脑，因为定义的地方和引用的地方较多，不太容易找到，后来才慢慢得窥门径。</p></blockquote>
 <h4 id="221-原子变量结构体">
   2.2.1 原子变量结构体
   <a class="anchor" href="#221-%e5%8e%9f%e5%ad%90%e5%8f%98%e9%87%8f%e7%bb%93%e6%9e%84%e4%bd%93">#</a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span> {
-    <span style="color:#8be9fd">int</span> counter;
-} atomic_t;
-</code></pre></div><p><strong>结构体名称</strong>：<code>atomic_t</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> counter;
+</span></span><span style="display:flex;"><span>} <span style="color:#8be9fd">atomic_t</span>;
+</span></span></code></pre></div><p><strong>结构体名称</strong>：<code>atomic_t</code></p>
 <p><strong>文件位置</strong>：<code>include/linux/types.h</code></p>
 <p><strong>主要作用</strong>：原子变量结构体，该结构体只包含一个整型成员变量<code>counter</code>，用于存储原子变量的值。</p>
 <h4 id="222-设置原子变量操作">
@@ -1542,8 +1596,7 @@ atomic_read(atomic_t <span style="color:#ff79c6">*</span>v);        		<span styl
 <ol>
 <li>通过<code>ATOMIC_INIT</code>宏定义来设置</li>
 <li>通过<code>atomic_set</code>函数来定义</li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <h5 id="2221-atomic_init">
   2.2.2.1 ATOMIC_INIT
   <a class="anchor" href="#2221-atomic_init">#</a>
@@ -1556,32 +1609,32 @@ atomic_read(atomic_t <span style="color:#ff79c6">*</span>v);        		<span styl
   2.2.2.2 atomic_set
   <a class="anchor" href="#2222-atomic_set">#</a>
 </h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#6272a4">// arch/arm/include/asm/atomic.h
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">#define atomic_set(v,i)	WRITE_ONCE(((v)-&gt;counter), (i))
-</span><span style="color:#ff79c6"></span>
-<span style="color:#6272a4">// include/linux/compiler.h
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">#define WRITE_ONCE(x, val) \
-</span><span style="color:#ff79c6">({							\
-</span><span style="color:#ff79c6">    union { typeof(x) __val; char __c[1]; } __u =	\
-</span><span style="color:#ff79c6">        { .__val = (__force typeof(x)) (val) }; \
-</span><span style="color:#ff79c6">    __write_once_size(&amp;(x), __u.__c, sizeof(x));	\
-</span><span style="color:#ff79c6">    __u.__val;					\
-</span><span style="color:#ff79c6">})
-</span><span style="color:#ff79c6"></span>
-<span style="color:#ff79c6">static</span> __always_inline <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">__write_once_size</span>(<span style="color:#ff79c6">volatile</span> <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>p, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>res, <span style="color:#8be9fd">int</span> size)
-{
-    <span style="color:#ff79c6">switch</span> (size) {
-    <span style="color:#ff79c6">case</span> <span style="color:#bd93f9">1</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">*</span>(<span style="color:#ff79c6">volatile</span> __u8 <span style="color:#ff79c6">*</span>)p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(__u8 <span style="color:#ff79c6">*</span>)res; <span style="color:#ff79c6">break</span>;
-    <span style="color:#ff79c6">case</span> <span style="color:#bd93f9">2</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">*</span>(<span style="color:#ff79c6">volatile</span> __u16 <span style="color:#ff79c6">*</span>)p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(__u16 <span style="color:#ff79c6">*</span>)res; <span style="color:#ff79c6">break</span>;
-    <span style="color:#ff79c6">case</span> <span style="color:#bd93f9">4</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">*</span>(<span style="color:#ff79c6">volatile</span> __u32 <span style="color:#ff79c6">*</span>)p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(__u32 <span style="color:#ff79c6">*</span>)res; <span style="color:#ff79c6">break</span>;
-    <span style="color:#ff79c6">case</span> <span style="color:#bd93f9">8</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">*</span>(<span style="color:#ff79c6">volatile</span> __u64 <span style="color:#ff79c6">*</span>)p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(__u64 <span style="color:#ff79c6">*</span>)res; <span style="color:#ff79c6">break</span>;
-    <span style="color:#ff79c6">default</span><span style="color:#ff79c6">:</span>
-        barrier();
-        __builtin_memcpy((<span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>)p, (<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>)res, size);
-        barrier();
-    }
-}
-</code></pre></div><p><strong>函数介绍</strong>：该函数也用作初始化原子变量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#6272a4">// arch/arm/include/asm/atomic.h
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">#define atomic_set(v,i)	WRITE_ONCE(((v)-&gt;counter), (i))
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// include/linux/compiler.h
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">#define WRITE_ONCE(x, val) \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">({							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    union { typeof(x) __val; char __c[1]; } __u =	\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">        { .__val = (__force typeof(x)) (val) }; \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    __write_once_size(&amp;(x), __u.__c, sizeof(x));	\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    __u.__val;					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">})
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">static</span> __always_inline <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">__write_once_size</span>(<span style="color:#ff79c6">volatile</span> <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>p, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>res, <span style="color:#8be9fd">int</span> size)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">switch</span> (size) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">case</span> <span style="color:#bd93f9">1</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">*</span>(<span style="color:#ff79c6">volatile</span> __u8 <span style="color:#ff79c6">*</span>)p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(__u8 <span style="color:#ff79c6">*</span>)res; <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">case</span> <span style="color:#bd93f9">2</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">*</span>(<span style="color:#ff79c6">volatile</span> __u16 <span style="color:#ff79c6">*</span>)p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(__u16 <span style="color:#ff79c6">*</span>)res; <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">case</span> <span style="color:#bd93f9">4</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">*</span>(<span style="color:#ff79c6">volatile</span> __u32 <span style="color:#ff79c6">*</span>)p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(__u32 <span style="color:#ff79c6">*</span>)res; <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">case</span> <span style="color:#bd93f9">8</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">*</span>(<span style="color:#ff79c6">volatile</span> __u64 <span style="color:#ff79c6">*</span>)p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(__u64 <span style="color:#ff79c6">*</span>)res; <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">default</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">barrier</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">__builtin_memcpy</span>((<span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>)p, (<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>)res, size);
+</span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">barrier</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>函数介绍</strong>：该函数也用作初始化原子变量</p>
 <p><strong>文件位置</strong>：<code>arch/arm/include/asm/atomic.h</code></p>
 <p><strong>实现方式</strong>：通过调用<code>WRITE_ONCE</code>来实现，其中<code>WRITE_ONCE</code>宏实现了一些屏蔽编译器优化的技巧，确保写入操作是原子的。</p>
 <ol>
@@ -1617,107 +1670,105 @@ atomic_read(atomic_t <span style="color:#ff79c6">*</span>v);        		<span styl
   2.2.3.1 ATOMIC_OPS
   <a class="anchor" href="#2231-atomic_ops">#</a>
 </h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#6272a4">/*
-</span><span style="color:#6272a4"> * ARMv6 UP and SMP safe atomic ops.  We use load exclusive and
-</span><span style="color:#6272a4"> * store exclusive to ensure that these are atomic.  We may loop
-</span><span style="color:#6272a4"> * to ensure that the update happens.
-</span><span style="color:#6272a4"> */</span>
-
-<span style="color:#ff79c6">#define ATOMIC_OP(op, c_op, asm_op)					\
-</span><span style="color:#ff79c6">static inline void atomic_##op(int i, atomic_t *v)			\
-</span><span style="color:#ff79c6">{									\
-</span><span style="color:#ff79c6">    unsigned long tmp;						\
-</span><span style="color:#ff79c6">    int result;							\
-</span><span style="color:#ff79c6">                                    \
-</span><span style="color:#ff79c6">    prefetchw(&amp;v-&gt;counter);						\
-</span><span style="color:#ff79c6">    __asm__ __volatile__(&#34;@ atomic_&#34; #op &#34;\n&#34;			\
-</span><span style="color:#ff79c6">&#34;1:	ldrex	%0, [%3]\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	&#34; #asm_op &#34;	%0, %0, %4\n&#34;					\
-</span><span style="color:#ff79c6">&#34;	strex	%1, %0, [%3]\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	teq	%1, #0\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	bne	1b&#34;							\
-</span><span style="color:#ff79c6">    : &#34;=&amp;r&#34; (result), &#34;=&amp;r&#34; (tmp), &#34;+Qo&#34; (v-&gt;counter)		\
-</span><span style="color:#ff79c6">    : &#34;r&#34; (&amp;v-&gt;counter), &#34;Ir&#34; (i)					\
-</span><span style="color:#ff79c6">    : &#34;cc&#34;);							\
-</span><span style="color:#ff79c6">}									\
-</span><span style="color:#ff79c6">
-</span><span style="color:#ff79c6">#define ATOMIC_OP_RETURN(op, c_op, asm_op)				\
-</span><span style="color:#ff79c6">static inline int atomic_##op##_return_relaxed(int i, atomic_t *v)	\
-</span><span style="color:#ff79c6">{									\
-</span><span style="color:#ff79c6">    unsigned long tmp;						\
-</span><span style="color:#ff79c6">    int result;							\
-</span><span style="color:#ff79c6">                                    \
-</span><span style="color:#ff79c6">    prefetchw(&amp;v-&gt;counter);						\
-</span><span style="color:#ff79c6">                                    \
-</span><span style="color:#ff79c6">    __asm__ __volatile__(&#34;@ atomic_&#34; #op &#34;_return\n&#34;		\
-</span><span style="color:#ff79c6">&#34;1:	ldrex	%0, [%3]\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	&#34; #asm_op &#34;	%0, %0, %4\n&#34;					\
-</span><span style="color:#ff79c6">&#34;	strex	%1, %0, [%3]\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	teq	%1, #0\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	bne	1b&#34;							\
-</span><span style="color:#ff79c6">    : &#34;=&amp;r&#34; (result), &#34;=&amp;r&#34; (tmp), &#34;+Qo&#34; (v-&gt;counter)		\
-</span><span style="color:#ff79c6">    : &#34;r&#34; (&amp;v-&gt;counter), &#34;Ir&#34; (i)					\
-</span><span style="color:#ff79c6">    : &#34;cc&#34;);							\
-</span><span style="color:#ff79c6">                                    \
-</span><span style="color:#ff79c6">    return result;							\
-</span><span style="color:#ff79c6">}
-</span><span style="color:#ff79c6"></span>
-<span style="color:#ff79c6">#define ATOMIC_FETCH_OP(op, c_op, asm_op)				\
-</span><span style="color:#ff79c6">static inline int atomic_fetch_##op##_relaxed(int i, atomic_t *v)	\
-</span><span style="color:#ff79c6">{									\
-</span><span style="color:#ff79c6">    unsigned long tmp;						\
-</span><span style="color:#ff79c6">    int result, val;						\
-</span><span style="color:#ff79c6">                                    \
-</span><span style="color:#ff79c6">    prefetchw(&amp;v-&gt;counter);						\
-</span><span style="color:#ff79c6">                                    \
-</span><span style="color:#ff79c6">    __asm__ __volatile__(&#34;@ atomic_fetch_&#34; #op &#34;\n&#34;			\
-</span><span style="color:#ff79c6">&#34;1:	ldrex	%0, [%4]\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	&#34; #asm_op &#34;	%1, %0, %5\n&#34;					\
-</span><span style="color:#ff79c6">&#34;	strex	%2, %1, [%4]\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	teq	%2, #0\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	bne	1b&#34;							\
-</span><span style="color:#ff79c6">    : &#34;=&amp;r&#34; (result), &#34;=&amp;r&#34; (val), &#34;=&amp;r&#34; (tmp), &#34;+Qo&#34; (v-&gt;counter)	\
-</span><span style="color:#ff79c6">    : &#34;r&#34; (&amp;v-&gt;counter), &#34;Ir&#34; (i)					\
-</span><span style="color:#ff79c6">    : &#34;cc&#34;);							\
-</span><span style="color:#ff79c6">                                    \
-</span><span style="color:#ff79c6">    return result;							\
-</span><span style="color:#ff79c6">}
-</span><span style="color:#ff79c6"></span>
-<span style="color:#ff79c6">#define ATOMIC_OPS(op, c_op, asm_op)					\
-</span><span style="color:#ff79c6">    ATOMIC_OP(op, c_op, asm_op)					\
-</span><span style="color:#ff79c6">    ATOMIC_OP_RETURN(op, c_op, asm_op)				\
-</span><span style="color:#ff79c6">    ATOMIC_FETCH_OP(op, c_op, asm_op)
-</span><span style="color:#ff79c6"></span>    
-ATOMIC_OPS(add, <span style="color:#ff79c6">+=</span>, add)
-ATOMIC_OPS(sub, <span style="color:#ff79c6">-=</span>, sub)
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * ARMv6 UP and SMP safe atomic ops.  We use load exclusive and
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * store exclusive to ensure that these are atomic.  We may loop
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * to ensure that the update happens.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define ATOMIC_OP(op, c_op, asm_op)					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">static inline void atomic_##op(int i, atomic_t *v)			\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">{									\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    unsigned long tmp;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    int result;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    prefetchw(&amp;v-&gt;counter);						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    __asm__ __volatile__(&#34;@ atomic_&#34; #op &#34;\n&#34;			\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;1:	ldrex	%0, [%3]\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	&#34; #asm_op &#34;	%0, %0, %4\n&#34;					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	strex	%1, %0, [%3]\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	teq	%1, #0\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	bne	1b&#34;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;=&amp;r&#34; (result), &#34;=&amp;r&#34; (tmp), &#34;+Qo&#34; (v-&gt;counter)		\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;r&#34; (&amp;v-&gt;counter), &#34;Ir&#34; (i)					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;cc&#34;);							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">}									\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define ATOMIC_OP_RETURN(op, c_op, asm_op)				\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">static inline int atomic_##op##_return_relaxed(int i, atomic_t *v)	\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">{									\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    unsigned long tmp;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    int result;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    prefetchw(&amp;v-&gt;counter);						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    __asm__ __volatile__(&#34;@ atomic_&#34; #op &#34;_return\n&#34;		\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;1:	ldrex	%0, [%3]\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	&#34; #asm_op &#34;	%0, %0, %4\n&#34;					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	strex	%1, %0, [%3]\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	teq	%1, #0\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	bne	1b&#34;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;=&amp;r&#34; (result), &#34;=&amp;r&#34; (tmp), &#34;+Qo&#34; (v-&gt;counter)		\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;r&#34; (&amp;v-&gt;counter), &#34;Ir&#34; (i)					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;cc&#34;);							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    return result;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">}
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define ATOMIC_FETCH_OP(op, c_op, asm_op)				\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">static inline int atomic_fetch_##op##_relaxed(int i, atomic_t *v)	\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">{									\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    unsigned long tmp;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    int result, val;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    prefetchw(&amp;v-&gt;counter);						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    __asm__ __volatile__(&#34;@ atomic_fetch_&#34; #op &#34;\n&#34;			\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;1:	ldrex	%0, [%4]\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	&#34; #asm_op &#34;	%1, %0, %5\n&#34;					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	strex	%2, %1, [%4]\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	teq	%2, #0\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	bne	1b&#34;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;=&amp;r&#34; (result), &#34;=&amp;r&#34; (val), &#34;=&amp;r&#34; (tmp), &#34;+Qo&#34; (v-&gt;counter)	\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;r&#34; (&amp;v-&gt;counter), &#34;Ir&#34; (i)					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;cc&#34;);							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    return result;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">}
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define ATOMIC_OPS(op, c_op, asm_op)					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    ATOMIC_OP(op, c_op, asm_op)					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    ATOMIC_OP_RETURN(op, c_op, asm_op)				\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    ATOMIC_FETCH_OP(op, c_op, asm_op)
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>    
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">ATOMIC_OPS</span>(add, <span style="color:#ff79c6">+=</span>, add)
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">ATOMIC_OPS</span>(sub, <span style="color:#ff79c6">-=</span>, sub)
+</span></span></code></pre></div><blockquote>
 <p>找<code>atomic_add</code>找半天，还找到了不同的架构下面。:(</p>
-<p>原来内核通过各种宏定义将其操作全部管理起来，宏定义在内核中的使用也是非常广泛了。</p>
-</blockquote>
+<p>原来内核通过各种宏定义将其操作全部管理起来，宏定义在内核中的使用也是非常广泛了。</p></blockquote>
 <p><strong>函数作用</strong>：通过一些列宏定义，来实现原子变量的<code>add</code>、<code>sub</code>、<code>and</code>、<code>or</code>等原子变量操作</p>
 <p><strong>文件位置</strong>：<code>arch/arm/include/asm/atomic.h</code></p>
 <p><strong>实现方式</strong>：</p>
 <blockquote>
-<p>我们以<code>atomic_##op</code>为例来介绍，其他大同小异！</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#ff79c6">#define ATOMIC_OP(op, c_op, asm_op)					\
-</span><span style="color:#ff79c6">static inline void atomic_##op(int i, atomic_t *v)			\
-</span><span style="color:#ff79c6">{									\
-</span><span style="color:#ff79c6">    unsigned long tmp;						\
-</span><span style="color:#ff79c6">    int result;							\
-</span><span style="color:#ff79c6">                                    \
-</span><span style="color:#ff79c6">    prefetchw(&amp;v-&gt;counter);						\
-</span><span style="color:#ff79c6">    __asm__ __volatile__(&#34;@ atomic_&#34; #op &#34;\n&#34;			\
-</span><span style="color:#ff79c6">&#34;1:	ldrex	%0, [%3]\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	&#34; #asm_op &#34;	%0, %0, %4\n&#34;					\
-</span><span style="color:#ff79c6">&#34;	strex	%1, %0, [%3]\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	teq	%1, #0\n&#34;						\
-</span><span style="color:#ff79c6">&#34;	bne	1b&#34;							\
-</span><span style="color:#ff79c6">    : &#34;=&amp;r&#34; (result), &#34;=&amp;r&#34; (tmp), &#34;+Qo&#34; (v-&gt;counter)		\
-</span><span style="color:#ff79c6">    : &#34;r&#34; (&amp;v-&gt;counter), &#34;Ir&#34; (i)					\
-</span><span style="color:#ff79c6">    : &#34;cc&#34;);							\
-</span><span style="color:#ff79c6">}		
-</span></code></pre></div><ol>
+<p>我们以<code>atomic_##op</code>为例来介绍，其他大同小异！</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#define ATOMIC_OP(op, c_op, asm_op)					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">static inline void atomic_##op(int i, atomic_t *v)			\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">{									\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    unsigned long tmp;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    int result;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    prefetchw(&amp;v-&gt;counter);						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    __asm__ __volatile__(&#34;@ atomic_&#34; #op &#34;\n&#34;			\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;1:	ldrex	%0, [%3]\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	&#34; #asm_op &#34;	%0, %0, %4\n&#34;					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	strex	%1, %0, [%3]\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	teq	%1, #0\n&#34;						\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;	bne	1b&#34;							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;=&amp;r&#34; (result), &#34;=&amp;r&#34; (tmp), &#34;+Qo&#34; (v-&gt;counter)		\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;r&#34; (&amp;v-&gt;counter), &#34;Ir&#34; (i)					\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    : &#34;cc&#34;);							\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">}		
+</span></span></span></code></pre></div><ol>
 <li>首先是函数名称<code>atomic_##op</code>，通过<code>##</code>来实现字符串的拼接，使函数名称可变，如<code>atomic_add</code>、<code>atomic_sub</code>等</li>
 <li>调用<code>prefetchw</code>函数，预取数据到<code>L1</code>缓存，方便操作，提高程序性能，但是不要滥用。</li>
 <li><code>__asm__ __volatile__</code>：表示汇编指令</li>
@@ -1732,79 +1783,75 @@ ATOMIC_OPS(sub, <span style="color:#ff79c6">-=</span>, sub)
 </ol>
 <p><span style="color: red;"><strong>总结：上述原子操作，通过<code>ldrex</code>和<code>strex</code>也就是我们说的<code>load</code>和<code>store</code>指令，来完成数据的读写，同时也保证了其原子性！</strong></span></p>
 <blockquote>
-<p>这一部分，牵涉到汇编的语法，需要提前了解下基础的汇编指令。</p>
-</blockquote>
+<p>这一部分，牵涉到汇编的语法，需要提前了解下基础的汇编指令。</p></blockquote>
 <h5 id="2232-atomic_add和atomic_sub定义">
   2.2.3.2 atomic_add和atomic_sub定义
   <a class="anchor" href="#2232-atomic_add%e5%92%8catomic_sub%e5%ae%9a%e4%b9%89">#</a>
 </h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">ATOMIC_OPS(add, <span style="color:#ff79c6">+=</span>, add)
-ATOMIC_OPS(sub, <span style="color:#ff79c6">-=</span>, sub)
-</code></pre></div><blockquote>
-<p>通过宏定义来实现<code>atomic_add</code>和<code>atomic_sub</code>的定义，下面我们就不一一分析了，原理都是通过<code>ARM</code>提供的<code>ldrex</code> <code>strex</code>也就是我们常说的<code>Load</code>和<code>Store</code>指令实现读取操作，确保操作的原子性。</p>
-</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#50fa7b">ATOMIC_OPS</span>(add, <span style="color:#ff79c6">+=</span>, add)
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">ATOMIC_OPS</span>(sub, <span style="color:#ff79c6">-=</span>, sub)
+</span></span></code></pre></div><blockquote>
+<p>通过宏定义来实现<code>atomic_add</code>和<code>atomic_sub</code>的定义，下面我们就不一一分析了，原理都是通过<code>ARM</code>提供的<code>ldrex</code> <code>strex</code>也就是我们常说的<code>Load</code>和<code>Store</code>指令实现读取操作，确保操作的原子性。</p></blockquote>
 <h2 id="3位原子操作">
   3、位原子操作
   <a class="anchor" href="#3%e4%bd%8d%e5%8e%9f%e5%ad%90%e6%93%8d%e4%bd%9c">#</a>
 </h2>
 <blockquote>
-<p>对于位原子操作，内核也提供了一系列的 <code>API</code>接口</p>
-</blockquote>
+<p>对于位原子操作，内核也提供了一系列的 <code>API</code>接口</p></blockquote>
 <h3 id="31-api接口">
   3.1 API接口
   <a class="anchor" href="#31-api%e6%8e%a5%e5%8f%a3">#</a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">set_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);		<span style="color:#6272a4">//	设置位：设置addr地址的第nr位，所谓设置位即是将位写为1
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">clear_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);		<span style="color:#6272a4">//	清除位：清除addr地址的第nr位，所谓清除位即是将位写为0
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">change_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);	<span style="color:#6272a4">//	改变位：对addr地址的第nr位进行反置。
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">test_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);		<span style="color:#6272a4">//	测试位：返回addr地址的第nr位。
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">test_and_set_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);<span style="color:#6272a4">//	测试并设置位
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">test_and_clear_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);	<span style="color:#6272a4">//	测试并清除位
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">test_and_change_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);<span style="color:#6272a4">//	测试并改变位
-</span></code></pre></div><h3 id="32-api实现">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">set_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);		<span style="color:#6272a4">//	设置位：设置addr地址的第nr位，所谓设置位即是将位写为1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">clear_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);		<span style="color:#6272a4">//	清除位：清除addr地址的第nr位，所谓清除位即是将位写为0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">change_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);	<span style="color:#6272a4">//	改变位：对addr地址的第nr位进行反置。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">test_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);		<span style="color:#6272a4">//	测试位：返回addr地址的第nr位。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">test_and_set_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);<span style="color:#6272a4">//	测试并设置位
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">test_and_clear_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);	<span style="color:#6272a4">//	测试并清除位
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">test_and_change_bit</span>(nr, <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>addr);<span style="color:#6272a4">//	测试并改变位
+</span></span></span></code></pre></div><h3 id="32-api实现">
   3.2 API实现
   <a class="anchor" href="#32-api%e5%ae%9e%e7%8e%b0">#</a>
 </h3>
 <blockquote>
-<p>同样，我们还是简单介绍几个接口，其他核心实现原理相同</p>
-</blockquote>
+<p>同样，我们还是简单介绍几个接口，其他核心实现原理相同</p></blockquote>
 <h4 id="321-set_bit">
   3.2.1 set_bit
   <a class="anchor" href="#321-set_bit">#</a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#ff79c6">#define set_bit(nr,p)			ATOMIC_BITOP(set_bit,nr,p)
-</span><span style="color:#ff79c6"></span>
-<span style="color:#ff79c6">#define ATOMIC_BITOP(name,nr,p)			\
-</span><span style="color:#ff79c6">    (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
-</span><span style="color:#ff79c6"></span>
-<span style="color:#ff79c6">extern</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">_set_bit</span>(<span style="color:#8be9fd">int</span> nr, <span style="color:#ff79c6">volatile</span> <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> <span style="color:#ff79c6">*</span> p);
-
-<span style="color:#6272a4">/*
-</span><span style="color:#6272a4"> * These functions are the basis of our bit ops.
-</span><span style="color:#6272a4"> *
-</span><span style="color:#6272a4"> * First, the atomic bitops. These use native endian.
-</span><span style="color:#6272a4"> */</span>
-<span style="color:#ff79c6">static</span> <span style="color:#ff79c6">inline</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">____atomic_set_bit</span>(<span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">int</span> bit, <span style="color:#ff79c6">volatile</span> <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> <span style="color:#ff79c6">*</span>p)
-{
-    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> flags;
-    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> mask <span style="color:#ff79c6">=</span> BIT_MASK(bit);
-
-    p <span style="color:#ff79c6">+=</span> BIT_WORD(bit);
-
-    raw_local_irq_save(flags);
-    <span style="color:#ff79c6">*</span>p <span style="color:#ff79c6">|=</span> mask;
-    raw_local_irq_restore(flags);
-}
-
-<span style="color:#ff79c6">#define BIT_MASK(nr)		(1UL &lt;&lt; ((nr) % BITS_PER_LONG))
-</span><span style="color:#ff79c6">#define BIT_WORD(nr)		((nr) / BITS_PER_LONG)
-</span><span style="color:#ff79c6"></span>
-<span style="color:#ff79c6">#ifdef CONFIG_64BIT
-</span><span style="color:#ff79c6">#define BITS_PER_LONG 64
-</span><span style="color:#ff79c6">#else
-</span><span style="color:#ff79c6">#define BITS_PER_LONG 32
-</span><span style="color:#ff79c6">#endif </span><span style="color:#6272a4">/* CONFIG_64BIT */</span><span style="color:#ff79c6">
-</span></code></pre></div><p><strong>函数介绍</strong>：该函数用于原子操作某个地址的某一位。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#define set_bit(nr,p)			ATOMIC_BITOP(set_bit,nr,p)
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define ATOMIC_BITOP(name,nr,p)			\
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">extern</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">_set_bit</span>(<span style="color:#8be9fd">int</span> nr, <span style="color:#ff79c6">volatile</span> <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> <span style="color:#ff79c6">*</span> p);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * These functions are the basis of our bit ops.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * First, the atomic bitops. These use native endian.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">static</span> <span style="color:#ff79c6">inline</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">____atomic_set_bit</span>(<span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">int</span> bit, <span style="color:#ff79c6">volatile</span> <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> <span style="color:#ff79c6">*</span>p)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> flags;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> mask <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">BIT_MASK</span>(bit);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    p <span style="color:#ff79c6">+=</span> <span style="color:#50fa7b">BIT_WORD</span>(bit);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">raw_local_irq_save</span>(flags);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">*</span>p <span style="color:#ff79c6">|=</span> mask;
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">raw_local_irq_restore</span>(flags);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define BIT_MASK(nr)		(1UL &lt;&lt; ((nr) % BITS_PER_LONG))
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define BIT_WORD(nr)		((nr) / BITS_PER_LONG)
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#ifdef CONFIG_64BIT
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define BITS_PER_LONG 64
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#else
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define BITS_PER_LONG 32
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#endif </span><span style="color:#6272a4">/* CONFIG_64BIT */</span><span style="color:#ff79c6">
+</span></span></span></code></pre></div><p><strong>函数介绍</strong>：该函数用于原子操作某个地址的某一位。</p>
 <p><strong>文件位置</strong>：<code>/arch/arm/include/asm/bitops.h</code></p>
 <p><strong>实现方式</strong>：</p>
 <ol>
@@ -1849,7 +1896,7 @@ ATOMIC_OPS(sub, <span style="color:#ff79c6">-=</span>, sub)
   </span>
 </div>
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  
