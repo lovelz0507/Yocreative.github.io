@@ -21,7 +21,7 @@
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -44,7 +44,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1457,11 +1457,12 @@ https://github.com/alex-shpak/hugo-book
   【Linux API 揭秘】module_init与module_exit
   <a class="anchor" href="#linux-api-%e6%8f%ad%e7%a7%98module_init%e4%b8%8emodule_exit">#</a>
 </h1>
-<blockquote>
-<p><strong>Linux Version：6.6</strong></p>
+
+<blockquote class='book-hint '>
+  <p><strong>Linux Version：6.6</strong></p>
 <p><strong>Author：Donge</strong></p>
-<p><strong>Github：<a href="https://github.com/UNIONDONG/linux-api-insides">linux-api-insides</a></strong></p></blockquote>
-<p> </p>
+<p><strong>Github：<a href="https://github.com/UNIONDONG/linux-api-insides">linux-api-insides</a></strong></p>
+</blockquote><p> </p>
 <h2 id="1函数作用">
   1、函数作用
   <a class="anchor" href="#1%e5%87%bd%e6%95%b0%e4%bd%9c%e7%94%a8">#</a>
@@ -1508,12 +1509,14 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span></code></pre></div><p><strong>函数名称</strong>：<code>module_init</code></p>
 <p><strong>文件位置</strong>：<a href="https://github.com/UNIONDONG/linux-api-insides/blob/main/include/linux/module.h">include/linux/module.h</a></p>
 <p><strong>函数解析</strong>：</p>
-<blockquote>
-<p>在<code>Linux</code>内核中，驱动程序可以以两种方式存在：内建<code>(Builtin)</code>和模块<code>(Module)</code>。内建驱动就是在编译时，直接编译进内核镜像中；而模块驱动则是在内核运行过程中动态加载卸载的。</p></blockquote>
-<p><code>module_init</code>函数的定义位置有两处，使用<code>MODULE</code>宏作为判断依据。<code>MODULE</code>是一个预处理器宏，仅当该驱动作为模块驱动时，编译的时候会加入<code>MODULE</code>的定义。</p>
-<blockquote>
-<p>这里难免会有疑问：为什么会有两套实现呢？</p></blockquote>
-<p>其实，当模块被编译进内核时，代码是存放在内存的<code>.init</code>字段，该字段在内核代码初始化后，就会被释放掉了，所以当可动态加载模块需要加载时，就需要重新定义了。</p>
+
+<blockquote class='book-hint '>
+  <p>在<code>Linux</code>内核中，驱动程序可以以两种方式存在：内建<code>(Builtin)</code>和模块<code>(Module)</code>。内建驱动就是在编译时，直接编译进内核镜像中；而模块驱动则是在内核运行过程中动态加载卸载的。</p>
+</blockquote><p><code>module_init</code>函数的定义位置有两处，使用<code>MODULE</code>宏作为判断依据。<code>MODULE</code>是一个预处理器宏，仅当该驱动作为模块驱动时，编译的时候会加入<code>MODULE</code>的定义。</p>
+
+<blockquote class='book-hint '>
+  <p>这里难免会有疑问：为什么会有两套实现呢？</p>
+</blockquote><p>其实，当模块被编译进内核时，代码是存放在内存的<code>.init</code>字段，该字段在内核代码初始化后，就会被释放掉了，所以当可动态加载模块需要加载时，就需要重新定义了。</p>
 <p> </p>
 <h4 id="211-模块方式">
   2.1.1 模块方式
@@ -1617,9 +1620,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>                            <span style="color:#ff79c6">|--&gt;</span> <span style="color:#50fa7b">__initcall_section</span>(__sec, __iid)
 </span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">|--&gt;</span> <span style="color:#50fa7b">____define_initcall</span>(fn, __unused, __name, __sec)
 </span></span></code></pre></div><p> </p>
-<blockquote>
-<p>进行函数分析前，我们先要明白<code>#</code>和<code>##</code>的概念</p></blockquote>
-<h4 id="222-和的作用">
+
+<blockquote class='book-hint '>
+  <p>进行函数分析前，我们先要明白<code>#</code>和<code>##</code>的概念</p>
+</blockquote><h4 id="222-和的作用">
   2.2.2 #和##的作用
   <a class="anchor" href="#222-%e5%92%8c%e7%9a%84%e4%bd%9c%e7%94%a8">#</a>
 </h4>
@@ -1645,16 +1649,18 @@ https://github.com/alex-shpak/hugo-book
   </tbody>
 </table>
 <p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h4 id="223-函数解析">
   2.2.3 函数解析
   <a class="anchor" href="#223-%e5%87%bd%e6%95%b0%e8%a7%a3%e6%9e%90">#</a>
 </h4>
-<blockquote>
-<p>下面分析理解比较有难度的函数</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">#define device_initcall(fn)		__define_initcall(fn, 6)
+
+<blockquote class='book-hint '>
+  <p>下面分析理解比较有难度的函数</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">#define device_initcall(fn)		__define_initcall(fn, 6)
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define __define_initcall(fn, id) ___define_initcall(fn, id, .initcall##id)
 </span></span></span></code></pre></div><ul>
 <li><code>.initcall##id</code>：通过<code>##</code>来拼接两个字符串：<code>.initcall6</code></li>
@@ -1716,9 +1722,10 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 <p> </p>
 <p><strong>字段通过链接器链接起来，形成一个列表进行统一管理。</strong></p>
-<blockquote>
-<p>这些字段我们可以在<code>arch/arm/kernel/vmlinux.lds</code>中查看。</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>......
+
+<blockquote class='book-hint '>
+  <p>这些字段我们可以在<code>arch/arm/kernel/vmlinux.lds</code>中查看。</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>......
 </span></span><span style="display:flex;"><span>__initcall6_start <span style="color:#ff79c6">=</span> .; <span style="color:#50fa7b">KEEP</span>(<span style="color:#ff79c6">*</span>(.initcall6.init)) <span style="color:#50fa7b">KEEP</span>(<span style="color:#ff79c6">*</span>(.initcall6s.init)) 
 </span></span><span style="display:flex;"><span>......
 </span></span></code></pre></div><p> </p>
@@ -1726,9 +1733,10 @@ https://github.com/alex-shpak/hugo-book
   3、module_exit函数解析
   <a class="anchor" href="#3module_exit%e5%87%bd%e6%95%b0%e8%a7%a3%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p><code>module_exit</code>和<code>module_init</code>的实现机制几乎没有差别，下面就简单介绍一下。</p></blockquote>
-<h3 id="31-module_exit">
+
+<blockquote class='book-hint '>
+  <p><code>module_exit</code>和<code>module_init</code>的实现机制几乎没有差别，下面就简单介绍一下。</p>
+</blockquote><h3 id="31-module_exit">
   3.1 module_exit
   <a class="anchor" href="#31-module_exit">#</a>
 </h3>
@@ -1796,9 +1804,10 @@ https://github.com/alex-shpak/hugo-book
   4、扩展
   <a class="anchor" href="#4%e6%89%a9%e5%b1%95">#</a>
 </h2>
-<blockquote>
-<p><strong>还记得<code>__define_initcall</code>的定义吗？</strong></p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">#define pure_initcall(fn)       __define_initcall(fn, 0)  
+
+<blockquote class='book-hint '>
+  <p><strong>还记得<code>__define_initcall</code>的定义吗？</strong></p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">#define pure_initcall(fn)       __define_initcall(fn, 0)  
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>  
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define core_initcall(fn)       __define_initcall(fn, 1)  
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define core_initcall_sync(fn)      __define_initcall(fn, 1s)  

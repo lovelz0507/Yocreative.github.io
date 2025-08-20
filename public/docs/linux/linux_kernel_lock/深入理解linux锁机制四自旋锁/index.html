@@ -9,7 +9,8 @@
 
 
 
-上两节主要讲解了中断屏蔽和原子操作，这两个作为最底层的操作，几乎在Linux内核中都不单独使用，下面我们来带大家了解一下常用的自旋锁！
+
+  上两节主要讲解了中断屏蔽和原子操作，这两个作为最底层的操作，几乎在Linux内核中都不单独使用，下面我们来带大家了解一下常用的自旋锁！
 
   1、什么是自旋锁？
   #
@@ -60,7 +61,8 @@ spin_unlock_bh() = spin_unlock() &#43; local_bh_enable()		//	释放自旋锁并�
 当我们的临界区代码，有可能被进程或者中断访问时，就需要在进程上下文中，调用spin_lock_irqsave()、spin_unlock_irqrestore()，在中断上下文中调用spin_lock()、spin_unlock()，如下图：
 
 
-TODO：替换图片
+
+  TODO：替换图片
 
   3.2 API实现
   #
@@ -139,7 +141,7 @@ TODO：替换图片
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -162,7 +164,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1571,9 +1573,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#%e6%b7%b1%e5%85%a5%e7%90%86%e8%a7%a3linux%e5%86%85%e6%a0%b8%e9%94%81%e5%9b%9b%e8%87%aa%e6%97%8b%e9%94%81">#</a>
 </h1>
 <p><img src="https://img1.baidu.com/it/u=2292345982,2860777693&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=640&amp;h=427" alt="img" /></p>
-<blockquote>
-<p>上两节主要讲解了中断屏蔽和原子操作，这两个作为最底层的操作，几乎在<code>Linux</code>内核中都不单独使用，下面我们来带大家了解一下常用的自旋锁！</p></blockquote>
-<h2 id="1什么是自旋锁">
+
+<blockquote class='book-hint '>
+  <p>上两节主要讲解了中断屏蔽和原子操作，这两个作为最底层的操作，几乎在<code>Linux</code>内核中都不单独使用，下面我们来带大家了解一下常用的自旋锁！</p>
+</blockquote><h2 id="1什么是自旋锁">
   1、什么是自旋锁？
   <a class="anchor" href="#1%e4%bb%80%e4%b9%88%e6%98%af%e8%87%aa%e6%97%8b%e9%94%81">#</a>
 </h2>
@@ -1622,9 +1625,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#50fa7b">spin_unlock_bh</span>() <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">spin_unlock</span>() <span style="color:#ff79c6">+</span> <span style="color:#50fa7b">local_bh_enable</span>()		<span style="color:#6272a4">//	释放自旋锁并发开底半部中断
 </span></span></span></code></pre></div><p>当我们的临界区代码，有可能被进程或者中断访问时，就需要在进程上下文中，调用<code>spin_lock_irqsave()</code>、<code>spin_unlock_irqrestore()</code>，在中断上下文中调用<code>spin_lock()</code>、<code>spin_unlock()</code>，如下图：</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230605140910971.png" alt="image-20230605140910971" /></p>
-<blockquote>
-<p>TODO：替换图片</p></blockquote>
-<h3 id="32-api实现">
+
+<blockquote class='book-hint '>
+  <p>TODO：替换图片</p>
+</blockquote><h3 id="32-api实现">
   3.2 API实现
   <a class="anchor" href="#32-api%e5%ae%9e%e7%8e%b0">#</a>
 </h3>
@@ -1684,14 +1688,16 @@ https://github.com/alex-shpak/hugo-book
 <li><code>owner</code> ：表示当前持有自旋锁的线程的索引</li>
 <li><code>next</code> ：表示下一个等待获取自旋锁的线程的索引</li>
 </ul>
-<blockquote>
-<p>每个线程进入代码段时，会尝试获取自旋锁，如果获取失败，它们会在锁的等待队列中排队。然后，等待队列中的线程会按照优先级顺序依次抢占锁的拥有权，直到某个线程成功获取自旋锁并执行完关键代码，释放锁资源为止。</p></blockquote>
-</li>
+
+<blockquote class='book-hint '>
+  <p>每个线程进入代码段时，会尝试获取自旋锁，如果获取失败，它们会在锁的等待队列中排队。然后，等待队列中的线程会按照优先级顺序依次抢占锁的拥有权，直到某个线程成功获取自旋锁并执行完关键代码，释放锁资源为止。</p>
+</blockquote></li>
 </ul>
-<blockquote>
-<p>这里使用的<code>union</code>联合体，其共享内存空间，其具体区别可看下面：</p>
-<p><code>struct</code>与<code>union</code>区别：https://blog.csdn.net/lishuo0204/article/details/118957959</p></blockquote>
-<h4 id="322-spin_lock_init">
+
+<blockquote class='book-hint '>
+  <p>这里使用的<code>union</code>联合体，其共享内存空间，其具体区别可看下面：</p>
+<p><code>struct</code>与<code>union</code>区别：https://blog.csdn.net/lishuo0204/article/details/118957959</p>
+</blockquote><h4 id="322-spin_lock_init">
   3.2.2 spin_lock_init
   <a class="anchor" href="#322-spin_lock_init">#</a>
 </h4>
@@ -1853,11 +1859,12 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>
 <p><code>strex %2, %1, [%3]</code> 用于以原子方式将更新的值 <code>%1</code> 写入锁的地址所指定的内存位置，<code>%2</code> 为写入结果。</p>
-<blockquote>
-<p><strong>这里解释一下为什么要做<code>add</code>处理</strong>：</p>
+
+<blockquote class='book-hint '>
+  <p><strong>这里解释一下为什么要做<code>add</code>处理</strong>：</p>
 <p>由<code>spinlock_t</code>的结构体可知，是由联合体组成，并且可以通过<code>owner</code>和<code>next</code>两个字段访问，<code>next</code>在高16位，<code>owner</code>在低16位。</p>
-<p>这里上锁的操作，是将其值设置为<code>1 &lt;&lt; TICKET_SHIFT</code>，也就是高16位，即<code>next</code>字段设置为1，表示下一个等待获取自旋锁的线程的索引。</p></blockquote>
-</li>
+<p>这里上锁的操作，是将其值设置为<code>1 &lt;&lt; TICKET_SHIFT</code>，也就是高16位，即<code>next</code>字段设置为1，表示下一个等待获取自旋锁的线程的索引。</p>
+</blockquote></li>
 <li>
 <p><code>teq %2, #0</code>：用于测试写入结果 <code>%2</code> 是否为0，如果为0，表示锁获取成功，反之则跳转到标签<code>1b</code>处执行。</p>
 </li>
@@ -1924,13 +1931,14 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>
 <p><code>lock-&gt;tickets.owner++</code>：递增自旋锁的锁拥有者(<code>Ower</code>)计数器，这个计数器的作用是向其他任务表明自旋锁已经被释放。</p>
-<blockquote>
-<p>通过上述两个接口可知：</p>
+
+<blockquote class='book-hint '>
+  <p>通过上述两个接口可知：</p>
 <ul>
 <li><code>spin_lock</code>：将<code>next</code>值加1，表示下一个等待获取自旋锁的线程</li>
 <li><code>spin_unlock</code>：将<code>owner</code>的值加1，指向下一个获取自旋锁的线程。</li>
-</ul></blockquote>
-</li>
+</ul>
+</blockquote></li>
 <li>
 <p><code>dsb_sev()</code> 则用于内存同步，强制发射缓存条 (FLUSH操作)，确保数据在多个核之间进行同步，以避免潜在的错误和问题。</p>
 </li>
@@ -2012,10 +2020,11 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>
 <p><code>subs %1, %0, %0, ror #16</code>：在这行代码中，<code>%0</code> 表示 <code>slock</code> 寄存器，<code>%1</code> 表示 <code>contended</code> 寄存器。该语句的作用是：将锁变量的值存储在<code>slock</code>中，然后将slock右旋16位，获得低16位的值，并将结果存储到 <code>contended</code> 中。接着将 <code>slock</code> 和 <code>slock</code> 旋转后的值相减，并将结果存储到 <code>contended</code> 中。</p>
-<blockquote>
-<p><strong>同上，这里解释一下为什么执行<code>sub</code>操作</strong>：</p>
-<p>这里的核心思想是：一个32位的值，其高16位为<code>next</code>，低16位为<code>owner</code>，将其右旋16位后，得到的值高16位变成了<code>owner</code>，低16位变成了<code>next</code>，这时候执行相减操作，如果结果为0，则表示<code>owner</code>与<code>next</code>两个字段相等！</p></blockquote>
-</li>
+
+<blockquote class='book-hint '>
+  <p><strong>同上，这里解释一下为什么执行<code>sub</code>操作</strong>：</p>
+<p>这里的核心思想是：一个32位的值，其高16位为<code>next</code>，低16位为<code>owner</code>，将其右旋16位后，得到的值高16位变成了<code>owner</code>，低16位变成了<code>next</code>，这时候执行相减操作，如果结果为0，则表示<code>owner</code>与<code>next</code>两个字段相等！</p>
+</blockquote></li>
 <li>
 <p><code>addeq %0, %0, %4</code>：将<code>%0</code>寄存器的值加上<code>%4</code>的值，结果存放于<code>%0</code>寄存器中</p>
 </li>
@@ -2035,9 +2044,10 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230805201219657.png" alt="image-20230805201219657" /></p>
 <p>自旋锁在我们编写内核代码时会较多涉及，其底层实现主要依赖于前面所提到的：<strong>内存屏障、中断屏蔽、原子操作！</strong></p>
-<blockquote>
-<p>最后，自旋锁使用的方法如下：</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#6272a4">/* 定义一个自旋锁*/</span>
+
+<blockquote class='book-hint '>
+  <p>最后，自旋锁使用的方法如下：</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#6272a4">/* 定义一个自旋锁*/</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd">spinlock_t</span> lock;
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">spin_lock_init</span>(<span style="color:#ff79c6">&amp;</span>lock);

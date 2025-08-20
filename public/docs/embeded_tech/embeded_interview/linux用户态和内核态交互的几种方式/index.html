@@ -25,7 +25,8 @@ procfs进程文件系统：一个伪文件系统，因为其不占用外部存�
 
 sysctl：它也是一个Linux命令，主要用来修改内核的运行时参数，也就是在内核运行时，动态修改内核参数。
 
-和 procfs 的区别在于：procfs 主要是输出只读数据，而 sysctl 输出的大部分信息是可写的。
+
+  和 procfs 的区别在于：procfs 主要是输出只读数据，而 sysctl 输出的大部分信息是可写的。
 
 
 sysfs虚拟文件系统：通过/sys来完成用户态和内核的通信，和 procfs 不同的是，sysfs 是将一些原本在 procfs 中的，关于设备和驱动的部分，独立出来，以 “设备树” 的形式呈现给用户。
@@ -65,7 +66,7 @@ netlink 接口：也是最常用的一种方式，本质是socket接口，使用
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -88,7 +89,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1501,9 +1502,10 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>
 <p><strong><code>sysctl</code></strong>：它也是一个<code>Linux</code>命令，主要用来修改内核的运行时参数，也就是在内核运行时，动态修改内核参数。</p>
-<blockquote>
-<p>和 <code>procfs</code> 的区别在于：<code>procfs</code> 主要是输出只读数据，而 <code>sysctl</code> 输出的大部分信息是可写的。</p></blockquote>
-</li>
+
+<blockquote class='book-hint '>
+  <p>和 <code>procfs</code> 的区别在于：<code>procfs</code> 主要是输出只读数据，而 <code>sysctl</code> 输出的大部分信息是可写的。</p>
+</blockquote></li>
 <li>
 <p><strong><code>sysfs</code>虚拟文件系统</strong>：通过<code>/sys</code>来完成用户态和内核的通信，和 procfs 不同的是，sysfs 是将一些原本在 procfs 中的，关于设备和驱动的部分，独立出来，以 “设备树” 的形式呈现给用户。</p>
 </li>

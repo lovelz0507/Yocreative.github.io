@@ -9,7 +9,8 @@
 
 上章，我们简单了解了EMMC协议，感兴趣的可以查阅一下SD和SDIO的协议，之所以Linux内核能够对SD、SDIO、EMMC进行统一管理，根本原因就是三者协议上的相似性，我们该系列文章均以EMMC为剑，一层层划开包裹着的盔甲。
 
-本系列文章，均以Linux 4.19为参考
+
+  本系列文章，均以Linux 4.19为参考
  
 
   1、MMC子系统框架
@@ -23,7 +24,8 @@ MMC CORE：即MMC核心层，该层主要起到了承上启下的作用。对下
 MMC BLOCK：即MMC块设备驱动层，其主要作用是屏蔽底层的实现逻辑，将底层抽象为卡设备，并且与虚拟文件系统关联，负责块设备请求的处理以及请求队列的管理，又称为card卡驱动。
 
 
-哈哈，简单吧，我们刚开始对MMC子系统框架就先了解这么多，不着急，慢慢来。
+
+  哈哈，简单吧，我们刚开始对MMC子系统框架就先了解这么多，不着急，慢慢来。
  
 
   2、MMC子系统文件结构
@@ -42,7 +44,8 @@ drivers/mmc/
 		├── sunxi-mmc.c
 		├── ......
 
-这里介绍一个方法
+
+  这里介绍一个方法
 如果刚接触的朋友，不知道文件之间的关系是怎么样的，可以通过Makefile和Kconfig文件来大致看一下。
 obj-$(CONFIG_MMC)		&#43;= mmc_core.o
 mmc_core-y			:= core.o bus.o host.o \
@@ -77,7 +80,7 @@ obj-$(CONFIG_MMC)	&#43;= mmc_core.o mmc_core-y	:= core.o bus.o host.o \ mmc.o mm
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -100,7 +103,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1504,9 +1507,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#mmc%e5%ad%90%e7%b3%bb%e7%bb%9f%e4%b8%89mmc%e5%ad%90%e7%b3%bb%e7%bb%9f%e6%a1%86%e6%9e%b6">#</a>
 </h1>
 <p>上章，我们简单了解了<code>EMMC</code>协议，感兴趣的可以查阅一下<code>SD</code>和<code>SDIO</code>的协议，之所以<code>Linux</code>内核能够对<code>SD</code>、<code>SDIO</code>、<code>EMMC</code>进行统一管理，根本原因就是三者协议上的相似性，我们该系列文章均以<code>EMMC</code>为剑，一层层划开包裹着的盔甲。</p>
-<blockquote>
-<p>本系列文章，均以<code>Linux 4.19</code>为参考</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>本系列文章，均以<code>Linux 4.19</code>为参考</p>
+</blockquote><p> </p>
 <h2 id="1mmc子系统框架">
   1、MMC子系统框架
   <a class="anchor" href="#1mmc%e5%ad%90%e7%b3%bb%e7%bb%9f%e6%a1%86%e6%9e%b6">#</a>
@@ -1518,9 +1522,10 @@ https://github.com/alex-shpak/hugo-book
 <li><code>MMC CORE</code>：即<code>MMC</code>核心层，该层主要起到了承上启下的作用。对下，主要体现在注册<code>MMC</code>总线，实现对<code>MMC device</code>和<code>MMC driver</code>的统一管理；对上，体现在实现<code>MMC</code>通信协议，并向上提供相应的读写操作接口。</li>
 <li><code>MMC BLOCK</code>：即<code>MMC</code>块设备驱动层，其主要作用是屏蔽底层的实现逻辑，将底层抽象为卡设备，并且与虚拟文件系统关联，负责块设备请求的处理以及请求队列的管理，又称为<code>card</code>卡驱动。</li>
 </ul>
-<blockquote>
-<p>哈哈，简单吧，我们刚开始对<code>MMC</code>子系统框架就先了解这么多，不着急，慢慢来。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>哈哈，简单吧，我们刚开始对<code>MMC</code>子系统框架就先了解这么多，不着急，慢慢来。</p>
+</blockquote><p> </p>
 <h2 id="2mmc子系统文件结构">
   2、MMC子系统文件结构
   <a class="anchor" href="#2mmc%e5%ad%90%e7%b3%bb%e7%bb%9f%e6%96%87%e4%bb%b6%e7%bb%93%e6%9e%84">#</a>
@@ -1537,9 +1542,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>	├── host
 </span></span><span style="display:flex;"><span>		├── sunxi-mmc.c
 </span></span><span style="display:flex;"><span>		├── ......
-</span></span></code></pre></div><blockquote>
-<p><strong>这里介绍一个方法</strong></p></blockquote>
-<p>如果刚接触的朋友，不知道文件之间的关系是怎么样的，可以通过<code>Makefile</code>和<code>Kconfig</code>文件来大致看一下。</p>
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p><strong>这里介绍一个方法</strong></p>
+</blockquote><p>如果刚接触的朋友，不知道文件之间的关系是怎么样的，可以通过<code>Makefile</code>和<code>Kconfig</code>文件来大致看一下。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">obj-$(CONFIG_MMC)</span>		<span style="color:#ff79c6">+=</span> mmc_core.o
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">mmc_core-y</span>			<span style="color:#ff79c6">:=</span> core.o bus.o host.o <span style="color:#f1fa8c">\
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>				   mmc.o mmc_ops.o sd.o sd_ops.o <span style="color:#f1fa8c">\
@@ -1548,9 +1554,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>				   slot-gpio.o
 </span></span></code></pre></div><p>由上面可知，<code>MMC CORE</code>核心层，包括的文件有：<code>core.c</code>、<code>bus.c</code>等等，</p>
 <p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <p>了解大致的文件布局后，我们主要介绍一下文件的作用：</p>
 <p><strong><code>MMC HOST</code>控制器驱动层</strong>：</p>
 <ul>
@@ -1578,9 +1585,10 @@ https://github.com/alex-shpak/hugo-book
 <li>我们的<code>MMC Card</code>被成功识别后，会在<code>procfs</code>中看到<code>mmc</code>的相关节点：如<code>/dev/mmcblk0</code>，其中看到<code>/dev/mmcblk0p1</code>表示磁盘中的一个分区</li>
 </ul>
 <p><strong>在虚拟文件系统中</strong>：</p>
-<blockquote>
-<p>同时在<code>sysfs</code>中也会看到对应的节点</p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>同时在<code>sysfs</code>中也会看到对应的节点</p>
+</blockquote><ul>
 <li>在<code>/sys/bus/mmc/devices/</code>下，我们能够看到识别到的设备信息</li>
 <li>在<code>/sys/class/mmc_host/mmc0/</code>下也能够看到设备信息</li>
 <li>同时在<code>/sys/block/mmcblk0/</code>下，能够看到该卡设备的信息，以及分区信息等。</li>

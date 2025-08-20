@@ -16,7 +16,8 @@
 其中，Linux字符设备驱动，可以说是Linux驱动开发中最常见的一种驱动模型。
 我们该系列文章，主要为了帮助大家快速入门Linux驱动开发，该篇主要来了解一些字符设备驱动的框架和机制。
 
-系列文章基于Kernel 4.19
+
+  系列文章基于Kernel 4.19
  
 
   2、关键数据结构
@@ -120,7 +121,7 @@ kobj：表示一个内核对象。 owner：指向该模块的指针 ops：指向
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -143,7 +144,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1579,9 +1580,10 @@ https://github.com/alex-shpak/hugo-book
 <p>众所周知，<code>Linux</code>内核主要包括三种驱动模型，字符设备驱动，块设备驱动以及网络设备驱动。</p>
 <p>其中，<code>Linux</code>字符设备驱动，可以说是<code>Linux</code>驱动开发中最常见的一种驱动模型。</p>
 <p>我们该系列文章，主要为了帮助大家快速入门<code>Linux</code>驱动开发，该篇主要来了解一些字符设备驱动的框架和机制。</p>
-<blockquote>
-<p>系列文章基于<code>Kernel 4.19</code></p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>系列文章基于<code>Kernel 4.19</code></p>
+</blockquote><p> </p>
 <h1 id="2关键数据结构">
   2、关键数据结构
   <a class="anchor" href="#2%e5%85%b3%e9%94%ae%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">#</a>
@@ -1688,10 +1690,11 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#3%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e4%b9%8b%e9%97%b4%e5%85%b3%e7%b3%bb">#</a>
 </h1>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231123085448145.png" alt="image-20231123085448145" /></p>
-<blockquote>
-<p>上图绘制是对字符设备驱动程序的数据结构以及<code>API</code>的关系图，</p>
-<p>有需要原始文件，可在公~号【嵌入式艺术】获取。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>上图绘制是对字符设备驱动程序的数据结构以及<code>API</code>的关系图，</p>
+<p>有需要原始文件，可在公~号【嵌入式艺术】获取。</p>
+</blockquote><p> </p>
 <h1 id="4字符设备驱动整体架构">
   4、字符设备驱动整体架构
   <a class="anchor" href="#4%e5%ad%97%e7%ac%a6%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e6%95%b4%e4%bd%93%e6%9e%b6%e6%9e%84">#</a>
@@ -1729,16 +1732,18 @@ https://github.com/alex-shpak/hugo-book
 <li>主设备号：用于标识设备的类型，</li>
 <li>次设备号：用于区分同类型的不同设备</li>
 </ul>
-<blockquote>
-<p>简单来说，主设备号用于区分是<code>IIC</code>设备还是<code>SPI</code>设备，而次设备号用于区分<code>IIC</code>设备下，具体哪一个设备，是<code>MPU6050</code>还是<code>EEPROM</code>。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>简单来说，主设备号用于区分是<code>IIC</code>设备还是<code>SPI</code>设备，而次设备号用于区分<code>IIC</code>设备下，具体哪一个设备，是<code>MPU6050</code>还是<code>EEPROM</code>。</p>
+</blockquote><p> </p>
 <h3 id="422-设备号的分配">
   4.2.2 设备号的分配
   <a class="anchor" href="#422-%e8%ae%be%e5%a4%87%e5%8f%b7%e7%9a%84%e5%88%86%e9%85%8d">#</a>
 </h3>
-<blockquote>
-<p>了解了设备号的概念，<code>Linux</code>中设备号有那么多，那么我们该如何去使用正确的设备号呢？</p></blockquote>
-<p>设备号的分配方式有两种，一种是动态分配，另一种是静态分配，也可以理解为一种是内核自动分配，一种是手动分配。</p>
+
+<blockquote class='book-hint '>
+  <p>了解了设备号的概念，<code>Linux</code>中设备号有那么多，那么我们该如何去使用正确的设备号呢？</p>
+</blockquote><p>设备号的分配方式有两种，一种是动态分配，另一种是静态分配，也可以理解为一种是内核自动分配，一种是手动分配。</p>
 <p><span style="color: red;"><strong>静态分配函数</strong></span>：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">register_chrdev_region</span>(<span style="color:#8be9fd">dev_t</span> from, <span style="color:#8be9fd">unsigned</span> count, <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>name);
 </span></span></code></pre></div><ul>
@@ -1768,9 +1773,10 @@ https://github.com/alex-shpak/hugo-book
 <p>系统维护了一个数组列表，用来登记所有的已使用的设备号信息，这两个接口归根到底也是将其设备号信息，登记到系统维护的设备号列表中，以免后续冲突使用。</p>
 <p>在<code>Linux</code>中，我们可以通过<code>cat /proc/devices</code>命令，查看所有i登记的设备号列表。</p>
 <p> </p>
-<blockquote>
-<p>后面有时间，我们可以详细聊设备号的自动分配机制，管理机制。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>后面有时间，我们可以详细聊设备号的自动分配机制，管理机制。</p>
+</blockquote><p> </p>
 <h3 id="423-设备号的注销">
   4.2.3 设备号的注销
   <a class="anchor" href="#423-%e8%ae%be%e5%a4%87%e5%8f%b7%e7%9a%84%e6%b3%a8%e9%94%80">#</a>
@@ -1797,9 +1803,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define MAJOR(dev)	((unsigned int) ((dev) &gt;&gt; MINORBITS))
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define MINOR(dev)	((unsigned int) ((dev) &amp; MINORMASK))
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define MKDEV(ma,mi)	(((ma) &lt;&lt; MINORBITS) | (mi))
-</span></span></span></code></pre></div><blockquote>
-<p>以上，通过移位操作，来实现主次设备号的获取。</p></blockquote>
-<p> </p>
+</span></span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>以上，通过移位操作，来实现主次设备号的获取。</p>
+</blockquote><p> </p>
 <h3 id="424-通用代码实现">
   4.2.4 通用代码实现
   <a class="anchor" href="#424-%e9%80%9a%e7%94%a8%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0">#</a>
@@ -1830,9 +1837,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">module_exit</span>(xxx_exit);
 </span></span></code></pre></div><p>该函数实现了设备号的分配，如果主设备号为<code>0</code>，则采用动态配分的方式，否则采用静态分配的方式。</p>
 <p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h2 id="43-字符设备的管理">
   4.3 字符设备的管理
   <a class="anchor" href="#43-%e5%ad%97%e7%ac%a6%e8%ae%be%e5%a4%87%e7%9a%84%e7%ae%a1%e7%90%86">#</a>

@@ -9,7 +9,8 @@
 
 
 
-前几篇文章，我们也了解了Uboot的启动流程，那么这节就主要讲讲Uboot的命令行模式。
+
+  前几篇文章，我们也了解了Uboot的启动流程，那么这节就主要讲讲Uboot的命令行模式。
 另外，文章末尾还提供eMMC5.1官方标准协议.pdf和eMMC4.51官方标准协议-中文.pdf下载渠道，方便深入了解底层协议。
 正文如下：
  
@@ -21,7 +22,8 @@
  
 那么，我们要想进入Uboot命令行模式，需要进行哪些配置呢？
 
-打开我们准备好一份Uboot源码，进入menuconfig配置菜单，主要设置下列几个配置信息！
+
+  打开我们准备好一份Uboot源码，进入menuconfig配置菜单，主要设置下列几个配置信息！
 
 CONFIG_CMDLINE：命令行模式开关
 CONFIG_SYS_PROMPT：命令行模式提示符
@@ -29,7 +31,8 @@ CONFIG_HUSH_PARSER：使用hush shell 来对命令进行解析
 BOOTDELAY：设置启动延时
 
 
-Tip：meneconfig中查找苦难？实时/符号，输入1或2或3，直接查找指定标识。
+
+  Tip：meneconfig中查找苦难？实时/符号，输入1或2或3，直接查找指定标识。
  
 
  
@@ -50,10 +53,7 @@ Hit any key to stop autoboot：我们在倒计时结束前，任意键入一个�
   #
 
 进入Uboot命令行模式后，键入help或者?，可以查看所有支持的Uboot命令。
-
-注意：Uboot支持的命令大都远远超过显示的，还有好多没有打开，可以在menuconfig中，打开相应的功能，如mmc相关的，md内存相关的。
- 
-常用命令如下：">
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/Yocreative.github.io/docs/uboot/%E5%9B%9Buboot%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90/">
@@ -68,9 +68,7 @@ Hit any key to stop autoboot：我们在倒计时结束前，任意键入一个�
 CONFIG_CMDLINE：命令行模式开关 CONFIG_SYS_PROMPT：命令行模式提示符 CONFIG_HUSH_PARSER：使用hush shell 来对命令进行解析 BOOTDELAY：设置启动延时 Tip：meneconfig中查找苦难？实时/符号，输入1或2或3，直接查找指定标识。
 打开之后，重新编译，并将Uboot镜像烧录到开发板中，再次启动，我们就能够看到倒计时。
 [2022-03-02:13:33:47]U-Boot 2020.10-rc1-00043-ge62a6d17c6-dirty (Feb 08 2022 - 10:14:14 &#43;0800) [2022-03-02:13:33:47] [2022-03-02:13:33:47]Model: xxxxxx [2022-03-02:13:33:47]MMC: mmc1@xxxxxx: 1 [2022-03-02:13:33:47]In: serial [2022-03-02:13:33:47]Out: serial [2022-03-02:13:33:47]Err: serial [2022-03-02:13:33:47]Model: xxxxxx [2022-03-02:13:33:49]Hit any key to stop autoboot: 2 Hit any key to stop autoboot：我们在倒计时结束前，任意键入一个按键，即可进入！
-4.2 Uboot基本命令解析 # 进入Uboot命令行模式后，键入help或者?，可以查看所有支持的Uboot命令。
-注意：Uboot支持的命令大都远远超过显示的，还有好多没有打开，可以在menuconfig中，打开相应的功能，如mmc相关的，md内存相关的。
-常用命令如下：">
+4.2 Uboot基本命令解析 # 进入Uboot命令行模式后，键入help或者?，可以查看所有支持的Uboot命令。">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -82,7 +80,7 @@ CONFIG_CMDLINE：命令行模式开关 CONFIG_SYS_PROMPT：命令行模式提示
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -105,7 +103,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1522,11 +1520,12 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#%e5%9b%9buboot%e5%91%bd%e4%bb%a4%e8%a1%8c%e6%a8%a1%e5%bc%8f%e5%88%86%e6%9e%90">#</a>
 </h1>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/202205312213482.png" alt="四、Uboot命令行模式分析" /></p>
-<blockquote>
-<p>前几篇文章，我们也了解了<code>Uboot</code>的启动流程，那么这节就主要讲讲<code>Uboot</code>的命令行模式。</p>
+
+<blockquote class='book-hint '>
+  <p>前几篇文章，我们也了解了<code>Uboot</code>的启动流程，那么这节就主要讲讲<code>Uboot</code>的命令行模式。</p>
 <p><strong>另外，文章末尾还提供<code>eMMC5.1官方标准协议.pdf</code>和<code>eMMC4.51官方标准协议-中文.pdf</code>下载渠道，方便深入了解底层协议。</strong></p>
-<p><strong>正文如下</strong>：</p></blockquote>
-<p> </p>
+<p><strong>正文如下</strong>：</p>
+</blockquote><p> </p>
 <h2 id="41-如何进入命令行模式">
   4.1 如何进入命令行模式
   <a class="anchor" href="#41-%e5%a6%82%e4%bd%95%e8%bf%9b%e5%85%a5%e5%91%bd%e4%bb%a4%e8%a1%8c%e6%a8%a1%e5%bc%8f">#</a>
@@ -1534,17 +1533,19 @@ https://github.com/alex-shpak/hugo-book
 <p>我们正常启动流程，默认是直接跳过<code>Uboot</code>命令行模式的，因为<code>Uboot</code>主要的作用是引导<code>Kernel</code>，一般我们不进行<code>uboot</code>开发时，都默认跳过进入命令行模式。</p>
 <p> </p>
 <p><font color = "red"><strong>那么，我们要想进入Uboot命令行模式，需要进行哪些配置呢？</strong></font></p>
-<blockquote>
-<p>打开我们准备好一份Uboot源码，进入menuconfig配置菜单，主要设置下列几个配置信息！</p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>打开我们准备好一份Uboot源码，进入menuconfig配置菜单，主要设置下列几个配置信息！</p>
+</blockquote><ul>
 <li><code>CONFIG_CMDLINE</code>：命令行模式开关</li>
 <li><code>CONFIG_SYS_PROMPT</code>：命令行模式提示符</li>
 <li><code>CONFIG_HUSH_PARSER</code>：使用hush shell 来对命令进行解析</li>
 <li><code>BOOTDELAY</code>：设置启动延时</li>
 </ul>
-<blockquote>
-<p><strong>Tip</strong>：<code>meneconfig</code>中查找苦难？实时<code>/</code>符号，输入<code>1或2或3</code>，直接查找指定标识。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p><strong>Tip</strong>：<code>meneconfig</code>中查找苦难？实时<code>/</code>符号，输入<code>1或2或3</code>，直接查找指定标识。</p>
+</blockquote><p> </p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/202205311655629.png" alt="image-20220531165504571" /></p>
 <p> </p>
 <p>打开之后，重新编译，并将<code>Uboot</code>镜像烧录到开发板中，再次启动，我们就能够看到倒计时。</p>
@@ -1583,16 +1584,18 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>mmc rescan			<span style="color:#6272a4">#扫描卡</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#8be9fd;font-style:italic">$name</span>			<span style="color:#6272a4">#打印环境变量</span>
-</span></span></code></pre></div><blockquote>
-<p>更多指令使用，可以见文末整理的文档</p></blockquote>
-<p> </p>
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>更多指令使用，可以见文末整理的文档</p>
+</blockquote><p> </p>
 <h2 id="43-命令行模式代码执行流程分析">
   4.3 命令行模式代码执行流程分析
   <a class="anchor" href="#43-%e5%91%bd%e4%bb%a4%e8%a1%8c%e6%a8%a1%e5%bc%8f%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>结合下面的程序执行流程图，代码，一起分析。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/202205311708227.png" alt="image-20220531170831165" /></p>
+
+<blockquote class='book-hint '>
+  <p>结合下面的程序执行流程图，代码，一起分析。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/202205311708227.png" alt="image-20220531170831165" /></p>
 <p>上图为<code>Uboot</code>命令行模式的代码具体执行流程，结合  <strong><a href="https://blog.csdn.net/dong__ge/article/details/123336063?spm=1001.2014.3001.5502#t9">专栏系列（二）uboot启动流程分析</a></strong>，文章内已经详细分析函数内部实现。</p>
 <p> </p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">static</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">abortboot</span>(<span style="color:#8be9fd">int</span> bootdelay)
@@ -1656,9 +1659,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><code>abortboot_single_key</code>：该函数主要用于<code>while</code>循环检测按键，如果有按键按下，将<code>abort</code>标志位置1，最后运行<code>cli_loop</code>命令行模式的函数。</p>
 <p>如果按键不按下，标志位<code>abort</code>不起作用，直接运行<code>run_command_list(s, -1, 0);</code>，<code>s = env_get(&quot;bootcmd&quot;);</code>，直接跳转到我们设置的环境变量<code>bootcmd</code>所设定的指令，而不执行<code>cli_loop</code>函数。</p>
-<blockquote>
-<p>对照运行流程图看代码，容易理解！！！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>对照运行流程图看代码，容易理解！！！</p>
+</blockquote><p> </p>
 <h2 id="44-如何添加uboot命令">
   4.4 如何添加Uboot命令
   <a class="anchor" href="#44-%e5%a6%82%e4%bd%95%e6%b7%bb%e5%8a%a0uboot%e5%91%bd%e4%bb%a4">#</a>
@@ -1745,9 +1749,10 @@ https://github.com/alex-shpak/hugo-book
 <li>修改<code>Makefile</code>文件，编译该文件：<code>obj-y += XXX.o</code></li>
 <li>重新编译，烧录</li>
 </ul>
-<blockquote>
-<p>说白了，就是创建一个文件，将自定义指令添加进去，尽量不修改源码！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>说白了，就是创建一个文件，将自定义指令添加进去，尽量不修改源码！</p>
+</blockquote><p> </p>
 <h2 id="45-uboot命令底层实现分析">
   4.5 Uboot命令底层实现分析
   <a class="anchor" href="#45-uboot%e5%91%bd%e4%bb%a4%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0%e5%88%86%e6%9e%90">#</a>
@@ -1774,9 +1779,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">			__attribute__((unused,				\
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">			section(&#34;.u_boot_list_2_&#34;#_list&#34;_2_&#34;#_name)))
 </span></span></span></code></pre></div><p> </p>
-<blockquote>
-<p><strong>乍一看，都是宏定义，为什么看起来这么吃力？</strong></p></blockquote>
-<h4 id="在这里不得不提到和的区别">
+
+<blockquote class='book-hint '>
+  <p><strong>乍一看，都是宏定义，为什么看起来这么吃力？</strong></p>
+</blockquote><h4 id="在这里不得不提到和的区别">
   在这里，不得不提到<code>#</code>和<code>##</code>的区别
   <a class="anchor" href="#%e5%9c%a8%e8%bf%99%e9%87%8c%e4%b8%8d%e5%be%97%e4%b8%8d%e6%8f%90%e5%88%b0%e5%92%8c%e7%9a%84%e5%8c%ba%e5%88%ab">#</a>
 </h4>
@@ -1816,9 +1822,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>xy <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">123</span>
 </span></span><span style="display:flex;"><span>xy <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">123456</span>
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">VAR</span>(<span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">=</span> data1 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">100</span>
-</span></span></code></pre></div><blockquote>
-<p><font color = "red"><strong>回到正文</strong></font></p></blockquote>
-<p><strong>上面的宏定义，简单来看，转换流程就是</strong>：</p>
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p><font color = "red"><strong>回到正文</strong></font></p>
+</blockquote><p><strong>上面的宏定义，简单来看，转换流程就是</strong>：</p>
 <p><code>U_BOOT_CMD</code> -&gt; <code>U_BOOT_CMD_COMPLETE</code> -&gt; <code>ll_entry_declare = U_BOOT_CMD_MKENT_COMPLETE</code> -&gt; <code>_type xxx = {aaa, bbb, ccc , ...}</code></p>
 <p><font color='red'> <strong>其本质就是：</strong> <code>struct my_struct test = {1, 2, 3};</code><strong>结构体赋值语句</strong>。</font></p>
 <p> </p>
@@ -1882,10 +1889,11 @@ https://github.com/alex-shpak/hugo-book
 <li><strong>输入数据处理</strong>：<code>cli_readline</code></li>
 <li><strong>输出数据处理</strong>：<code>run_command_repeatable</code></li>
 </ul>
-<blockquote>
-<p><strong>具体实现流程，参照上面的流程图！</strong></p>
-<p><strong>命令行模式的深入解析，准备在下节详细介绍！</strong></p></blockquote>
-<p>目前，我们已经对命令行的整体运行流程进行梳理，熟悉整体的运行逻辑，并且能够添加自定义命令喽。</p>
+
+<blockquote class='book-hint '>
+  <p><strong>具体实现流程，参照上面的流程图！</strong></p>
+<p><strong>命令行模式的深入解析，准备在下节详细介绍！</strong></p>
+</blockquote><p>目前，我们已经对命令行的整体运行流程进行梳理，熟悉整体的运行逻辑，并且能够添加自定义命令喽。</p>
 <p> </p>
 <h2 id="46-推荐文档">
   4.6 推荐文档

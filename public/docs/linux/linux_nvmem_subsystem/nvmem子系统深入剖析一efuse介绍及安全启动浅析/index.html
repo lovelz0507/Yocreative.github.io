@@ -14,7 +14,8 @@
 eFuse(electronic fuse)：电子保险丝，熔丝性的一种器件，属于一次性可编程存储器。
 之所以成为eFuse，因为其原理像电子保险丝一样，CPU出厂后，这片eFuse空间内所有比特全为1，如果向一位比特写入0，那么就彻底烧死这个比特了，再也无法改变它的值，也就是再也回不去 1 了。
 
-一般OEM从CPU厂商购买芯片后，一般都要烧写eFuse，用于标识自己公司的版本信息，运行模式等相关信息。
+
+  一般OEM从CPU厂商购买芯片后，一般都要烧写eFuse，用于标识自己公司的版本信息，运行模式等相关信息。
 同时，由于其一次性编程的特性，我们又将其用在Secure Boot安全启动中。
  
 
@@ -22,7 +23,8 @@ eFuse(electronic fuse)：电子保险丝，熔丝性的一种器件，属于一�
   #
 
 
-了解完eFuse后，我们就顺便了解一下OTP
+
+  了解完eFuse后，我们就顺便了解一下OTP
 OTP(One Time Programmable)是反熔丝的一种器件，就是说，当OTP存储单元未击穿时，它的逻辑状态为0；当击穿时，它的逻辑状态为1，也属于一次性可编程存储器。
 它的物理状态和逻辑状态正好和eFuse相反！
 
@@ -47,7 +49,8 @@ eFuse默认导通，存储的是&quot;1&quot;，而OTP默认是断开，存储�
   #
 
 
-上面我们也了解过了，efuse主要用于记录一些OEM的产品信息，并且也会用于安全启动，那么安全启动是什么，为什么要做安全启动？
+
+  上面我们也了解过了，efuse主要用于记录一些OEM的产品信息，并且也会用于安全启动，那么安全启动是什么，为什么要做安全启动？
 安全启动Secure Boot，其主要目的是：以限制消费者能力，防止消费者从软硬件层面，对产品的部分关键系统进行读写，调试等高级权限，达到对产品的商业保密，知识产权的保护。
 安全启动的安全模型是建立在消费者是攻击者的假设之上，一般常见的操作有：
 
@@ -112,7 +115,7 @@ eFuse默认导通，存储的是&#34;1&#34;，而OTP默认是断开，存储的�
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -135,7 +138,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1554,17 +1557,19 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p><code>eFuse(electronic fuse)</code>：电子保险丝，熔丝性的一种器件，属于<strong>一次性可编程存储器</strong>。</p>
 <p>之所以成为<code>eFuse</code>，因为其原理像电子保险丝一样，<code>CPU</code>出厂后，这片<code>eFuse</code>空间内所有比特全为1，如果向一位比特写入0，那么就彻底烧死这个比特了，再也无法改变它的值，也就是再也回不去 1 了。</p>
-<blockquote>
-<p>一般<code>OEM</code>从<code>CPU</code>厂商购买芯片后，一般都要烧写<code>eFuse</code>，用于标识自己公司的版本信息，运行模式等相关信息。</p>
-<p>同时，由于其<strong>一次性编程</strong>的特性，我们又将其用在<code>Secure Boot</code>安全启动中。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>一般<code>OEM</code>从<code>CPU</code>厂商购买芯片后，一般都要烧写<code>eFuse</code>，用于标识自己公司的版本信息，运行模式等相关信息。</p>
+<p>同时，由于其<strong>一次性编程</strong>的特性，我们又将其用在<code>Secure Boot</code>安全启动中。</p>
+</blockquote><p> </p>
 <h2 id="2otp是什么">
   2、OTP是什么
   <a class="anchor" href="#2otp%e6%98%af%e4%bb%80%e4%b9%88">#</a>
 </h2>
-<blockquote>
-<p>了解完<code>eFuse</code>后，我们就顺便了解一下<code>OTP</code></p></blockquote>
-<p><code>OTP(One Time Programmable)</code>是反熔丝的一种器件，就是说，当<code>OTP</code>存储单元未击穿时，它的逻辑状态为<code>0</code>；当击穿时，它的逻辑状态为<code>1</code>，也属于<strong>一次性可编程存储器</strong>。</p>
+
+<blockquote class='book-hint '>
+  <p>了解完<code>eFuse</code>后，我们就顺便了解一下<code>OTP</code></p>
+</blockquote><p><code>OTP(One Time Programmable)</code>是反熔丝的一种器件，就是说，当<code>OTP</code>存储单元未击穿时，它的逻辑状态为<code>0</code>；当击穿时，它的逻辑状态为<code>1</code>，也属于<strong>一次性可编程存储器</strong>。</p>
 <p><strong>它的物理状态和逻辑状态正好和<code>eFuse</code>相反！</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/img_convert/abd0b273ba06e74bf7e75322b813dfe1.png" alt="img" /></p>
 <p><strong>两者区别如下</strong>：</p>
@@ -1587,9 +1592,10 @@ https://github.com/alex-shpak/hugo-book
   3、什么是Secure Boot
   <a class="anchor" href="#3%e4%bb%80%e4%b9%88%e6%98%afsecure-boot">#</a>
 </h2>
-<blockquote>
-<p>上面我们也了解过了，<code>efuse</code>主要用于记录一些<code>OEM</code>的产品信息，并且也会用于安全启动，那么安全启动是什么，为什么要做安全启动？</p></blockquote>
-<p>安全启动<code>Secure Boot</code>，其主要目的是：<strong>以限制消费者能力，防止消费者从软硬件层面，对产品的部分关键系统进行读写，调试等高级权限，达到对产品的商业保密，知识产权的保护。</strong></p>
+
+<blockquote class='book-hint '>
+  <p>上面我们也了解过了，<code>efuse</code>主要用于记录一些<code>OEM</code>的产品信息，并且也会用于安全启动，那么安全启动是什么，为什么要做安全启动？</p>
+</blockquote><p>安全启动<code>Secure Boot</code>，其主要目的是：<strong>以限制消费者能力，防止消费者从软硬件层面，对产品的部分关键系统进行读写，调试等高级权限，达到对产品的商业保密，知识产权的保护。</strong></p>
 <p><strong>安全启动的安全模型是建立在消费者是攻击者的假设之上</strong>，一般常见的操作有：</p>
 <ul>
 <li>刷机安装自定义的操作系统</li>

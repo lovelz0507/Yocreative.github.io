@@ -116,7 +116,7 @@
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -139,7 +139,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1703,9 +1703,10 @@ https://github.com/alex-shpak/hugo-book
   4、工作模式
   <a class="anchor" href="#4%e5%b7%a5%e4%bd%9c%e6%a8%a1%e5%bc%8f">#</a>
 </h2>
-<blockquote>
-<p>主机和设备之间的通信，都由主机控制发起，主机发送命令，引起设备的应答。</p></blockquote>
-<p><strong>EMMC工作模式也定义了5种</strong>：</p>
+
+<blockquote class='book-hint '>
+  <p>主机和设备之间的通信，都由主机控制发起，主机发送命令，引起设备的应答。</p>
+</blockquote><p><strong>EMMC工作模式也定义了5种</strong>：</p>
 <ul>
 <li><strong>引导模式</strong>：使设备处于引导状态</li>
 <li><strong>设备识别模式</strong>：引导模式结束，设备再次模式下，接受<code>SET_RCA</code>命令，进行识别设备。</li>
@@ -1714,20 +1715,23 @@ https://github.com/alex-shpak/hugo-book
 <li><strong>非活动模式</strong>：如果设备工作电压范围和访问模式无效，则进入非活动模式。</li>
 </ul>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231025164858180.png" alt="image-20231025164858180" /></p>
-<blockquote>
-<p>每一种模式，都有其各自的特点，我们主要来了解一下设备识别过程和数据传输过程。</p></blockquote>
-<p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>每一种模式，都有其各自的特点，我们主要来了解一下设备识别过程和数据传输过程。</p>
+</blockquote><p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h3 id="41-设备识别模式">
   4.1 设备识别模式
   <a class="anchor" href="#41-%e8%ae%be%e5%a4%87%e8%af%86%e5%88%ab%e6%a8%a1%e5%bc%8f">#</a>
 </h3>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/6292e9b455574f80e056b1e1fbd345c6.png" alt="image-20220222110331024" /></p>
-<blockquote>
-<p>乍一看图，肯定大家都一脸懵逼，不仔细分析协议，单看图还是有一定理解难度的。</p></blockquote>
-<p>总体来说，设备识别模式下，主机要想识别到卡，主要步骤有如下几步：</p>
+
+<blockquote class='book-hint '>
+  <p>乍一看图，肯定大家都一脸懵逼，不仔细分析协议，单看图还是有一定理解难度的。</p>
+</blockquote><p>总体来说，设备识别模式下，主机要想识别到卡，主要步骤有如下几步：</p>
 <ul>
 <li>
 <p><strong>复位设备</strong></p>
@@ -1842,9 +1846,10 @@ https://github.com/alex-shpak/hugo-book
   4.2.7 写数据
   <a class="anchor" href="#427-%e5%86%99%e6%95%b0%e6%8d%ae">#</a>
 </h4>
-<blockquote>
-<p>确保设备处于发送状态，即主机发送<code>CMD7</code>命令</p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>确保设备处于发送状态，即主机发送<code>CMD7</code>命令</p>
+</blockquote><ul>
 <li><strong>单块写</strong></li>
 </ul>
 <p><code>CMD24</code>：直接发送写命令，参数为要写入的<strong>数据地址信息</strong>，只写一个块。</p>

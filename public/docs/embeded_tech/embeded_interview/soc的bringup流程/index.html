@@ -16,7 +16,8 @@ U-Boot启动：U-boot的主要作用是：引导加载Kernel和DTS。U-boot在�
 Kernel启动：在U-Boot加载了内核映像和设备树之后，系统会启动Linux。在这个阶段，系统会初始化各种硬件设备，加载驱动程序并启动用户空间应用程序。
 
 
-更多干货可见：高级工程师聚集地，助力大家更上一层楼！
+
+  更多干货可见：高级工程师聚集地，助力大家更上一层楼！
  
 
   2、常见问题
@@ -51,7 +52,8 @@ U-boot的加载过程分两个阶段，即：SPL和U-boot，
 Q：在Bring Up中，为了保证启动时间，如何裁剪？
 A：
 
-启动时间的裁剪是一个重要的步骤，其主要目标是缩短从电源打开到操作系统完全启动的时间。
+
+  启动时间的裁剪是一个重要的步骤，其主要目标是缩短从电源打开到操作系统完全启动的时间。
 
 优化Bootloader：减小Bootloader的代码大小，减少硬件初始化（只初始化必要硬件设备）等
 优化Kernel：减少启动服务数量，优化服务的启动顺序，使用预加载技术等方法来实现。
@@ -92,7 +94,7 @@ A：
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -115,7 +117,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1524,9 +1526,10 @@ https://github.com/alex-shpak/hugo-book
 <li><strong><code>U-Boot</code>启动</strong>：<code>U-boot</code>的主要作用是：引导加载<code>Kernel</code>和<code>DTS</code>。<code>U-boot</code>在启动之后，同样初始化<code>Soc</code>硬件资源，然后会计时等待，并执行默认的启动命令，将<code>Kernel</code>和<code>DTS</code>信息从存储介质中读取出来并加载到内存中执行。</li>
 <li><strong><code>Kernel</code>启动</strong>：在<code>U-Boot</code>加载了内核映像和设备树之后，系统会启动<code>Linux</code>。在这个阶段，系统会初始化各种硬件设备，加载驱动程序并启动用户空间应用程序。</li>
 </ol>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h2 id="2常见问题">
   2、常见问题
   <a class="anchor" href="#2%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98">#</a>
@@ -1559,9 +1562,10 @@ https://github.com/alex-shpak/hugo-book
 <p> </p>
 <p><code>Q</code>：在<code>Bring Up</code>中，为了保证启动时间，如何裁剪？</p>
 <p><code>A</code>：</p>
-<blockquote>
-<p>启动时间的裁剪是一个重要的步骤，其主要目标是缩短从电源打开到操作系统完全启动的时间。</p></blockquote>
-<ol>
+
+<blockquote class='book-hint '>
+  <p>启动时间的裁剪是一个重要的步骤，其主要目标是缩短从电源打开到操作系统完全启动的时间。</p>
+</blockquote><ol>
 <li>优化<code>Bootloader</code>：减小<code>Bootloader</code>的代码大小，减少硬件初始化（只初始化必要硬件设备）等</li>
 <li>优化<code>Kernel</code>：减少启动服务数量，优化服务的启动顺序，使用预加载技术等方法来实现。</li>
 <li>使用快速启动模式：一些<code>SOC</code>支持快速启动模式，这种模式下，<code>SOC</code>会跳过一些不必要的硬件初始化和自检过程，从而更快地启动。</li>

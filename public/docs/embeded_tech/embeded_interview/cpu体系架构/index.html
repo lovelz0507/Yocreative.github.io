@@ -13,7 +13,8 @@
   #
 
 
-我们常见的CPU架构有哪些呢？
+
+  我们常见的CPU架构有哪些呢？
 如果我们熟悉Linux，那么这个问题肯定不难回答！
 我们查看内核目录下的arch子目录，就可以看到Linux所支持的处理器架构，基本属于我们常见的类型了。
 # ls ./arch
@@ -34,7 +35,8 @@ EPIC（显式并行指令计算）：EPIC架构的CPU设计理念是通过显式
 
 这里就有一个疑问，我们什么时候说RISC架构，什么时候说ARM架构，这两个有什么区别呢？
 
-以ARM和RISC为例：
+
+  以ARM和RISC为例：
 ARM架构和RISC架构的主要区别在于ARM实际上是RISC的一个具体实现，而RISC则是一个更广泛的处理器设计理念。换句话说，ARM是RISC的一个子集。
 同理，X86架构是CISC的一个子集。
  
@@ -75,7 +77,7 @@ STM32是ST公司开发的32位微控制器集成电路，基于 ARM 的 Cortex-M
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -98,7 +100,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1504,9 +1506,10 @@ https://github.com/alex-shpak/hugo-book
   2.1 CPU体系架构有哪些？
   <a class="anchor" href="#21-cpu%e4%bd%93%e7%b3%bb%e6%9e%b6%e6%9e%84%e6%9c%89%e5%93%aa%e4%ba%9b">#</a>
 </h2>
-<blockquote>
-<p>我们常见的<code>CPU</code>架构有哪些呢？</p></blockquote>
-<p>如果我们熟悉<code>Linux</code>，那么这个问题肯定不难回答！</p>
+
+<blockquote class='book-hint '>
+  <p>我们常见的<code>CPU</code>架构有哪些呢？</p>
+</blockquote><p>如果我们熟悉<code>Linux</code>，那么这个问题肯定不难回答！</p>
 <p>我们查看内核目录下的<code>arch</code>子目录，就可以看到<code>Linux</code>所支持的处理器架构，基本属于我们常见的类型了。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># ls ./arch</span>
 </span></span><span style="display:flex;"><span>alpha  arc  arm  arm64  c6x  h8300  hexagon  ia64  Kconfig  m68k  microblaze  mips  nds32  nios2  openrisc  parisc  powerpc  riscv  s390  sh  sparc  um  unicore32  x86  xtensa
@@ -1525,9 +1528,10 @@ https://github.com/alex-shpak/hugo-book
 <p> </p>
 <p><img src="https://img2.baidu.com/it/u=3770652576,1376693706&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=909&amp;h=500" alt="img" /></p>
 <p>这里就有一个疑问，我们什么时候说<code>RISC</code>架构，什么时候说<code>ARM</code>架构，这两个有什么区别呢？</p>
-<blockquote>
-<p>以<code>ARM</code>和<code>RISC</code>为例：</p></blockquote>
-<p><code>ARM</code>架构和<code>RISC</code>架构的主要区别在于<code>ARM</code>实际上是<code>RISC</code>的一个具体实现，而<code>RISC</code>则是一个更广泛的处理器<strong>设计理念</strong>。换句话说，<code>ARM</code>是<code>RISC</code>的一个子集。</p>
+
+<blockquote class='book-hint '>
+  <p>以<code>ARM</code>和<code>RISC</code>为例：</p>
+</blockquote><p><code>ARM</code>架构和<code>RISC</code>架构的主要区别在于<code>ARM</code>实际上是<code>RISC</code>的一个具体实现，而<code>RISC</code>则是一个更广泛的处理器<strong>设计理念</strong>。换句话说，<code>ARM</code>是<code>RISC</code>的一个子集。</p>
 <p>同理，<code>X86</code>架构是<code>CISC</code>的一个子集。</p>
 <p> </p>
 <h2 id="22-常见的问题">

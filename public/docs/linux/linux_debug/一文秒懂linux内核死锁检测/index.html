@@ -8,7 +8,8 @@
   #
 
 
-最近遇到了一个驱动上面的BUG，导致终端敲命令都无响应，最终导致内核触发了hung_task_timeout…
+
+  最近遇到了一个驱动上面的BUG，导致终端敲命令都无响应，最终导致内核触发了hung_task_timeout…
 为什么会出现这种情况？该如何排查？
 
 
@@ -95,7 +96,7 @@ ever held in STATE context –&gt; 该锁曾在STATE上下文被持有过 ever h
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -118,7 +119,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1524,10 +1525,11 @@ https://github.com/alex-shpak/hugo-book
   【一文秒懂】Linux内核死锁检测
   <a class="anchor" href="#%e4%b8%80%e6%96%87%e7%a7%92%e6%87%82linux%e5%86%85%e6%a0%b8%e6%ad%bb%e9%94%81%e6%a3%80%e6%b5%8b">#</a>
 </h1>
-<blockquote>
-<p>最近遇到了一个驱动上面的<code>BUG</code>，导致终端敲命令都无响应，最终导致内核触发了<code>hung_task_timeout</code>…</p>
-<p>为什么会出现这种情况？该如何排查？</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/Screenshot_20230627_222840.png" alt="Screenshot_20230627_222840" /></p>
+
+<blockquote class='book-hint '>
+  <p>最近遇到了一个驱动上面的<code>BUG</code>，导致终端敲命令都无响应，最终导致内核触发了<code>hung_task_timeout</code>…</p>
+<p>为什么会出现这种情况？该如何排查？</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/Screenshot_20230627_222840.png" alt="Screenshot_20230627_222840" /></p>
 <h2 id="1死锁">
   1、死锁
   <a class="anchor" href="#1%e6%ad%bb%e9%94%81">#</a>
@@ -1675,9 +1677,10 @@ https://github.com/alex-shpak/hugo-book
 <li><code>-</code> 表示等待锁的任务和占用锁的任务都是同一个线程，这种情况也称为递归锁或可重入锁。</li>
 </ul>
 <p>在 <code>{+.+.}</code> 中，第一个 <code>+</code> 表示锁没有被占用，第二个 <code>+</code> 表示没有任务正在等待该锁。因此，该符号代表锁的当前状态为可用。</p>
-<blockquote>
-<p>在 Linux 内核调试中，报告锁状态通常都使用这种简洁的符号，通过观察锁标志位，可以快速地了解内核锁的状态，诊断性能问题和死锁问题。在调试问题时，通常会使用 <code>dmesg</code> 命令来查看内核日志中的锁标志，以确定程序中可能存在的锁问题。</p></blockquote>
-</li>
+
+<blockquote class='book-hint '>
+  <p>在 Linux 内核调试中，报告锁状态通常都使用这种简洁的符号，通过观察锁标志位，可以快速地了解内核锁的状态，诊断性能问题和死锁问题。在调试问题时，通常会使用 <code>dmesg</code> 命令来查看内核日志中的锁标志，以确定程序中可能存在的锁问题。</p>
+</blockquote></li>
 <li>
 <p><code>WARNING: bad contention detected! ifconfig/231 is trying to contend lock (pmutex) at: [&lt;c067118c&gt;] __mutex_lock+0x2e8/0x890 but there are no locks held</code>：该警告表示检测到了不良争用的情况，其中一个名为 <code>ifconfig/231</code> 的任务试图与一个名为 <code>pmutex</code> 的锁进行争用，但是没有其他任务持有该锁。这种情况通常表示存在逻辑问题或者编程错误。</p>
 </li>

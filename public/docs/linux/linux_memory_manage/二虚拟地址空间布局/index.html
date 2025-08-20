@@ -11,7 +11,8 @@
  
 同样，我们知道Linux内核抽象出来虚拟内存空间，主要是为了让每个进程都独享该空间，那虚拟内存空间是如何布局的呢？
 
-前提：针对于不同位数的CPU，寻址能力不同，抽象出来的虚拟内存空间大小也不同，我们以常见的32位的CPU为例。
+
+  前提：针对于不同位数的CPU，寻址能力不同，抽象出来的虚拟内存空间大小也不同，我们以常见的32位的CPU为例。
  
 
   1、虚拟内存空间布局
@@ -78,7 +79,7 @@ donge@Donge:$ size Donge-Demo text data bss dec hex filename 12538 1916 43632 58
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -101,7 +102,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1507,9 +1508,10 @@ https://github.com/alex-shpak/hugo-book
 <p>上一章，我们了解了内存管理的由来以及核心思想，下面我们按照顺序，先来介绍一下<code>Linux</code>虚拟内存空间的管理。</p>
 <p> </p>
 <p>同样，我们知道<code>Linux</code>内核抽象出来虚拟内存空间，主要是为了让每个进程都独享该空间，那虚拟内存空间是如何布局的呢？</p>
-<blockquote>
-<p><strong>前提</strong>：针对于不同位数的<code>CPU</code>，寻址能力不同，抽象出来的虚拟内存空间大小也不同，我们以常见的<code>32</code>位的<code>CPU</code>为例。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p><strong>前提</strong>：针对于不同位数的<code>CPU</code>，寻址能力不同，抽象出来的虚拟内存空间大小也不同，我们以常见的<code>32</code>位的<code>CPU</code>为例。</p>
+</blockquote><p> </p>
 <h2 id="1虚拟内存空间布局">
   1、虚拟内存空间布局
   <a class="anchor" href="#1%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e7%a9%ba%e9%97%b4%e5%b8%83%e5%b1%80">#</a>
@@ -1574,9 +1576,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>7ffce3952000-7ffce3953000 r-xp <span style="color:#bd93f9">00000000</span> 00:00 <span style="color:#bd93f9">0</span>                          <span style="color:#ff79c6">[</span>vdso<span style="color:#ff79c6">]</span>
 </span></span></code></pre></div><p>上面能大致看出该进程的代码段、堆、文件映射段，栈的内存分布等情况，以上就是我们的可执行程序被加载进入内存之后，在用户态虚拟内存空间的布局情况。</p>
 <p> </p>
-<blockquote>
-<p>顺便介绍一下 我的圈子：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，期待大家的加入。</p></blockquote>
-<h2 id="3内核态空间布局">
+
+<blockquote class='book-hint '>
+  <p>顺便介绍一下 我的圈子：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，期待大家的加入。</p>
+</blockquote><h2 id="3内核态空间布局">
   3、内核态空间布局
   <a class="anchor" href="#3%e5%86%85%e6%a0%b8%e6%80%81%e7%a9%ba%e9%97%b4%e5%b8%83%e5%b1%80">#</a>
 </h2>
@@ -1590,9 +1593,10 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li><strong>直接映射区（<code>Direct Memory Region</code>）</strong>：顾名思义，直接映射区就是直接与物理内存建立一一映射关系。从内核空间起始地址开始，到<code>896M</code>的内核空间地址区间，为直接内存映射区，该区域线性地址和分配的物理地址都是连续的。</li>
 </ul>
-<blockquote>
-<p><code>896M</code>以上的内核地址空间，又称为高端内存区域。</p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p><code>896M</code>以上的内核地址空间，又称为高端内存区域。</p>
+</blockquote><ul>
 <li>
 <p><strong>安全保护区</strong>：也成为内存空洞，大小为<code>8M</code>，其主要目的是为了避免 非连续区的非法访问，</p>
 </li>
@@ -1606,10 +1610,11 @@ https://github.com/alex-shpak/hugo-book
 <p><strong>固定映射区（<code>Fixing kernel Mapping Region</code>）</strong>：该区域虚拟内存地址可以自由映射到物理内存的高端地址上，“固定”表现在“虚拟内存空间地址是固定的”，被映射的物理地址是可变的。</p>
 </li>
 </ul>
-<blockquote>
-<p>为什么会有固定映射这个概念呢 ?</p>
-<p>比如：在内核的启动过程中，有些模块需要使用虚拟内存并映射到指定的物理地址上，而且这些模块也没有办法等待完整的内存管理模块初始化之后再进行地址映射。因此，内核固定分配了一些虚拟地址，这些地址有固定的用途，使用该地址的模块在初始化的时候，将这些固定分配的虚拟地址映射到指定的物理地址上去。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231005155942462.png" alt="image-20231005155942462" /></p>
+
+<blockquote class='book-hint '>
+  <p>为什么会有固定映射这个概念呢 ?</p>
+<p>比如：在内核的启动过程中，有些模块需要使用虚拟内存并映射到指定的物理地址上，而且这些模块也没有办法等待完整的内存管理模块初始化之后再进行地址映射。因此，内核固定分配了一些虚拟地址，这些地址有固定的用途，使用该地址的模块在初始化的时候，将这些固定分配的虚拟地址映射到指定的物理地址上去。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231005155942462.png" alt="image-20231005155942462" /></p>
 <h2 id="4总结">
   4、总结
   <a class="anchor" href="#4%e6%80%bb%e7%bb%93">#</a>

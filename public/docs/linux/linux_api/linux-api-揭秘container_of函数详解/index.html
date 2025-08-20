@@ -8,7 +8,8 @@
   #
 
 
-Linux Version：6.6
+
+  Linux Version：6.6
 Author：Donge
 Github：linux-api-insides
  
@@ -19,7 +20,8 @@ Github：linux-api-insides
 container_of可以说是内核中使用最为频繁的一个函数了，简单来说，它的主要作用就是根据我们结构体中的已知的成员变量的地址，来寻求该结构体的首地址，直接看图，更容易理解。
 
 
-下面我们看看linux是如何实现的吧
+
+  下面我们看看linux是如何实现的吧
 
   2、container_of函数实现
   #
@@ -61,7 +63,7 @@ Github：linux-api-insides
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -84,7 +86,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1494,20 +1496,22 @@ https://github.com/alex-shpak/hugo-book
   【Linux API 揭秘】container_of函数详解
   <a class="anchor" href="#linux-api-%e6%8f%ad%e7%a7%98container_of%e5%87%bd%e6%95%b0%e8%af%a6%e8%a7%a3">#</a>
 </h1>
-<blockquote>
-<p><strong>Linux Version：6.6</strong></p>
+
+<blockquote class='book-hint '>
+  <p><strong>Linux Version：6.6</strong></p>
 <p><strong>Author：Donge</strong></p>
-<p><strong>Github：<a href="https://github.com/UNIONDONG/linux-api-insides">linux-api-insides</a></strong></p></blockquote>
-<p> </p>
+<p><strong>Github：<a href="https://github.com/UNIONDONG/linux-api-insides">linux-api-insides</a></strong></p>
+</blockquote><p> </p>
 <h2 id="1container_of函数介绍">
   1、container_of函数介绍
   <a class="anchor" href="#1container_of%e5%87%bd%e6%95%b0%e4%bb%8b%e7%bb%8d">#</a>
 </h2>
 <p><code>container_of</code>可以说是内核中使用最为频繁的一个函数了，简单来说，它的主要作用就是根据我们结构体中的已知的成员变量的地址，来寻求该结构体的首地址，直接看图，更容易理解。</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231212195328080.png" alt="image-20231212195328080" /></p>
-<blockquote>
-<p>下面我们看看<code>linux</code>是如何实现的吧</p></blockquote>
-<h2 id="2container_of函数实现">
+
+<blockquote class='book-hint '>
+  <p>下面我们看看<code>linux</code>是如何实现的吧</p>
+</blockquote><h2 id="2container_of函数实现">
   2、container_of函数实现
   <a class="anchor" href="#2container_of%e5%87%bd%e6%95%b0%e5%ae%9e%e7%8e%b0">#</a>
 </h2>
@@ -1582,9 +1586,10 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 <p>了解完<code>__same_type</code>，想要理解<code>__same_type(*(ptr), ((type *)0)-&gt;member)</code>，需要先弄明白<code>(type *)0</code>的含义。</p>
 <p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h3 id="23-type-0">
   2.3 (type *)0
   <a class="anchor" href="#23-type-0">#</a>
@@ -1663,9 +1668,10 @@ https://github.com/alex-shpak/hugo-book
 <p><code>((type *)(__mptr - offsetof(type, member)))</code>：最后强制转换为<code>(type *)</code>，结构体指针。</p>
 </li>
 </ul>
-<blockquote>
-<p>比如，我们已知的结构体成员的地址为<code>0xffff0000</code>，计算之后如下：</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231213151416841.png" alt="image-20231213151416841" /></p>
+
+<blockquote class='book-hint '>
+  <p>比如，我们已知的结构体成员的地址为<code>0xffff0000</code>，计算之后如下：</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231213151416841.png" alt="image-20231213151416841" /></p>
 <h2 id="3总结">
   3、总结
   <a class="anchor" href="#3%e6%80%bb%e7%bb%93">#</a>

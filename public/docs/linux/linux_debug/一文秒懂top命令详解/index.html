@@ -80,7 +80,7 @@ top：启动top命令 top -c：显示完整的命令行 top -b：以批处理模
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -103,7 +103,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1584,18 +1584,20 @@ https://github.com/alex-shpak/hugo-book
 <li>第一行表示物理内存，分为<code>total</code>、 <code>free</code>、 <code>used</code> 、 <code>buff/cache</code></li>
 <li>第二行表示虚拟内存，分为<code>total</code>、<code>free</code>、<code>used</code>、<code>avail</code></li>
 </ul>
-<blockquote>
-<p>默认单位是<code>KiB</code>，使用按键<code>E</code>可以切换为<code>MiB</code>、<code>GiB</code>、<code>TiB</code>、<code>PiB</code>、<code>EiB</code></p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">KiB</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">kibibyte</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1024</span> bytes
+
+<blockquote class='book-hint '>
+  <p>默认单位是<code>KiB</code>，使用按键<code>E</code>可以切换为<code>MiB</code>、<code>GiB</code>、<code>TiB</code>、<code>PiB</code>、<code>EiB</code></p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">KiB</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">kibibyte</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1024</span> bytes
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">MiB</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">mebibyte</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1024</span> <span style="color:#8be9fd;font-style:italic">KiB</span> <span style="color:#ff79c6">=</span> 1,048,576 bytes
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">GiB</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">gibibyte</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1024</span> <span style="color:#8be9fd;font-style:italic">MiB</span> <span style="color:#ff79c6">=</span> 1,073,741,824 bytes
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">TiB</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">tebibyte</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1024</span> <span style="color:#8be9fd;font-style:italic">GiB</span> <span style="color:#ff79c6">=</span> 1,099,511,627,776 bytes
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">PiB</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">pebibyte</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1024</span> <span style="color:#8be9fd;font-style:italic">TiB</span> <span style="color:#ff79c6">=</span> 1,125,899,906,842,624 bytes
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">EiB</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">exbibyte</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1024</span> <span style="color:#8be9fd;font-style:italic">PiB</span> <span style="color:#ff79c6">=</span> 1,152,921,504,606,846,976 bytes
 </span></span></code></pre></div><p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h3 id="32-任务区">
   3.2 任务区
   <a class="anchor" href="#32-%e4%bb%bb%e5%8a%a1%e5%8c%ba">#</a>
@@ -1661,9 +1663,10 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>相关属性有很多，可以使用<code>man top</code>查看，这里先列举这些。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>相关属性有很多，可以使用<code>man top</code>查看，这里先列举这些。</p>
+</blockquote><p> </p>
 <h4 id="322-字段管理">
   3.2.2 字段管理
   <a class="anchor" href="#322-%e5%ad%97%e6%ae%b5%e7%ae%a1%e7%90%86">#</a>
@@ -1706,9 +1709,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#4%e4%ba%a4%e4%ba%92%e5%91%bd%e4%bb%a4%e8%af%a6%e8%a7%a3">#</a>
 </h2>
 <p><code>top</code>的功能很多，基本能够查看进程的各种状态信息，其中还有一些交互式的命令，方便我们更好的查看系统状态。</p>
-<blockquote>
-<p>在<code>top</code>主界面中，我们输入下面的命令</p></blockquote>
-<table>
+
+<blockquote class='book-hint '>
+  <p>在<code>top</code>主界面中，我们输入下面的命令</p>
+</blockquote><table>
   <thead>
       <tr>
           <th>命令</th>
@@ -1758,9 +1762,10 @@ https://github.com/alex-shpak/hugo-book
       </tr>
   </tbody>
 </table>
-<blockquote>
-<p>上面介绍了一些比较常见的交互式命令，还有更多需要你去探索哦！</p></blockquote>
-<center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
+
+<blockquote class='book-hint '>
+  <p>上面介绍了一些比较常见的交互式命令，还有更多需要你去探索哦！</p>
+</blockquote><center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
 <div align=center><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/blog.png" alt="img" width = "60%" height ="10%"/>
 </div>
 </article>

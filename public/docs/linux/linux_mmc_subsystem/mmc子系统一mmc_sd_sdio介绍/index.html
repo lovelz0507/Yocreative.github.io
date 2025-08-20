@@ -20,18 +20,21 @@
 
 上面我们了解到，Linux Kernel使用统一的子系统模型来管理MMC、SD、SDIO等设备，那么为什么要这样设计呢？
 
-答案当然是：三者协议有一定的共通性。
+
+  答案当然是：三者协议有一定的共通性。
  
 MMC（MultiMediaCard）多媒体卡设备，从本质上看，它是一种用于固态非易失性存储的内存卡（memory card）规范，定义了诸如卡的形态、尺寸、容量、电气信号、和主机之间的通信协议等方方面面的内容。
 1997年，MMC规范正式发布，至今已经进化出了SD、MicroSD、SDIO、EMMC等多种不同的规范，虽然眼花缭乱，但是追其根源，都源于MMC规范，所以Linux Kernel可以将其统一管理！
 
 
-MMC：强调的是多媒体存储（MM：MultiMedia）
+
+  MMC：强调的是多媒体存储（MM：MultiMedia）
 SD：强调的是安全数据（SD：Secure Digital）
 SDIO：强调的是IO接口(IO：Input/Output)
  
 
-更多干货可见：高级工程师聚集地，助力大家更上一层楼！
+
+  更多干货可见：高级工程师聚集地，助力大家更上一层楼！
  
 
   3、总线接口
@@ -45,7 +48,8 @@ MMC、SD、SDIO其物理接口也十分相似，我们以MMC为例进行分析�
 把通信总线部分，拿出来看：
 
 
-CLK：提供SOC和设备之间的通信时钟，常用的通信频率为400KHz（识卡）、25MHz，50MHz
+
+  CLK：提供SOC和设备之间的通信时钟，常用的通信频率为400KHz（识卡）、25MHz，50MHz
 CMD：提供SOC和设备之间的通信命令，标识不同的命令编号，类型多达50多种。
 DATA：提供SOC和设备之间的数据通信，其通信总线有8根，可自定义设置，一般默认的是1-bit (默认)模式、4-bit模式和8-bit模式。当然数据线越多，传输越快嘛，但是处理起来也稍微繁琐。
 除了上面的一些管脚，当然还少不了VCC、GND等管脚喽，与其它外设不同的是，MMC类的设备，还会有一个检测引脚DET，用于检测是否存在卡设备（热插拔）。
@@ -100,7 +104,7 @@ DATA：提供SOC和设备之间的数据通信，其通信总线有8根，可自
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -123,7 +127,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1538,20 +1542,23 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#2mmcsdsdio%e4%bb%8b%e7%bb%8d">#</a>
 </h2>
 <p>上面我们了解到，<code>Linux Kernel</code>使用统一的子系统模型来管理<code>MMC</code>、<code>SD</code>、<code>SDIO</code>等设备，那么为什么要这样设计呢？</p>
-<blockquote>
-<p>答案当然是：三者协议有一定的共通性。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>答案当然是：三者协议有一定的共通性。</p>
+</blockquote><p> </p>
 <p><code>MMC（MultiMediaCard）</code>多媒体卡设备，从本质上看，<strong>它是一种用于固态非易失性存储的内存卡（memory card）规范，定义了诸如卡的形态、尺寸、容量、电气信号、和主机之间的通信协议等方方面面的内容。</strong></p>
 <p>1997年，<code>MMC</code>规范正式发布，至今已经进化出了<code>SD</code>、<code>MicroSD</code>、<code>SDIO</code>、<code>EMMC</code>等多种不同的规范，虽然眼花缭乱，但是追其根源，都源于<code>MMC</code>规范，所以<code>Linux Kernel</code>可以将其统一管理！</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/95d6d6a51a757c21cdc3108e12d16d0320161225135202.gif" alt="mmc_sd_sdio_history" /></p>
-<blockquote>
-<p><code>MMC</code>：强调的是多媒体存储（MM：MultiMedia）</p>
+
+<blockquote class='book-hint '>
+  <p><code>MMC</code>：强调的是多媒体存储（MM：MultiMedia）</p>
 <p><code>SD</code>：强调的是安全数据（SD：Secure Digital）</p>
-<p><code>SDIO</code>：强调的是IO接口(IO：Input/Output)</p></blockquote>
-<p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+<p><code>SDIO</code>：强调的是IO接口(IO：Input/Output)</p>
+</blockquote><p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h2 id="3总线接口">
   3、总线接口
   <a class="anchor" href="#3%e6%80%bb%e7%ba%bf%e6%8e%a5%e5%8f%a3">#</a>
@@ -1563,12 +1570,13 @@ https://github.com/alex-shpak/hugo-book
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/fbcc70f4593e41a6f96a28c4667a9c3420161225135203.gif" alt="mmc_sd_sdio_hw_block" /></p>
 <p><strong>把通信总线部分，拿出来看</strong>：</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20240103073934443.png" alt="image-20240103073934443" /></p>
-<blockquote>
-<p><code>CLK</code>：提供<code>SOC</code>和设备之间的通信时钟，常用的通信频率为<code>400KHz</code>（识卡）、<code>25MHz</code>，<code>50MHz</code></p>
+
+<blockquote class='book-hint '>
+  <p><code>CLK</code>：提供<code>SOC</code>和设备之间的通信时钟，常用的通信频率为<code>400KHz</code>（识卡）、<code>25MHz</code>，<code>50MHz</code></p>
 <p><code>CMD</code>：提供<code>SOC</code>和设备之间的通信命令，标识不同的命令编号，类型多达50多种。</p>
 <p><code>DATA</code>：提供<code>SOC</code>和设备之间的数据通信，其通信总线有8根，可自定义设置，一般默认的是1-bit (默认)模式、4-bit模式和8-bit模式。当然数据线越多，传输越快嘛，但是处理起来也稍微繁琐。</p>
-<p>除了上面的一些管脚，当然还少不了<code>VCC</code>、<code>GND</code>等管脚喽，与其它外设不同的是，<code>MMC</code>类的设备，还会有一个检测引脚<code>DET</code>，用于检测是否存在卡设备（热插拔）。</p></blockquote>
-<p> </p>
+<p>除了上面的一些管脚，当然还少不了<code>VCC</code>、<code>GND</code>等管脚喽，与其它外设不同的是，<code>MMC</code>类的设备，还会有一个检测引脚<code>DET</code>，用于检测是否存在卡设备（热插拔）。</p>
+</blockquote><p> </p>
 <p><strong>好啦，上面我们对<code>MMC</code>、<code>SD</code>、<code>SDIO</code>进行简单了解，也知道了通信的常用方式与物理接口，当然其最核心在于通信的协议啦！由于协议过于复杂，我们放到后面了解。</strong></p>
 <p> </p>
 <h2 id="4参考文章">

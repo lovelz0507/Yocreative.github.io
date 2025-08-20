@@ -12,18 +12,21 @@
   #
 
 
-上篇文章我们了解了子系统的硬件驱动层，下面我们来分析驱动框架中核心层的实现以及作用。
+
+  上篇文章我们了解了子系统的硬件驱动层，下面我们来分析驱动框架中核心层的实现以及作用。
 
 在LED子系统框架中，核心层包括几个部分：核心层的实现部分（led-core.c）、sysfs文件节点创建（led-class.c）、触发功能实现(led-triggers.c、driver/leds/triggers/led-xxx.c)
 
-其中，触发功能部分较为独立，我们暂且先不去分析。
+
+  其中，触发功能部分较为独立，我们暂且先不去分析。
 我们先从led-class.c文件开始分析
 
   2、leds_init分析
   #
 
 
-该函数其主要是为了创建LED设备文件节点，方便用户通过节点直接访问。
+
+  该函数其主要是为了创建LED设备文件节点，方便用户通过节点直接访问。
 该文件，我们直接拉下底部，我们直接看入口函数：leds_init
 
   2.1 相关数据结构
@@ -114,7 +117,7 @@ struct class {
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -137,7 +140,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1566,20 +1569,23 @@ https://github.com/alex-shpak/hugo-book
   1、前言
   <a class="anchor" href="#1%e5%89%8d%e8%a8%80">#</a>
 </h2>
-<blockquote>
-<p>上篇文章我们了解了子系统的硬件驱动层，下面我们来分析驱动框架中核心层的实现以及作用。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230417084033734.png" alt="image-20230417084033734" /></p>
+
+<blockquote class='book-hint '>
+  <p>上篇文章我们了解了子系统的硬件驱动层，下面我们来分析驱动框架中核心层的实现以及作用。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230417084033734.png" alt="image-20230417084033734" /></p>
 <p>在<code>LED</code>子系统框架中，核心层包括几个部分：核心层的实现部分（<code>led-core.c</code>）、<code>sysfs</code>文件节点创建（<code>led-class.c</code>）、触发功能实现(<code>led-triggers.c</code>、<code>driver/leds/triggers/led-xxx.c</code>)</p>
-<blockquote>
-<p>其中，触发功能部分较为独立，我们暂且先不去分析。</p></blockquote>
-<p><span style="color: red;"><strong>我们先从<code>led-class.c</code>文件开始分析</strong></span></p>
+
+<blockquote class='book-hint '>
+  <p>其中，触发功能部分较为独立，我们暂且先不去分析。</p>
+</blockquote><p><span style="color: red;"><strong>我们先从<code>led-class.c</code>文件开始分析</strong></span></p>
 <h2 id="2leds_init分析">
   2、leds_init分析
   <a class="anchor" href="#2leds_init%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>该函数其主要是为了创建<code>LED</code>设备文件节点，方便用户通过节点直接访问。</p></blockquote>
-<p>该文件，我们直接拉下底部，我们直接看入口函数：<code>leds_init</code></p>
+
+<blockquote class='book-hint '>
+  <p>该函数其主要是为了创建<code>LED</code>设备文件节点，方便用户通过节点直接访问。</p>
+</blockquote><p>该文件，我们直接拉下底部，我们直接看入口函数：<code>leds_init</code></p>
 <h3 id="21-相关数据结构">
   2.1 相关数据结构
   <a class="anchor" href="#21-%e7%9b%b8%e5%85%b3%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">#</a>
@@ -1681,9 +1687,10 @@ https://github.com/alex-shpak/hugo-book
   3、leds_class_dev_pm_ops分析
   <a class="anchor" href="#3leds_class_dev_pm_ops%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>上面我们在创建<code>led</code>类的时候，赋值了<code>leds_class_dev_pm_ops</code>电源管理接口，那么该接口是怎么定义的呢？</p></blockquote>
-<h3 id="31-相关数据结构">
+
+<blockquote class='book-hint '>
+  <p>上面我们在创建<code>led</code>类的时候，赋值了<code>leds_class_dev_pm_ops</code>电源管理接口，那么该接口是怎么定义的呢？</p>
+</blockquote><h3 id="31-相关数据结构">
   3.1 相关数据结构
   <a class="anchor" href="#31-%e7%9b%b8%e5%85%b3%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">#</a>
 </h3>
@@ -1787,15 +1794,17 @@ https://github.com/alex-shpak/hugo-book
 <li>定义了几个函数<code>led_suspend</code>、<code>led_resume</code>、<code>led_classdev_resume</code>、<code>led_classdev_suspend</code>作为休眠唤醒的实现</li>
 <li>通过宏定义<code>SIMPLE_DEV_PM_OPS</code>将函数绑定到<code>leds_class-&gt;pm</code>中，作为该类设备的休眠唤醒管理。</li>
 </ol>
-<blockquote>
-<p>这里<code>SIMPLE_DEV_PM_OPS</code>宏定义较为简单，自行翻阅源码查看即可！</p></blockquote>
-<h2 id="4led_groups分析">
+
+<blockquote class='book-hint '>
+  <p>这里<code>SIMPLE_DEV_PM_OPS</code>宏定义较为简单，自行翻阅源码查看即可！</p>
+</blockquote><h2 id="4led_groups分析">
   4、led_groups分析
   <a class="anchor" href="#4led_groups%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>上面我们在创建<code>led</code>类的时候，将<code>led_groups</code>赋值给了<code>struct attribute_group</code>属性组结构体，那么<code>led_groups</code>是怎么定义的呢？</p></blockquote>
-<h3 id="41-相关数据结构">
+
+<blockquote class='book-hint '>
+  <p>上面我们在创建<code>led</code>类的时候，将<code>led_groups</code>赋值给了<code>struct attribute_group</code>属性组结构体，那么<code>led_groups</code>是怎么定义的呢？</p>
+</blockquote><h3 id="41-相关数据结构">
   4.1 相关数据结构
   <a class="anchor" href="#41-%e7%9b%b8%e5%85%b3%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">#</a>
 </h3>
@@ -1949,15 +1958,17 @@ https://github.com/alex-shpak/hugo-book
 <li>至此，所有的属性定义完毕，并且将其读写属性的接口与该属性进行了绑定</li>
 <li>最后，通过在<code>leds_init</code>接口中，调用<code>leds_class-&gt;dev_groups = led_groups;</code>，将属性组注册到<code>LED</code>类中进行管理。</li>
 </ol>
-<blockquote>
-<p><span style="color: red;"><strong>阅读代码时，从下网上看，更容易理解！</strong></span></p></blockquote>
-<h3 id="43-扩展">
+
+<blockquote class='book-hint '>
+  <p><span style="color: red;"><strong>阅读代码时，从下网上看，更容易理解！</strong></span></p>
+</blockquote><h3 id="43-扩展">
   4.3 扩展
   <a class="anchor" href="#43-%e6%89%a9%e5%b1%95">#</a>
 </h3>
-<blockquote>
-<p>可能代码中有些地方对于初学者不太容易理解，如：为什么没有找到<code>brightness_store</code>和<code>brightness_show</code>与属性绑定的地方？为什么函数要定义成这个名字？</p></blockquote>
-<p>解答这个问题，也是涉及到了<code>Linux</code>内核的设计模式，其中充斥着大量的宏定义，主要用作字符串的拼接，最终生成想要的定义！</p>
+
+<blockquote class='book-hint '>
+  <p>可能代码中有些地方对于初学者不太容易理解，如：为什么没有找到<code>brightness_store</code>和<code>brightness_show</code>与属性绑定的地方？为什么函数要定义成这个名字？</p>
+</blockquote><p>解答这个问题，也是涉及到了<code>Linux</code>内核的设计模式，其中充斥着大量的宏定义，主要用作字符串的拼接，最终生成想要的定义！</p>
 <h4 id="431-device_attr_rw分析">
   4.3.1 DEVICE_ATTR_RW分析
   <a class="anchor" href="#431-device_attr_rw%e5%88%86%e6%9e%90">#</a>
@@ -2003,9 +2014,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">static</span> <span style="color:#50fa7b">DEVICE_ATTR_RW</span>(brightness);
 </span></span></code></pre></div><p><strong>代码介绍</strong>：上面定义了两个函数（<code>brightness_show</code>，<code>brightness_store</code>）和一个属性名称（<code>brightness</code>），并且通过<code>DEVICE_ATTR_RW</code>宏定义将属性和函数关联起来。</p>
 <p><strong>实现思路</strong>：</p>
-<blockquote>
-<p>我们分析一下<code>DEVICE_ATTR_RW</code>的宏定义</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6272a4">//	static DEVICE_ATTR_RW(brightness);
+
+<blockquote class='book-hint '>
+  <p>我们分析一下<code>DEVICE_ATTR_RW</code>的宏定义</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6272a4">//	static DEVICE_ATTR_RW(brightness);
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define DEVICE_ATTR_RW(_name) \
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    struct device_attribute dev_attr_##_name = __ATTR_RW(_name)
@@ -2036,9 +2048,10 @@ https://github.com/alex-shpak/hugo-book
   5、led class的注册注销分析
   <a class="anchor" href="#5led-class%e7%9a%84%e6%b3%a8%e5%86%8c%e6%b3%a8%e9%94%80%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>在<code>led-class.c</code>还剩下一部分代码，那就是负责提供注册，注销<code>led</code>设备的相关接口</p></blockquote>
-<h3 id="51-相关实现">
+
+<blockquote class='book-hint '>
+  <p>在<code>led-class.c</code>还剩下一部分代码，那就是负责提供注册，注销<code>led</code>设备的相关接口</p>
+</blockquote><h3 id="51-相关实现">
   5.1 相关实现
   <a class="anchor" href="#51-%e7%9b%b8%e5%85%b3%e5%ae%9e%e7%8e%b0">#</a>
 </h3>
@@ -2157,17 +2170,19 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>函数介绍</strong>：<code>of_led_classdev_register</code>注册一个新的<code>led_classdev</code>对象。</p>
-<blockquote>
-<p><code>led_classdev</code>该结构体在上一篇文章中有介绍到，我们在<code>led-gpio.c</code>中创建并初始化，随后我们会调用注册函数<code>devm_of_led_classdev_register</code>来将创建的<code>led_classdev</code>对象注册到<code>LED</code>子系统中，也就是该函数的作用。</p></blockquote>
-<p><strong>实现思路</strong>：</p>
+
+<blockquote class='book-hint '>
+  <p><code>led_classdev</code>该结构体在上一篇文章中有介绍到，我们在<code>led-gpio.c</code>中创建并初始化，随后我们会调用注册函数<code>devm_of_led_classdev_register</code>来将创建的<code>led_classdev</code>对象注册到<code>LED</code>子系统中，也就是该函数的作用。</p>
+</blockquote><p><strong>实现思路</strong>：</p>
 <ol>
 <li>通过<code>led_classdev_next_name</code>来对<code>LED</code>名字添加序号，生成唯一名称</li>
 <li>使用<code>device_create_with_groups</code>接口，将<code>led_classdev</code>对象与<code>leds_class</code>关联，创建一个新的设备</li>
 <li>最后调用<code>led_init_core</code>接口，初始化了 <code>LED</code> 核心并为设备设置了默认触发器。</li>
 </ol>
-<blockquote>
-<p><code>led_init_core</code>就是在<code>led-core.c</code>中实现的啦，我们下一篇文章分析。</p></blockquote>
-<h4 id="513-led_classdev_next_name">
+
+<blockquote class='book-hint '>
+  <p><code>led_init_core</code>就是在<code>led-core.c</code>中实现的啦，我们下一篇文章分析。</p>
+</blockquote><h4 id="513-led_classdev_next_name">
   5.1.3 led_classdev_next_name
   <a class="anchor" href="#513-led_classdev_next_name">#</a>
 </h4>

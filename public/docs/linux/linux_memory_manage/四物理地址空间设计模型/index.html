@@ -14,7 +14,8 @@
   #
 
 
-什么是物理内存？
+
+  什么是物理内存？
 我们平时聊的内存，也叫随机访问存储器（random-access memory），也叫RAM。
 RAM分为两类：
 
@@ -54,8 +55,8 @@ DRAM经过组合起来，就作为我们的计算机内存，也是物理内存�
 内存页是物理内存管理中最小单位，有时也成为页帧（Page Frame）。
 内核对物理内存划分为一页一页的连续的内存块，每页大小4KB，并且使用struct page结构体来表示页结构，其中封装了每个页的状态信息，包括：组织结构，使用信息，统计信息等。
 
-page结构体较为复杂，我们后续再深入了解。
- ">
+
+  page结构体较为复杂，我们后续再深入了解。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/Yocreative.github.io/docs/linux/linux_memory_manage/%E5%9B%9B%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%9E%8B/">
@@ -86,7 +87,7 @@ page结构体较为复杂，我们后续再深入了解。">
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -109,7 +110,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1529,9 +1530,10 @@ https://github.com/alex-shpak/hugo-book
   1、物理内存
   <a class="anchor" href="#1%e7%89%a9%e7%90%86%e5%86%85%e5%ad%98">#</a>
 </h2>
-<blockquote>
-<p>什么是物理内存？</p></blockquote>
-<p>我们平时聊的内存，也叫随机访问存储器<code>（random-access memory）</code>，也叫<code>RAM</code>。</p>
+
+<blockquote class='book-hint '>
+  <p>什么是物理内存？</p>
+</blockquote><p>我们平时聊的内存，也叫随机访问存储器<code>（random-access memory）</code>，也叫<code>RAM</code>。</p>
 <p><code>RAM</code>分为两类：</p>
 <ul>
 <li><code>SRAM</code>：静态<code>RAM</code>，其主要用于<code>CPU</code>高速缓存 <code>L1Cache</code>，<code>L2Cache</code>，<code>L3Cache</code>，其特点是访问速度快，访问速度为 1 - 30 个时钟周期，但是容量小，造价高。</li>
@@ -1569,19 +1571,22 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>内存页是物理内存管理中最小单位，有时也成为页帧<code>（Page Frame）</code>。</p>
 <p>内核对物理内存划分为一页一页的连续的内存块，每页大小<code>4KB</code>，并且使用<code>struct page</code>结构体来表示页结构，其中封装了每个页的状态信息，包括：组织结构，使用信息，统计信息等。</p>
-<blockquote>
-<p><code>page</code>结构体较为复杂，我们后续再深入了解。</p></blockquote>
-<p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p><code>page</code>结构体较为复杂，我们后续再深入了解。</p>
+</blockquote><p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h3 id="31-flatmem平坦内存模型">
   3.1 FLATMEM平坦内存模型
   <a class="anchor" href="#31-flatmem%e5%b9%b3%e5%9d%a6%e5%86%85%e5%ad%98%e6%a8%a1%e5%9e%8b">#</a>
 </h3>
-<blockquote>
-<p><code>FLATMEM</code>即：<code>flat memory model</code>。</p></blockquote>
-<p>我们把物理内存想象成它是由连续的一页一页的块组成的，我们从<code>0</code>开始对物理页编号，这样每个物理页都会有页号。</p>
+
+<blockquote class='book-hint '>
+  <p><code>FLATMEM</code>即：<code>flat memory model</code>。</p>
+</blockquote><p>我们把物理内存想象成它是由连续的一页一页的块组成的，我们从<code>0</code>开始对物理页编号，这样每个物理页都会有页号。</p>
 <p>由于物理地址是连续的，页也是连续的，每个页大小也是一样的。因而对于任何一个地址，只要直接除一下每页的大小，很容易直接算出在哪一页。</p>
 <p>如果是这样，整个物理内存的布局就非常简单、易管理，这就是最经典的<strong>平坦内存模型</strong><code>（Flat Memory Model）</code>。</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/89fe28d0feb1cd31cbaad5352e1f43d9.png" alt="image.png" /></p>
@@ -1595,23 +1600,26 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define __pfn_to_page(pfn) (mem_map + ((pfn)-ARCH_PFN_OFFSET))
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define __page_to_pfn(page) ((unsigned long)((page)-mem_map) + ARCH_PFN_OFFSET)
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#endif
-</span></span></span></code></pre></div><blockquote>
-<p><code>ARCH_PFN_OFFSET</code> 是 <code>PFN</code> 的起始偏移量。</p></blockquote>
-<p> </p>
+</span></span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p><code>ARCH_PFN_OFFSET</code> 是 <code>PFN</code> 的起始偏移量。</p>
+</blockquote><p> </p>
 <h3 id="32-discontigmem-不连续内存模型">
   3.2 DISCONTIGMEM 不连续内存模型
   <a class="anchor" href="#32-discontigmem-%e4%b8%8d%e8%bf%9e%e7%bb%ad%e5%86%85%e5%ad%98%e6%a8%a1%e5%9e%8b">#</a>
 </h3>
-<blockquote>
-<p><code>DISCONTIGMEM</code>即：<code>discontiguous memory model</code>。</p></blockquote>
-<p>我们早期内核使用的是<code>FLATMEM</code>模型，该模型对于较小的，连续的物理空间是方便使用的，但是当物理内存不连续时，使用<code>mem_map</code>管理，就会出现空洞，这会浪费<code>mem_map</code>数组本身占用的内存空间。</p>
+
+<blockquote class='book-hint '>
+  <p><code>DISCONTIGMEM</code>即：<code>discontiguous memory model</code>。</p>
+</blockquote><p>我们早期内核使用的是<code>FLATMEM</code>模型，该模型对于较小的，连续的物理空间是方便使用的，但是当物理内存不连续时，使用<code>mem_map</code>管理，就会出现空洞，这会浪费<code>mem_map</code>数组本身占用的内存空间。</p>
 <p><img src="https://cdn.xiaolincoding.com//mysql/other/e29eec09835747396b91ee363cd8b697.png" alt="image.png" /></p>
 <p><font color = "red"><strong>对于<code>NUMA</code>访问内存模型，物理内存分布就是不连续的，为了有效管理，<code>DISCONTIGMEM</code> 不连续内存模型出现了。</strong></font></p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/ae106d5d780328aae34d40560dc0442f.png" alt="image.png" /></p>
 <p>在不连续的物理内存中，<code>DISCONTIGMEM</code>不连续内存模型，将物理内存分成了一个个的<code>node</code>，然后每个<code>node</code>管理一块连续的物理内存，连续的物理内存仍然使用<code>FLATMEM</code>平坦内存模型来管理，从而避免了内存空洞的浪费。</p>
-<blockquote>
-<p>我们可以看出 <code>DISCONTIGMEM</code> 非连续内存模型其实就是 <code>FLATMEM</code> 平坦内存模型的一种扩展。</p></blockquote>
-<p><font color = "red"><strong><code>DISCONTIGMEM</code>是个稍纵即逝的内存模型，在<code>SPARSEMEM</code>出现后即被完全替代</strong>。</font></p>
+
+<blockquote class='book-hint '>
+  <p>我们可以看出 <code>DISCONTIGMEM</code> 非连续内存模型其实就是 <code>FLATMEM</code> 平坦内存模型的一种扩展。</p>
+</blockquote><p><font color = "red"><strong><code>DISCONTIGMEM</code>是个稍纵即逝的内存模型，在<code>SPARSEMEM</code>出现后即被完全替代</strong>。</font></p>
 <p> </p>
 <h3 id="33-sparsemem稀疏内存模型">
   3.3 SPARSEMEM稀疏内存模型
@@ -1619,9 +1627,10 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <p>随着内存技术的发展，内核可以支持物理内存的热插拔了（像我们的内存条，可以直接插入拔出），这样不连续物理内存已然称为常态。</p>
 <p><code>SPARSEMEM</code>稀疏内存模型的核心思想就是<font color = "red"><strong>对粒度更小的连续内存块进行精细的管理</strong></font>，用于管理连续内存块的单元被称作 <code>section</code> 。</p>
-<blockquote>
-<p>物理页大小为 <code>4k</code> 的情况下， <code>section</code> 的大小为 <code>128M</code> ，物理页大小为 <code>16k</code> 的情况下， <code>section</code> 的大小为 <code>512M</code>。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>物理页大小为 <code>4k</code> 的情况下， <code>section</code> 的大小为 <code>128M</code> ，物理页大小为 <code>16k</code> 的情况下， <code>section</code> 的大小为 <code>512M</code>。</p>
+</blockquote><p> </p>
 <p>在内核中，使用<code>struct mem_section</code>结构体表示<code>SPARSEMEM</code>模型中的<code>section</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> mem_section {
 </span></span><span style="display:flex;"><span>	<span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> section_mem_map;
@@ -1635,9 +1644,10 @@ https://github.com/alex-shpak/hugo-book
 <p>所有的<code>mem_section</code>都保存在一个全局数组中</p>
 </li>
 </ul>
-<blockquote>
-<p>整体的框架如下：</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/e3956ea9e4dab708d57c7c183c6b91d6.png" alt="image.png" /></p>
+
+<blockquote class='book-hint '>
+  <p>整体的框架如下：</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/e3956ea9e4dab708d57c7c183c6b91d6.png" alt="image.png" /></p>
 <p>在 <code>SPARSEMEM</code> 稀疏内存模型下 <code>page_to_pfn</code> 与 <code>pfn_to_page</code> 的计算逻辑又发生了变化。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">#if defined(CONFIG_SPARSEMEM)
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span><span style="color:#6272a4">/*

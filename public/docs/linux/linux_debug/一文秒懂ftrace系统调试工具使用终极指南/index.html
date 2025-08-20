@@ -42,11 +42,13 @@ Ftrace采用了静态插桩和动态插桩两种方式来实现。
 静态插桩：
 我们在Kernel中打开了CONFIG_FUNCTION_TRACER功能后，会增加一个-pg的一个编译选项，这个编译选项的作用就是为每个函数入口处，都会插入bl mcount跳转指令，使得每个函数运行时都会进入mcount函数。
 
-Ftrace一旦使能，对kernel中所有的函数插桩，这带来的性能开销是惊人的，有可能导致人们弃用Ftrace功能。
+
+  Ftrace一旦使能，对kernel中所有的函数插桩，这带来的性能开销是惊人的，有可能导致人们弃用Ftrace功能。
 为了解决这个问题，开发者推出了Dynamic ftrace，以此来优化整体的性能。
 动态插桩：
 
-这里的动态，是指的动态修改函数指令。
+
+  这里的动态，是指的动态修改函数指令。
 
 编译时，记录所有被添加跳转指令的函数，这里表示所有支持追踪的函数。
 内核将所有跳转指令替换为nop指令，以实现非调试状态性能零损失。
@@ -83,7 +85,8 @@ CONFIG_SCHED_TRACER=y						# 支持调度追踪
 CONFIG_FUNCTION_PROFILER=y					# 启用函数分析器，主要用于记录函数的执行时间和调用次数
 CONFIG_DEBUG_FS=y							# 启用 Debug 文件系统支持
 
-上面只是介绍了部分配置，更多详细配置可自行了解。">
+
+  上面只是介绍了部分配置，更多详细配置可自行了解。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82ftrace%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97/">
@@ -116,7 +119,7 @@ Ftrace一旦使能，对kernel中所有的函数插桩，这带来的性能开�
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -139,7 +142,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1596,13 +1599,15 @@ https://github.com/alex-shpak/hugo-book
 <p><code>Ftrace</code>采用了静态插桩和动态插桩两种方式来实现。</p>
 <p><strong>静态插桩</strong>：</p>
 <p>我们在<code>Kernel</code>中打开了<code>CONFIG_FUNCTION_TRACER</code>功能后，会增加一个<code>-pg</code>的一个编译选项，这个编译选项的作用就是为每个函数入口处，都会插入<code>bl mcount</code>跳转指令，使得每个函数运行时都会进入<code>mcount</code>函数。</p>
-<blockquote>
-<p><code>Ftrace</code>一旦使能，对<code>kernel</code>中所有的函数插桩，这带来的性能开销是惊人的，有可能导致人们弃用<code>Ftrace</code>功能。</p></blockquote>
-<p>为了解决这个问题，开发者推出了<code>Dynamic ftrace</code>，以此来优化整体的性能。</p>
+
+<blockquote class='book-hint '>
+  <p><code>Ftrace</code>一旦使能，对<code>kernel</code>中所有的函数插桩，这带来的性能开销是惊人的，有可能导致人们弃用<code>Ftrace</code>功能。</p>
+</blockquote><p>为了解决这个问题，开发者推出了<code>Dynamic ftrace</code>，以此来优化整体的性能。</p>
 <p><strong>动态插桩</strong>：</p>
-<blockquote>
-<p>这里的动态，是指的动态修改函数指令。</p></blockquote>
-<ol>
+
+<blockquote class='book-hint '>
+  <p>这里的动态，是指的动态修改函数指令。</p>
+</blockquote><ol>
 <li>编译时，记录所有被添加跳转指令的函数，这里表示所有支持追踪的函数。</li>
 <li>内核将所有跳转指令替换为<code>nop</code>指令，以实现非调试状态性能零损失。</li>
 <li>根据 <code>function tracer</code> 设置，动态将被调试函数的<code>nop</code>指令，替换为跳转指令，以实现追踪。</li>
@@ -1637,10 +1642,11 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">CONFIG_SCHED_TRACER</span><span style="color:#ff79c6">=</span>y						<span style="color:#6272a4"># 支持调度追踪</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">CONFIG_FUNCTION_PROFILER</span><span style="color:#ff79c6">=</span>y					<span style="color:#6272a4"># 启用函数分析器，主要用于记录函数的执行时间和调用次数</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">CONFIG_DEBUG_FS</span><span style="color:#ff79c6">=</span>y							<span style="color:#6272a4"># 启用 Debug 文件系统支持</span>
-</span></span></code></pre></div><blockquote>
-<p>上面只是介绍了部分配置，更多详细配置可自行了解。</p>
-<p>并且上述配置不一定全部打开，勾选自己需要的即可，通常我们选择<code>CONFIG_FUNCTION_TRACER</code>和<code>CONFIG_HAVE_FUNCTION_GRAPH_TRACER</code>即可，然后编译烧录到开发板。</p></blockquote>
-<p> </p>
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>上面只是介绍了部分配置，更多详细配置可自行了解。</p>
+<p>并且上述配置不一定全部打开，勾选自己需要的即可，通常我们选择<code>CONFIG_FUNCTION_TRACER</code>和<code>CONFIG_HAVE_FUNCTION_GRAPH_TRACER</code>即可，然后编译烧录到开发板。</p>
+</blockquote><p> </p>
 <h3 id="32-挂载debugfs文件系统">
   3.2 挂载debugfs文件系统
   <a class="anchor" href="#32-%e6%8c%82%e8%bd%bddebugfs%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f">#</a>
@@ -1666,9 +1672,10 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <p>在<code>/sys/kernel/debug</code>目录下，包含的是<code>kernel</code>所有的调试信息，本章只关注与<code>tracing</code>目录，下面挑选一些比较重要的属性文件来分析。</p>
 <p> </p>
-<blockquote>
-<p>万变不离其宗，如此复杂的框架，设计人员已经提供了<code>README</code>文件，里面详解了各个属性文件的含义，我建议抛弃本文，看<code>README</code>吧:)</p></blockquote>
-<h4 id="331-trace">
+
+<blockquote class='book-hint '>
+  <p>万变不离其宗，如此复杂的框架，设计人员已经提供了<code>README</code>文件，里面详解了各个属性文件的含义，我建议抛弃本文，看<code>README</code>吧:)</p>
+</blockquote><h4 id="331-trace">
   3.3.1 trace
   <a class="anchor" href="#331-trace">#</a>
 </h4>
@@ -1683,17 +1690,19 @@ https://github.com/alex-shpak/hugo-book
 <li>对 <code>trace_pipe</code> 的读操作将会阻塞，直到有新的追踪数据进来为止；</li>
 <li>当前从<code>trace_pipe</code> 读取的内容将被消耗掉，再次读 <code>trace_pipe</code> 又会阻塞到新数据进来为止。</li>
 </ul>
-<blockquote>
-<p>简单的来说，<code>cat trace_pipe</code>是堵塞读取，有数据就读，没数据就等待；而<code>cat trace</code>有没有数据都是直接返回的</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>简单的来说，<code>cat trace_pipe</code>是堵塞读取，有数据就读，没数据就等待；而<code>cat trace</code>有没有数据都是直接返回的</p>
+</blockquote><p> </p>
 <h4 id="333-tracing_on">
   3.3.3 tracing_on
   <a class="anchor" href="#333-tracing_on">#</a>
 </h4>
 <p><code>tracing_on</code>：向 <code>tracing_on</code> 写入 1，启用追踪；向 <code>tracing_on</code> 写入 0，停止追踪。</p>
-<blockquote>
-<p>追踪使用 <code>ring buffer</code> 记录追踪数据。修改 <code>tracing_on</code> 不会影响 <code>ring buffer</code> 当前记录的内容。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>追踪使用 <code>ring buffer</code> 记录追踪数据。修改 <code>tracing_on</code> 不会影响 <code>ring buffer</code> 当前记录的内容。</p>
+</blockquote><p> </p>
 <h4 id="334-current_tracer">
   3.3.4 current_tracer
   <a class="anchor" href="#334-current_tracer">#</a>
@@ -1734,9 +1743,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#338-buffer_total_size_kb">#</a>
 </h4>
 <p><code>buffer_total_size_kb</code> 记录所有 <code>CPU buffer</code> 的总大小，即所有 CPU buffer 大小总和。</p>
-<blockquote>
-<p>如有 128 个 CPU buffer ，每个大小 7KB，则 <code>buffer_total_size_kb</code> 记录的总大小为 128 * 7KB = 896。</p></blockquote>
-<p><code>buffer_total_size_kb</code> 文件是只读的。</p>
+
+<blockquote class='book-hint '>
+  <p>如有 128 个 CPU buffer ，每个大小 7KB，则 <code>buffer_total_size_kb</code> 记录的总大小为 128 * 7KB = 896。</p>
+</blockquote><p><code>buffer_total_size_kb</code> 文件是只读的。</p>
 <p> </p>
 <h4 id="339-set_ftrace_filter">
   3.3.9 set_ftrace_filter
@@ -1745,9 +1755,10 @@ https://github.com/alex-shpak/hugo-book
 <p><code>set_ftrace_filter</code> ：过滤函数追踪，仅仅追踪写入该文件的函数名。</p>
 <p>可填入的参数，可以通过<code>available_filter_functions</code>文件查看当前支持的函数名。</p>
 <p>该过滤功能，也有很多其他变体，如追踪某个模块的函数调用等。</p>
-<blockquote>
-<p>官方给的示例：</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Format: :mod:&lt;module-name&gt;
+
+<blockquote class='book-hint '>
+  <p>官方给的示例：</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Format: :mod:&lt;module-name&gt;
 </span></span><span style="display:flex;"><span>example: <span style="color:#8be9fd;font-style:italic">echo</span> :mod:ext3 &gt; set_ftrace_filter		<span style="color:#6272a4"># 该模块必须是已经加载进去的模块</span>
 </span></span></code></pre></div><p> </p>
 <h4 id="3310-set_ftrace_notrace">
@@ -1780,9 +1791,10 @@ https://github.com/alex-shpak/hugo-book
   3.4 简单使用示例
   <a class="anchor" href="#34-%e7%ae%80%e5%8d%95%e4%bd%bf%e7%94%a8%e7%a4%ba%e4%be%8b">#</a>
 </h3>
-<blockquote>
-<p>一般我们挂载上<code>debugfs</code>后，<code>tracing_on</code>是处于打开状态的。</p></blockquote>
-<h4 id="341-函数追踪">
+
+<blockquote class='book-hint '>
+  <p>一般我们挂载上<code>debugfs</code>后，<code>tracing_on</code>是处于打开状态的。</p>
+</blockquote><h4 id="341-函数追踪">
   3.4.1 函数追踪
   <a class="anchor" href="#341-%e5%87%bd%e6%95%b0%e8%bf%bd%e8%b8%aa">#</a>
 </h4>
@@ -1820,9 +1832,10 @@ https://github.com/alex-shpak/hugo-book
   4.1 追踪任意命令
   <a class="anchor" href="#41-%e8%bf%bd%e8%b8%aa%e4%bb%bb%e6%84%8f%e5%91%bd%e4%bb%a4">#</a>
 </h3>
-<blockquote>
-<p>如何追踪我们执行的命令呢？</p></blockquote>
-<p><code>Ftrace</code>支持追踪特定进程，通过<code>set_ftrace_pid</code>属性来设置指定进程。然后在该进程中，执行特定的命令。</p>
+
+<blockquote class='book-hint '>
+  <p>如何追踪我们执行的命令呢？</p>
+</blockquote><p><code>Ftrace</code>支持追踪特定进程，通过<code>set_ftrace_pid</code>属性来设置指定进程。然后在该进程中，执行特定的命令。</p>
 <p>首先我们需要设置好我们的追踪器</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mount -t debugfs none /sys/kernel/debug
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> /sys/kernel/debug/tracing
@@ -1879,19 +1892,22 @@ https://github.com/alex-shpak/hugo-book
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># 示例</span>
 </span></span><span style="display:flex;"><span>Format: :mod:&lt;module-name&gt;
 </span></span><span style="display:flex;"><span>example: <span style="color:#8be9fd;font-style:italic">echo</span> :mod:ext3 &gt; set_ftrace_filter
-</span></span></code></pre></div><blockquote>
-<p>追踪<code>ext3</code>模块内的所有函数</p></blockquote>
-<p> </p>
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>追踪<code>ext3</code>模块内的所有函数</p>
+</blockquote><p> </p>
 <ul>
 <li><strong>按函数直接过滤</strong></li>
 </ul>
-<blockquote>
-<p>如果该模块内的函数，命名都有一定的规则，可以按照正则表达式来过滤</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># 示例</span>
+
+<blockquote class='book-hint '>
+  <p>如果该模块内的函数，命名都有一定的规则，可以按照正则表达式来过滤</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># 示例</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;mmc*&#34;</span> &gt; set_ftrace_filter
-</span></span></code></pre></div><blockquote>
-<p>过滤包含<code>mmc</code>字符的所有函数</p></blockquote>
-<p> </p>
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>过滤包含<code>mmc</code>字符的所有函数</p>
+</blockquote><p> </p>
 <ul>
 <li><strong>按照函数差异来过滤</strong></li>
 </ul>
@@ -1923,9 +1939,10 @@ https://github.com/alex-shpak/hugo-book
 <li>追踪指定函数，获取堆栈信息</li>
 <li>追踪用户命令，查看所有调用流程，并可选择指定函数来查看调用流程。</li>
 </ul>
-<blockquote>
-<p>脚本除了<code>command</code>功能外，其他功能都需要手动调用<code>common_trace.sh clear</code>来停止追踪。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>脚本除了<code>command</code>功能外，其他功能都需要手动调用<code>common_trace.sh clear</code>来停止追踪。</p>
+</blockquote><p> </p>
 <h2 id="6总结">
   6、总结
   <a class="anchor" href="#6%e6%80%bb%e7%bb%93">#</a>

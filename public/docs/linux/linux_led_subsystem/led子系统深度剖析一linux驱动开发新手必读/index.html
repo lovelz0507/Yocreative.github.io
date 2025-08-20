@@ -16,7 +16,8 @@
 在Linux驱动开发的学习过程中，点灯对于大多数人来说，对着教程照葫芦画瓢，还是能快速点亮一颗LED灯的，但是你真的明白，一颗小小LED灯的背后，到底执行了哪些动作吗，Linux内核是如何管理的呢？
 今天，作为在芯片原厂工作的我，有义务带着大家，深入扒一扒LED子系统的工作原理！
 
-总结系列文章，花费时间较长，希望大家尊重原创！
+
+  总结系列文章，花费时间较长，希望大家尊重原创！
 
   2、LED子系统开发详细介绍
   #
@@ -194,7 +195,7 @@
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -217,7 +218,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1628,9 +1629,10 @@ https://github.com/alex-shpak/hugo-book
 <p><span style="color: red;"><strong>俗话说：“万丈高楼平地起”，对于我们刚学习<code>Linux驱动开发</code>的小伙伴，<code>Linux驱动开发</code>的基础至关重要，无论我们是学习<code>51单片机</code>、<code>STM32</code>还是<code>ARM</code>，点灯的地位还是毋庸置疑的</strong>。</span></p>
 <p>在<code>Linux</code>驱动开发的学习过程中，点灯对于大多数人来说，对着教程照葫芦画瓢，还是能快速点亮一颗<code>LED</code>灯的，但是你真的明白，一颗小小<code>LED</code>灯的背后，到底执行了哪些动作吗，<code>Linux</code>内核是如何管理的呢？</p>
 <p>今天，作为在芯片原厂工作的我，有义务带着大家，深入扒一扒<code>LED子系统</code>的工作原理！</p>
-<blockquote>
-<p><span style="color: red;"><strong>总结系列文章，花费时间较长，希望大家尊重原创！</strong></span></p></blockquote>
-<h2 id="2led子系统开发详细介绍">
+
+<blockquote class='book-hint '>
+  <p><span style="color: red;"><strong>总结系列文章，花费时间较长，希望大家尊重原创！</strong></span></p>
+</blockquote><h2 id="2led子系统开发详细介绍">
   2、LED子系统开发详细介绍
   <a class="anchor" href="#2led%e5%ad%90%e7%b3%bb%e7%bb%9f%e5%bc%80%e5%8f%91%e8%af%a6%e7%bb%86%e4%bb%8b%e7%bb%8d">#</a>
 </h2>
@@ -1791,9 +1793,10 @@ https://github.com/alex-shpak/hugo-book
 <p>翻开嵌入式领域的神秘面纱，探索更深层次的技术奥秘，您是否梦寐以求？如果您想深入了解嵌入式领域，我的星球可能是一个非常有价值的资源平台。</p>
 <p>我们会邀请重磅嘉宾为大家提供更好的服务，并定期举办一些活动，能力出众的人还有机会免费加入。</p>
 <p>对于内容创作者，我的星球也是一个展示作品的好平台。希望我的星球能够一直为嵌入式爱好者提供更多更好的资源和服务，携手我们，各展所长，共创嵌入式领域的辉煌未来！</p>
-<blockquote>
-<p><span style="color: red;"><strong>最后，前50名加入的人，享有最大力度优惠！巨轮已经起航，快来加入我们吧！——【嵌入式艺术】</strong></span></p></blockquote>
-<center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
+
+<blockquote class='book-hint '>
+  <p><span style="color: red;"><strong>最后，前50名加入的人，享有最大力度优惠！巨轮已经起航，快来加入我们吧！——【嵌入式艺术】</strong></span></p>
+</blockquote><center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
 <div align=center><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/blog.png" alt="img" width = "60%" height ="10%"/>
 </div>
 </article>

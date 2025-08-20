@@ -12,7 +12,8 @@
   #
 
 
-NVMEM SUBSYSTEM，该子系统整体架构不算太大，还是比较容易去理解的，下面我们一起去一探究竟！
+
+  NVMEM SUBSYSTEM，该子系统整体架构不算太大，还是比较容易去理解的，下面我们一起去一探究竟！
 NVMEM（Non Volatile Memory），该子系统主要用于实现EEPROM、Efuse等非易失存储器的统一管理。
 在早期，像EEPROM驱动是存放于/drivers/misc目录下，由于没有做到好的抽象，每次需要去访问相应内存空间，都需要去复制几乎一样的代码，去注册sysfs，这是一个相当大的抽象泄露。
 NVMEM子系统就是为了解决以往的抽象泄露问题。
@@ -22,7 +23,8 @@ NVMEM子系统就是为了解决以往的抽象泄露问题。
   #
 
 
-该驱动框架较为简单，也适合初学者去熟悉基本的驱动框架。
+
+  该驱动框架较为简单，也适合初学者去熟悉基本的驱动框架。
 
 应用层：可以通过用户空间所提供的文件节点，来读取或者修改nvmem存储器的数据。
 NVMEM 核心层：统一管理NVMEM设备，向上实现文件系统接口数据的传递，向下提供统一的注册，注销nvmem设备接口。
@@ -90,7 +92,7 @@ hexdump /sys/bus/nvmem/devices/qfprom0/nvmem 0000000 0000 0000 0000 0000 0000 00
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -113,7 +115,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1521,9 +1523,10 @@ https://github.com/alex-shpak/hugo-book
   1、前言
   <a class="anchor" href="#1%e5%89%8d%e8%a8%80">#</a>
 </h2>
-<blockquote>
-<p><code>NVMEM SUBSYSTEM</code>，该子系统整体架构不算太大，还是比较容易去理解的，下面我们一起去一探究竟！</p></blockquote>
-<p><code>NVMEM（Non Volatile Memory）</code>，该子系统主要用于实现<code>EEPROM</code>、<code>Efuse</code>等非易失存储器的统一管理。</p>
+
+<blockquote class='book-hint '>
+  <p><code>NVMEM SUBSYSTEM</code>，该子系统整体架构不算太大，还是比较容易去理解的，下面我们一起去一探究竟！</p>
+</blockquote><p><code>NVMEM（Non Volatile Memory）</code>，该子系统主要用于实现<code>EEPROM</code>、<code>Efuse</code>等非易失存储器的统一管理。</p>
 <p>在早期，像<code>EEPROM</code>驱动是存放于<code>/drivers/misc</code>目录下，由于没有做到好的抽象，每次需要去访问相应内存空间，都需要去复制几乎一样的代码，去注册<code>sysfs</code>，这是一个相当大的抽象泄露。</p>
 <p><code>NVMEM</code>子系统就是为了解决以往的抽象泄露问题。</p>
 <p> </p>
@@ -1531,9 +1534,10 @@ https://github.com/alex-shpak/hugo-book
   2、驱动框架
   <a class="anchor" href="#2%e9%a9%b1%e5%8a%a8%e6%a1%86%e6%9e%b6">#</a>
 </h2>
-<blockquote>
-<p>该驱动框架较为简单，也适合初学者去熟悉基本的驱动框架。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230210071204144.png" alt="image-20230210071204144" /></p>
+
+<blockquote class='book-hint '>
+  <p>该驱动框架较为简单，也适合初学者去熟悉基本的驱动框架。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230210071204144.png" alt="image-20230210071204144" /></p>
 <p><strong>应用层</strong>：可以通过用户空间所提供的文件节点，来读取或者修改<code>nvmem</code>存储器的数据。</p>
 <p><strong>NVMEM 核心层</strong>：统一管理<code>NVMEM</code>设备，向上实现文件系统接口数据的传递，向下提供统一的注册，注销<code>nvmem</code>设备接口。</p>
 <p><strong>NVMEM 总线驱动</strong>：注册<code>NVMEM</code>总线，实现<code>NVMEM</code>控制器的底层代码实现。</p>

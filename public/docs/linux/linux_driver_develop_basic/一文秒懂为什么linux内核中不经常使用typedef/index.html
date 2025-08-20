@@ -22,7 +22,8 @@ WARNING: do not add new typedefs
 
  
 
-&gt; On Mon, 10 Jun 2002, Linus Torvalds wrote:
+
+  &gt; On Mon, 10 Jun 2002, Linus Torvalds wrote:
 &gt;
 &gt; &ndash;snip/snip
 &gt; &gt; But in the end, maintainership matters. I personally don&rsquo;t want the
@@ -50,7 +51,7 @@ WARNING: do not add new typedefs 不允许使用typedef！
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -73,7 +74,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1489,8 +1490,9 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p><img src="https://e0.ifengimg.com/04/2019/0601/1395346C9EA500C3E71BFAE601E0940B868EF5BB_size63_w1080_h663.jpeg" alt="img" /></p>
 <p> </p>
-<blockquote>
-<p><em>&gt; On Mon, 10 Jun 2002, Linus Torvalds wrote:</em>
+
+<blockquote class='book-hint '>
+  <p><em>&gt; On Mon, 10 Jun 2002, Linus Torvalds wrote:</em>
 <em>&gt;</em>
 <em>&gt; &ndash;snip/snip</em>
 <em>&gt; &gt; But in the end, maintainership matters. I personally don&rsquo;t want the</em>
@@ -1499,8 +1501,8 @@ https://github.com/alex-shpak/hugo-book
 <p><em>&gt;</em>
 <em>&gt; to sum it up:</em>
 <em>&gt;</em>
-<em>&gt; using the &ldquo;struct mystruct&rdquo; is <em>recommended</em>, but not a must.</em></p></blockquote>
-<p><code>Torvalds </code>本人不太想看到<code>typedef</code>文化占上风，但是维护自己代码的人通常有最后的发言权。</p>
+<em>&gt; using the &ldquo;struct mystruct&rdquo; is <em>recommended</em>, but not a must.</em></p>
+</blockquote><p><code>Torvalds </code>本人不太想看到<code>typedef</code>文化占上风，但是维护自己代码的人通常有最后的发言权。</p>
 <ul>
 <li><code>Torvalds </code>还是比较推荐使用<code>struct mystruct</code>的结构</li>
 <li><strong>不易理解</strong>：使用<code>typedef</code>类型，不容易去理解变量的实际类型是什么样子的</li>
@@ -1513,9 +1515,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#2%e5%86%85%e6%a0%b8%e7%bc%96%e7%a0%81%e8%a7%84%e8%8c%83">#</a>
 </h2>
 <p><img src="https://img.linux.net.cn/data/attachment/album/201403/19/233615dnal0bpykvuy0sab.jpg" alt="img" /></p>
-<blockquote>
-<p>从内核编码规范的角度，来看<code>typedef</code></p></blockquote>
-<p>内核编码规范给出了<code>typedef</code>使用的一些场合：</p>
+
+<blockquote class='book-hint '>
+  <p>从内核编码规范的角度，来看<code>typedef</code></p>
+</blockquote><p>内核编码规范给出了<code>typedef</code>使用的一些场合：</p>
 <ul>
 <li>完全不透明的对象：隐藏内部对象</li>
 <li>明确的整数类型：抽象有助于避免混淆是int型还是long型，如<code>u8/u16/u32</code></li>

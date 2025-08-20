@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head>
+<head><script src="/Yocreative.github.io/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Yocreative.github.io/livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Bluetooth开发详解" />
-<meta property="og:description" content="高级嵌入式Linux开发工程师，曾就职于世界五百强，目前就职于芯片原厂独角兽企业，有多年嵌入式Linux驱动、系统开发经验。荣获优质嵌入式领域创作者称号，拿下2022年度博客之星嵌入式领域TOP 5，全网收获超百万读者。公众号：【嵌入式艺术】" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://uniondong.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/" />
-
-<title>Bluetooth开发详解 | Donge Blog</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/favicon.png" >
-<link rel="stylesheet" href="/book.min.b4905ed755e1c0335b3e405fbf0366df4ad2fc56a3731c6ad87e843b20296de1.css" integrity="sha256-tJBe11XhwDNbPkBfvwNm30rS/Fajcxxq2H6EOyApbeE=" crossorigin="anonymous">
-  <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.a72538c8a0bc372faa5c97cbec2f4e7236f2a92710063dfde31965b9a0bfe977.js" integrity="sha256-pyU4yKC8Ny&#43;qXJfL7C9OcjbyqScQBj394xlluaC/6Xc=" crossorigin="anonymous"></script>
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">
+  <meta property="og:site_name" content="悠创">
+  <meta property="og:title" content="Bluetooth开发详解">
+  <meta property="og:description" content="高级嵌入式Linux开发工程师，曾就职于世界五百强，目前就职于芯片原厂独角兽企业，有多年嵌入式Linux驱动、系统开发经验。荣获优质嵌入式领域创作者称号，拿下2022年度博客之星嵌入式领域TOP 5，全网收获超百万读者。公众号：【嵌入式艺术】">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Bluetooth开发详解 | 悠创</title>
+<link rel="manifest" href="/Yocreative.github.io/manifest.json">
+<link rel="icon" href="/Yocreative.github.io/favicon.png" >
+<link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
+  <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  <meta name="referrer" content="no-referrer-when-downgrade"><link rel="alternate" type="application/rss+xml" href="https://uniondong.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/index.xml" title="Donge Blog" />
+  <meta name="referrer" content="no-referrer-when-downgrade"><link rel="alternate" type="application/rss+xml" href="http://localhost:1313/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/index.xml" title="悠创" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -34,7 +35,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="/"><img src="/img/logo.png" alt="Logo" /><span>Donge Blog</span>
+  <a class="flex align-center" href="/Yocreative.github.io/"><img src="/Yocreative.github.io/img/logo.png" alt="Logo" /><span>悠创</span>
   </a>
 </h2>
 
@@ -107,8 +108,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-3ebd3b438738bd5ab63f55999004f0e7" class="toggle"  />
-    <label for="section-3ebd3b438738bd5ab63f55999004f0e7" class="flex justify-between">
+    <input type="checkbox" id="section-83397ec96fd1ea3917390521ed986f95" class="toggle"  />
+    <label for="section-83397ec96fd1ea3917390521ed986f95" class="flex justify-between">
       <a role="button" class="">嵌入式工程师养成记</a>
     </label>
   
@@ -123,7 +124,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/embeded_tech/self_improve/10w&#43;%E9%98%85%E8%AF%BB%E8%80%97%E6%97%B6%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E8%B6%85%E8%AF%A6%E7%BB%86/" class="">【10W&#43;阅读】耗时一周总结的嵌入式学习路线，超详细</a>
+    <a href="/Yocreative.github.io/docs/embeded_tech/self_improve/10w&#43;%E9%98%85%E8%AF%BB%E8%80%97%E6%97%B6%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E8%B6%85%E8%AF%A6%E7%BB%86/" class="">【10W&#43;阅读】耗时一周总结的嵌入式学习路线，超详细</a>
   
 
         </li>
@@ -141,8 +142,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-979254fc07de711332325335a96d33d1" class="toggle"  />
-    <label for="section-979254fc07de711332325335a96d33d1" class="flex justify-between">
+    <input type="checkbox" id="section-12e8de9bec1a6a05dded471550b1fca1" class="toggle"  />
+    <label for="section-12e8de9bec1a6a05dded471550b1fca1" class="flex justify-between">
       <a role="button" class="">嵌入式面经</a>
     </label>
   
@@ -157,7 +158,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/" class="">Soc的Bring Up流程</a>
+    <a href="/Yocreative.github.io/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/" class="">Soc的Bring Up流程</a>
   
 
         </li>
@@ -170,7 +171,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/embeded_tech/embeded_interview/cpu%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" class="">CPU体系架构</a>
+    <a href="/Yocreative.github.io/docs/embeded_tech/embeded_interview/cpu%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" class="">CPU体系架构</a>
   
 
         </li>
@@ -183,7 +184,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/embeded_tech/embeded_interview/linux%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="">Linux用户态和内核态交互的几种方式</a>
+    <a href="/Yocreative.github.io/docs/embeded_tech/embeded_interview/linux%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="">Linux用户态和内核态交互的几种方式</a>
   
 
         </li>
@@ -219,7 +220,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/uboot/%E4%B8%80uboot%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" class="">一、uboot基础了解</a>
+    <a href="/Yocreative.github.io/docs/uboot/%E4%B8%80uboot%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" class="">一、uboot基础了解</a>
   
 
         </li>
@@ -232,7 +233,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/uboot/%E4%BA%8Cuboot%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="">二、uboot启动流程分析</a>
+    <a href="/Yocreative.github.io/docs/uboot/%E4%BA%8Cuboot%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="">二、uboot启动流程分析</a>
   
 
         </li>
@@ -245,7 +246,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/uboot/%E4%B8%89uboot%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/" class="">三、Uboot驱动模型</a>
+    <a href="/Yocreative.github.io/docs/uboot/%E4%B8%89uboot%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/" class="">三、Uboot驱动模型</a>
   
 
         </li>
@@ -258,7 +259,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/uboot/%E5%9B%9Buboot%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90/" class="">四、Uboot命令行模式分析</a>
+    <a href="/Yocreative.github.io/docs/uboot/%E5%9B%9Buboot%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90/" class="">四、Uboot命令行模式分析</a>
   
 
         </li>
@@ -289,8 +290,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-00ea238a2f9544b32c1424d14ac8d5b7" class="toggle"  />
-    <label for="section-00ea238a2f9544b32c1424d14ac8d5b7" class="flex justify-between">
+    <input type="checkbox" id="section-a1949511b91c821e0f36b6a0946f3316" class="toggle"  />
+    <label for="section-a1949511b91c821e0f36b6a0946f3316" class="flex justify-between">
       <a role="button" class="">Linux 驱动开发基础</a>
     </label>
   
@@ -305,7 +306,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/" class="">【一文秒懂】Linux字符设备驱动</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/" class="">【一文秒懂】Linux字符设备驱动</a>
   
 
         </li>
@@ -318,7 +319,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux设备树详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux设备树详解</a>
   
 
         </li>
@@ -331,7 +332,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E4%B8%BA%E4%BB%80%E4%B9%88linux%E5%86%85%E6%A0%B8%E4%B8%AD%E4%B8%8D%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8typedef/" class="">【一文秒懂】为什么Linux内核中不经常使用typedef</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E4%B8%BA%E4%BB%80%E4%B9%88linux%E5%86%85%E6%A0%B8%E4%B8%AD%E4%B8%8D%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8typedef/" class="">【一文秒懂】为什么Linux内核中不经常使用typedef</a>
   
 
         </li>
@@ -349,8 +350,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-3eeeb8a1a5c1ce449ec7070209d774d9" class="toggle"  />
-    <label for="section-3eeeb8a1a5c1ce449ec7070209d774d9" class="flex justify-between">
+    <input type="checkbox" id="section-afd4803a46f291255c33d51315aa650a" class="toggle"  />
+    <label for="section-afd4803a46f291255c33d51315aa650a" class="flex justify-between">
       <a role="button" class="">Linux API 揭秘</a>
     </label>
   
@@ -365,7 +366,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98module_init%E4%B8%8Emodule_exit/" class="">【Linux API 揭秘】module_init与module_exit</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98module_init%E4%B8%8Emodule_exit/" class="">【Linux API 揭秘】module_init与module_exit</a>
   
 
         </li>
@@ -378,7 +379,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98container_of%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" class="">【Linux API 揭秘】container_of函数详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98container_of%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" class="">【Linux API 揭秘】container_of函数详解</a>
   
 
         </li>
@@ -396,8 +397,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-cad08b32e77ccfb31b07972873519838" class="toggle"  />
-    <label for="section-cad08b32e77ccfb31b07972873519838" class="flex justify-between">
+    <input type="checkbox" id="section-b7fd81501e53bad4f93d9ee3c27b0e9c" class="toggle"  />
+    <label for="section-b7fd81501e53bad4f93d9ee3c27b0e9c" class="flex justify-between">
       <a role="button" class="">Linux 调试工具</a>
     </label>
   
@@ -412,7 +413,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7devmem/" class="">【一文秒懂】Linux内核调试工具——devmem</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7devmem/" class="">【一文秒懂】Linux内核调试工具——devmem</a>
   
 
         </li>
@@ -425,7 +426,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82ftrace%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97/" class="">【一文秒懂】Ftrace系统调试工具使用终极指南</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82ftrace%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97/" class="">【一文秒懂】Ftrace系统调试工具使用终极指南</a>
   
 
         </li>
@@ -438,7 +439,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82top%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】TOP命令详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82top%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】TOP命令详解</a>
   
 
         </li>
@@ -451,7 +452,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7debugfs/" class="">【一文秒懂】Linux内核调试工具——Debugfs</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7debugfs/" class="">【一文秒懂】Linux内核调试工具——Debugfs</a>
   
 
         </li>
@@ -464,7 +465,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7iperf/" class="">【一文秒懂】Linux网络性能测试工具——Iperf</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7iperf/" class="">【一文秒懂】Linux网络性能测试工具——Iperf</a>
   
 
         </li>
@@ -477,7 +478,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdb%E4%BB%8B%E7%BB%8D/" class="">【一文秒懂】Linux调试工具——GDB介绍</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdb%E4%BB%8B%E7%BB%8D/" class="">【一文秒懂】Linux调试工具——GDB介绍</a>
   
 
         </li>
@@ -490,7 +491,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdbserver/" class="">【一文秒懂】Linux远程调试工具——gdbserver</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdbserver/" class="">【一文秒懂】Linux远程调试工具——gdbserver</a>
   
 
         </li>
@@ -503,7 +504,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B/" class="">【一文秒懂】Linux内核死锁检测</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B/" class="">【一文秒懂】Linux内核死锁检测</a>
   
 
         </li>
@@ -516,7 +517,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90core-dump%E6%96%87%E4%BB%B6/" class="">【一文秒懂】如何生成core Dump文件</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90core-dump%E6%96%87%E4%BB%B6/" class="">【一文秒懂】如何生成core Dump文件</a>
   
 
         </li>
@@ -529,7 +530,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E4%B9%8Bcore-dump%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux之Core Dump文件详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E4%B9%8Bcore-dump%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux之Core Dump文件详解</a>
   
 
         </li>
@@ -542,7 +543,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%80%81%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/" class="">【一文秒懂】Linux内核态内存泄露检测工具</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%80%81%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/" class="">【一文秒懂】Linux内核态内存泄露检测工具</a>
   
 
         </li>
@@ -560,8 +561,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-b3bfa0c2506d9fd89a39b0698e122f31" class="toggle"  />
-    <label for="section-b3bfa0c2506d9fd89a39b0698e122f31" class="flex justify-between">
+    <input type="checkbox" id="section-8563e19d06998e6920b649c7704304c2" class="toggle"  />
+    <label for="section-8563e19d06998e6920b649c7704304c2" class="flex justify-between">
       <a role="button" class="">Linux 内存管理</a>
     </label>
   
@@ -576,7 +577,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E4%B8%80%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E7%94%B1%E6%9D%A5%E5%8F%8A%E6%80%9D%E6%83%B3/" class="">一、内存管理的由来及思想</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E4%B8%80%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E7%94%B1%E6%9D%A5%E5%8F%8A%E6%80%9D%E6%83%B3/" class="">一、内存管理的由来及思想</a>
   
 
         </li>
@@ -589,7 +590,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/" class="">二、虚拟地址空间布局</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/" class="">二、虚拟地址空间布局</a>
   
 
         </li>
@@ -602,7 +603,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E4%B8%89%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/" class="">三、虚拟地址空间管理</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E4%B8%89%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/" class="">三、虚拟地址空间管理</a>
   
 
         </li>
@@ -615,7 +616,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E5%9B%9B%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%9E%8B/" class="">四、物理地址空间设计模型</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E5%9B%9B%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%9E%8B/" class="">四、物理地址空间设计模型</a>
   
 
         </li>
@@ -628,7 +629,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E4%BA%94%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80%E5%8F%8A%E7%AE%A1%E7%90%86/" class="">五、物理内存空间布局及管理</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E4%BA%94%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80%E5%8F%8A%E7%AE%A1%E7%90%86/" class="">五、物理内存空间布局及管理</a>
   
 
         </li>
@@ -641,7 +642,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_memory_manage/%E5%85%AD%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F/" class="">六、物理内存分配——伙伴系统</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_memory_manage/%E5%85%AD%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F/" class="">六、物理内存分配——伙伴系统</a>
   
 
         </li>
@@ -659,8 +660,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-2455edf5b3ea22c6053a61d28029cb9a" class="toggle"  />
-    <label for="section-2455edf5b3ea22c6053a61d28029cb9a" class="flex justify-between">
+    <input type="checkbox" id="section-f435ee78d552247e6379477cd2bbc0e2" class="toggle"  />
+    <label for="section-f435ee78d552247e6379477cd2bbc0e2" class="flex justify-between">
       <a role="button" class="">Linux 内核锁详解</a>
     </label>
   
@@ -675,7 +676,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%80%E5%86%85%E6%A0%B8%E9%94%81%E7%9A%84%E7%94%B1%E6%9D%A5/" class="">【深入理解Linux锁机制】一、内核锁的由来</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%80%E5%86%85%E6%A0%B8%E9%94%81%E7%9A%84%E7%94%B1%E6%9D%A5/" class="">【深入理解Linux锁机制】一、内核锁的由来</a>
   
 
         </li>
@@ -688,7 +689,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD/" class="">【深入理解Linux锁机制】二、中断屏蔽</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD/" class="">【深入理解Linux锁机制】二、中断屏蔽</a>
   
 
         </li>
@@ -701,7 +702,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" class="">【深入理解Linux锁机制】三、原子操作</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" class="">【深入理解Linux锁机制】三、原子操作</a>
   
 
         </li>
@@ -714,7 +715,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%9B%9B%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】四、自旋锁</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%9B%9B%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】四、自旋锁</a>
   
 
         </li>
@@ -727,7 +728,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%94%E8%A1%8D%E7%94%9F%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】五、衍生自旋锁</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%94%E8%A1%8D%E7%94%9F%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】五、衍生自旋锁</a>
   
 
         </li>
@@ -740,7 +741,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AD%E4%BF%A1%E5%8F%B7%E9%87%8F/" class="">【深入理解Linux锁机制】六、信号量</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AD%E4%BF%A1%E5%8F%B7%E9%87%8F/" class="">【深入理解Linux锁机制】六、信号量</a>
   
 
         </li>
@@ -753,7 +754,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%83%E4%BA%92%E6%96%A5%E4%BD%93/" class="">【深入理解Linux锁机制】七、互斥体</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%83%E4%BA%92%E6%96%A5%E4%BD%93/" class="">【深入理解Linux锁机制】七、互斥体</a>
   
 
         </li>
@@ -766,7 +767,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AB%E5%AE%8C%E6%88%90%E9%87%8F/" class="">【深入理解Linux锁机制】八、完成量</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AB%E5%AE%8C%E6%88%90%E9%87%8F/" class="">【深入理解Linux锁机制】八、完成量</a>
   
 
         </li>
@@ -784,8 +785,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-3e346f9c1e7b71569b8cd088121d9787" class="toggle"  />
-    <label for="section-3e346f9c1e7b71569b8cd088121d9787" class="flex justify-between">
+    <input type="checkbox" id="section-8fdb7e7c5e97c6cab0cd075b850b2ab6" class="toggle"  />
+    <label for="section-8fdb7e7c5e97c6cab0cd075b850b2ab6" class="flex justify-between">
       <a role="button" class="">Linux NVMEM 子系统</a>
     </label>
   
@@ -800,7 +801,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%80efuse%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8%E6%B5%85%E6%9E%90/" class="">【NVMEM子系统深入剖析】一、Efuse介绍及安全启动浅析</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%80efuse%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8%E6%B5%85%E6%9E%90/" class="">【NVMEM子系统深入剖析】一、Efuse介绍及安全启动浅析</a>
   
 
         </li>
@@ -813,7 +814,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%BA%8Cnvmem%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" class="">【NVMEM子系统深入剖析】二、NVMEM驱动框架</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%BA%8Cnvmem%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" class="">【NVMEM子系统深入剖析】二、NVMEM驱动框架</a>
   
 
         </li>
@@ -826,7 +827,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%89%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%86%85%E5%9C%A8%E5%85%B3%E8%81%94/" class="">【NVMEM子系统深入剖析】三、核心数据结构及内在关联</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%89%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%86%85%E5%9C%A8%E5%85%B3%E8%81%94/" class="">【NVMEM子系统深入剖析】三、核心数据结构及内在关联</a>
   
 
         </li>
@@ -839,7 +840,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%9B%9Befuse%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B/" class="">【NVMEM子系统深入剖析】四、efuse驱动实现流程</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%9B%9Befuse%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B/" class="">【NVMEM子系统深入剖析】四、efuse驱动实现流程</a>
   
 
         </li>
@@ -857,8 +858,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-9ae83851c5fe25a6d227e96b400b1ab9" class="toggle"  />
-    <label for="section-9ae83851c5fe25a6d227e96b400b1ab9" class="flex justify-between">
+    <input type="checkbox" id="section-55cd856914d3869f8de37a44fe2c2d31" class="toggle"  />
+    <label for="section-55cd856914d3869f8de37a44fe2c2d31" class="flex justify-between">
       <a role="button" class="">Linux LED子系统</a>
     </label>
   
@@ -873,7 +874,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%80linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%BF%85%E8%AF%BB/" class="">【LED子系统深度剖析】一、开篇词|Linux驱动开发新手必读</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%80linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%BF%85%E8%AF%BB/" class="">【LED子系统深度剖析】一、开篇词|Linux驱动开发新手必读</a>
   
 
         </li>
@@ -886,7 +887,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%8Cled%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" class="">【LED子系统深度剖析】二、LED子系统框架分析</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%8Cled%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" class="">【LED子系统深度剖析】二、LED子系统框架分析</a>
   
 
         </li>
@@ -899,7 +900,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%89%E7%A1%AC%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%B1%82%E8%AF%A6%E8%A7%A3/" class="">【LED子系统深度剖析】三、硬件驱动层详解</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%89%E7%A1%AC%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%B1%82%E8%AF%A6%E8%A7%A3/" class="">【LED子系统深度剖析】三、硬件驱动层详解</a>
   
 
         </li>
@@ -912,7 +913,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%9B%9B%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%80/" class="">【LED子系统深度剖析】四、核心层详解（一）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%9B%9B%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%80/" class="">【LED子系统深度剖析】四、核心层详解（一）</a>
   
 
         </li>
@@ -925,7 +926,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%94%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%BA%8C/" class="">【LED子系统深度剖析】五、核心层详解（二）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%94%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%BA%8C/" class="">【LED子系统深度剖析】五、核心层详解（二）</a>
   
 
         </li>
@@ -938,7 +939,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AD%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%89/" class="">【LED子系统深度剖析】六、核心层详解（三）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AD%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%89/" class="">【LED子系统深度剖析】六、核心层详解（三）</a>
   
 
         </li>
@@ -951,7 +952,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%83%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9E%E7%8E%B0/" class="">【LED子系统深度剖析】七、触发器实现</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%83%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9E%E7%8E%B0/" class="">【LED子系统深度剖析】七、触发器实现</a>
   
 
         </li>
@@ -964,7 +965,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AB%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/" class="">【LED子系统深度剖析】八、小试牛刀</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AB%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/" class="">【LED子系统深度剖析】八、小试牛刀</a>
   
 
         </li>
@@ -977,7 +978,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B9%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】九、数据结构详解（番外篇）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B9%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】九、数据结构详解（番外篇）</a>
   
 
         </li>
@@ -990,7 +991,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%8D%81%E8%AF%A6%E7%BB%86%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】十、详细实现流程（番外篇）</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%8D%81%E8%AF%A6%E7%BB%86%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】十、详细实现流程（番外篇）</a>
   
 
         </li>
@@ -1008,8 +1009,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-bf0229851221605a75715f5f9633256a" class="toggle"  />
-    <label for="section-bf0229851221605a75715f5f9633256a" class="flex justify-between">
+    <input type="checkbox" id="section-e02acc82bb9269fdf5f35403746673a7" class="toggle"  />
+    <label for="section-e02acc82bb9269fdf5f35403746673a7" class="flex justify-between">
       <a role="button" class="">Linux MMC 子系统</a>
     </label>
   
@@ -1024,7 +1025,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%80mmc_sd_sdio%E4%BB%8B%E7%BB%8D/" class="">【MMC子系统】一、MMC_SD_SDIO介绍</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%80mmc_sd_sdio%E4%BB%8B%E7%BB%8D/" class="">【MMC子系统】一、MMC_SD_SDIO介绍</a>
   
 
         </li>
@@ -1037,7 +1038,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%8Cemmc%E5%8D%8F%E8%AE%AE/" class="">【MMC子系统】二、EMMC协议</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%8Cemmc%E5%8D%8F%E8%AE%AE/" class="">【MMC子系统】二、EMMC协议</a>
   
 
         </li>
@@ -1050,7 +1051,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%89mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/" class="">【MMC子系统】三、MMC子系统框架</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%89mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/" class="">【MMC子系统】三、MMC子系统框架</a>
   
 
         </li>
@@ -1063,7 +1064,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%9B%9Bmmc%E6%8E%A7%E5%88%B6%E5%99%A8%E9%A9%B1%E5%8A%A8%E5%B1%82/" class="">【MMC子系统】四、MMC控制器驱动层</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%9B%9Bmmc%E6%8E%A7%E5%88%B6%E5%99%A8%E9%A9%B1%E5%8A%A8%E5%B1%82/" class="">【MMC子系统】四、MMC控制器驱动层</a>
   
 
         </li>
@@ -1076,7 +1077,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%94mmc%E6%A0%B8%E5%BF%83%E5%B1%82/" class="">【MMC子系统】五、MMC核心层</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%94mmc%E6%A0%B8%E5%BF%83%E5%B1%82/" class="">【MMC子系统】五、MMC核心层</a>
   
 
         </li>
@@ -1089,7 +1090,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%85%ADmmc%E5%9D%97%E8%AE%BE%E5%A4%87%E5%B1%82/" class="">【MMC子系统】六、MMC块设备层</a>
+    <a href="/Yocreative.github.io/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%85%ADmmc%E5%9D%97%E8%AE%BE%E5%A4%87%E5%B1%82/" class="">【MMC子系统】六、MMC块设备层</a>
   
 
         </li>
@@ -1107,8 +1108,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-541874a152001b263009202c99a285c4" class="toggle"  />
-    <label for="section-541874a152001b263009202c99a285c4" class="flex justify-between">
+    <input type="checkbox" id="section-361f4c4127000ab1d21e7e0cdf1aa513" class="toggle"  />
+    <label for="section-361f4c4127000ab1d21e7e0cdf1aa513" class="flex justify-between">
       <a role="button" class="">Bluetooth蓝牙开发详解</a>
     </label>
   
@@ -1123,7 +1124,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%80%E6%89%93%E9%80%A0%E5%85%A8%E7%BD%91%E6%9C%80%E8%AF%A6%E7%BB%86%E7%9A%84bluetooth%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="">【Bluetooth蓝牙开发】一、打造全网最详细的Bluetooth开发教程</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%80%E6%89%93%E9%80%A0%E5%85%A8%E7%BD%91%E6%9C%80%E8%AF%A6%E7%BB%86%E7%9A%84bluetooth%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="">【Bluetooth蓝牙开发】一、打造全网最详细的Bluetooth开发教程</a>
   
 
         </li>
@@ -1136,7 +1137,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%8C%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" class="">【Bluetooth蓝牙开发】二、蓝牙开发入门</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%8C%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" class="">【Bluetooth蓝牙开发】二、蓝牙开发入门</a>
   
 
         </li>
@@ -1149,7 +1150,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%89%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E6%80%BB%E8%A7%88%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE/" class="">【Bluetooth蓝牙开发】三、一篇文章，带你总览蓝牙协议</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%89%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E6%80%BB%E8%A7%88%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE/" class="">【Bluetooth蓝牙开发】三、一篇文章，带你总览蓝牙协议</a>
   
 
         </li>
@@ -1162,7 +1163,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%9B%9Bble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E7%89%A9%E7%90%86%E5%B1%82%E6%B5%85%E6%9E%90/" class="">【Bluetooth蓝牙开发】四、BLE协议之物理层浅析</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%9B%9Bble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E7%89%A9%E7%90%86%E5%B1%82%E6%B5%85%E6%9E%90/" class="">【Bluetooth蓝牙开发】四、BLE协议之物理层浅析</a>
   
 
         </li>
@@ -1175,7 +1176,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%94ble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%93%BE%E8%B7%AF%E5%B1%82/" class="">【Bluetooth蓝牙开发】五、BLE协议之链路层</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%94ble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%93%BE%E8%B7%AF%E5%B1%82/" class="">【Bluetooth蓝牙开发】五、BLE协议之链路层</a>
   
 
         </li>
@@ -1188,7 +1189,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ADble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%BC%A0%E8%BE%93%E5%B1%82/" class="">【Bluetooth蓝牙开发】六、BLE协议之传输层</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ADble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%BC%A0%E8%BE%93%E5%B1%82/" class="">【Bluetooth蓝牙开发】六、BLE协议之传输层</a>
   
 
         </li>
@@ -1201,7 +1202,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%83ble%E5%8D%8F%E8%AE%AE%E4%B9%8Bl2cap/" class="">【Bluetooth蓝牙开发】七、BLE协议之L2CAP</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%83ble%E5%8D%8F%E8%AE%AE%E4%B9%8Bl2cap/" class="">【Bluetooth蓝牙开发】七、BLE协议之L2CAP</a>
   
 
         </li>
@@ -1214,7 +1215,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ABble%E5%8D%8F%E8%AE%AE%E4%B9%8Batt/" class="">【Bluetooth蓝牙开发】八、BLE协议之ATT</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ABble%E5%8D%8F%E8%AE%AE%E4%B9%8Batt/" class="">【Bluetooth蓝牙开发】八、BLE协议之ATT</a>
   
 
         </li>
@@ -1227,7 +1228,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B9%9Dble%E5%8D%8F%E8%AE%AEgatt/" class="">【Bluetooth蓝牙开发】九、BLE协议——GATT</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B9%9Dble%E5%8D%8F%E8%AE%AEgatt/" class="">【Bluetooth蓝牙开发】九、BLE协议——GATT</a>
   
 
         </li>
@@ -1240,7 +1241,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81ble%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%B9%BF%E6%92%AD%E6%89%AB%E6%8F%8F%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5/" class="">【Bluetooth蓝牙开发】十、BLE蓝牙通信流程（建立连接，广播，扫描，断开连接）</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81ble%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%B9%BF%E6%92%AD%E6%89%AB%E6%8F%8F%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5/" class="">【Bluetooth蓝牙开发】十、BLE蓝牙通信流程（建立连接，广播，扫描，断开连接）</a>
   
 
         </li>
@@ -1253,7 +1254,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%B8%80%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84bluez%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" class="">【Bluetooth蓝牙开发】十一、超详细的Bluez交叉编译</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%B8%80%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84bluez%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" class="">【Bluetooth蓝牙开发】十一、超详细的Bluez交叉编译</a>
   
 
         </li>
@@ -1266,7 +1267,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%BA%8C%E8%93%9D%E7%89%99%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/" class="">【Bluetooth蓝牙开发】十二、蓝牙调试工具【集合汇总】</a>
+    <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%BA%8C%E8%93%9D%E7%89%99%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/" class="">【Bluetooth蓝牙开发】十二、蓝牙调试工具【集合汇总】</a>
   
 
         </li>
@@ -1284,8 +1285,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-3962d06d522e4ac6aca7d70bdb913d71" class="toggle"  />
-    <label for="section-3962d06d522e4ac6aca7d70bdb913d71" class="flex justify-between">
+    <input type="checkbox" id="section-213e548a5ed64c190d6cd532c8786974" class="toggle"  />
+    <label for="section-213e548a5ed64c190d6cd532c8786974" class="flex justify-between">
       <a role="button" class="">WiFi开发详解</a>
     </label>
   
@@ -1300,7 +1301,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/wifi/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="">WIFI基础知识汇总</a>
+    <a href="/Yocreative.github.io/docs/linux/wifi/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="">WIFI基础知识汇总</a>
   
 
         </li>
@@ -1313,7 +1314,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/wifi/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" class="">一文详解路由器配置信息</a>
+    <a href="/Yocreative.github.io/docs/linux/wifi/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" class="">一文详解路由器配置信息</a>
   
 
         </li>
@@ -1326,7 +1327,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/linux/wifi/wifi%E6%97%A0%E7%BC%9D%E6%BC%AB%E6%B8%B8%E8%AF%A6%E8%A7%A3/" class="">WiFi无缝漫游详解</a>
+    <a href="/Yocreative.github.io/docs/linux/wifi/wifi%E6%97%A0%E7%BC%9D%E6%BC%AB%E6%B8%B8%E8%AF%A6%E8%A7%A3/" class="">WiFi无缝漫游详解</a>
   
 
         </li>
@@ -1363,7 +1364,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -1375,14 +1376,14 @@ https://github.com/alex-shpak/hugo-book
         
   <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+    <img src="/Yocreative.github.io/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
   <strong>Bluetooth开发详解</strong>
 
   <label for="toc-control">
     
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    <img src="/Yocreative.github.io/svg/toc.svg" class="book-icon" alt="Table of Contents" />
     
   </label>
 </div>
@@ -1400,7 +1401,7 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
-          <a href="/categories/tech/">Tech</a>
+          <a href="/Yocreative.github.io/categories/tech/">Tech</a>
           <span>73</span>
         </li>
       
@@ -1414,208 +1415,208 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
-          <a href="/tags/tag1/">tag1</a>
+          <a href="/Yocreative.github.io/tags/tag1/">Tag1</a>
           <span>7</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/tag2/">tag2</a>
+          <a href="/Yocreative.github.io/tags/tag2/">Tag2</a>
           <span>7</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">WIFI基础知识</a>
+          <a href="/Yocreative.github.io/tags/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">WIFI基础知识</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/wifi%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">WiFi开发详解</a>
+          <a href="/Yocreative.github.io/tags/wifi%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">WiFi开发详解</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/wifi%E6%8A%80%E6%9C%AF/">WIFI技术</a>
+          <a href="/Yocreative.github.io/tags/wifi%E6%8A%80%E6%9C%AF/">WIFI技术</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/">无线网络知识</a>
+          <a href="/Yocreative.github.io/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/">无线网络知识</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/iperf/">Iperf</a>
+          <a href="/Yocreative.github.io/tags/iperf/">Iperf</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/iperf%E5%B7%A5%E5%85%B7/">Iperf工具</a>
+          <a href="/Yocreative.github.io/tags/iperf%E5%B7%A5%E5%85%B7/">Iperf工具</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux网络性能测试工具</a>
+          <a href="/Yocreative.github.io/tags/linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux网络性能测试工具</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">Linux驱动开发基础</a>
+          <a href="/Yocreative.github.io/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">Linux驱动开发基础</a>
           <span>3</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/typedef/">typedef</a>
+          <a href="/Yocreative.github.io/tags/typedef/">Typedef</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">Linux设备树详解</a>
+          <a href="/Yocreative.github.io/tags/linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">Linux设备树详解</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/">Linux字符设备驱动</a>
+          <a href="/Yocreative.github.io/tags/linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/">Linux字符设备驱动</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux调试工具</a>
+          <a href="/Yocreative.github.io/tags/linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux调试工具</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">Linux驱动开发</a>
+          <a href="/Yocreative.github.io/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">Linux驱动开发</a>
           <span>16</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F/">MMC子系统</a>
+          <a href="/Yocreative.github.io/tags/mmc/sd/sdio/">MMC/SD/SDIO</a>
           <span>6</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>
+          <a href="/Yocreative.github.io/tags/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F/">MMC子系统</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>
           <span>12</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
+          <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
           <span>12</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>
+          <a href="/Yocreative.github.io/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>
           <span>12</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F/">LED子系统</a>
+          <a href="/Yocreative.github.io/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F/">LED子系统</a>
           <span>10</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/">LED子系统深度剖析</a>
+          <a href="/Yocreative.github.io/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/">LED子系统深度剖析</a>
           <span>10</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/led%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">LED驱动开发</a>
+          <a href="/Yocreative.github.io/tags/led%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">LED驱动开发</a>
           <span>10</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"> Linux 系统开发</a>
+          <a href="/Yocreative.github.io/tags/-linux-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"> Linux 系统开发</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux-%E5%86%85%E6%A0%B8/">Linux 内核</a>
+          <a href="/Yocreative.github.io/tags/linux-%E5%86%85%E6%A0%B8/">Linux 内核</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux-%E9%94%81%E6%9C%BA%E5%88%B6/">Linux 锁机制</a>
+          <a href="/Yocreative.github.io/tags/linux-%E9%94%81%E6%9C%BA%E5%88%B6/">Linux 锁机制</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%86%85%E6%A0%B8%E9%94%81/">内核锁</a>
+          <a href="/Yocreative.github.io/tags/%E5%86%85%E6%A0%B8%E9%94%81/">内核锁</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%81/">操作系统锁</a>
+          <a href="/Yocreative.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%81/">操作系统锁</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/efuse/">Efuse</a>
+          <a href="/Yocreative.github.io/tags/efuse/">Efuse</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F/">NVMEM子系统</a>
+          <a href="/Yocreative.github.io/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F/">NVMEM子系统</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90/">NVMEM子系统深入剖析</a>
+          <a href="/Yocreative.github.io/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90/">NVMEM子系统深入剖析</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8/">安全启动</a>
+          <a href="/Yocreative.github.io/tags/%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8/">安全启动</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/">Linux面试指南</a>
+          <a href="/Yocreative.github.io/tags/linux%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/">Linux面试指南</a>
           <span>3</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/uboot%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Uboot开发详解</a>
+          <a href="/Yocreative.github.io/tags/uboot%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Uboot开发详解</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Linux内存管理</a>
+          <a href="/Yocreative.github.io/tags/linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Linux内存管理</a>
           <span>6</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux-api-%E6%8F%AD%E7%A7%98/">Linux API 揭秘</a>
+          <a href="/Yocreative.github.io/tags/linux-api-%E6%8F%AD%E7%A7%98/">Linux API 揭秘</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/">嵌入式Linux</a>
+          <a href="/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/">嵌入式Linux</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">嵌入式基础必备知识</a>
+          <a href="/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">嵌入式基础必备知识</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/embeded-technology/">Embeded Technology</a>
+          <a href="/Yocreative.github.io/tags/embeded-technology/">Embeded Technology</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式学习路线</a>
+          <a href="/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式学习路线</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%85%BB%E6%88%90%E8%AE%B0/">嵌入式工程师养成记</a>
+          <a href="/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%85%BB%E6%88%90%E8%AE%B0/">嵌入式工程师养成记</a>
           <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/mmc/sd/sdio/">MMC/SD/SDIO</a>
-          <span>6</span>
         </li>
       
       </ul>
@@ -1636,7 +1637,7 @@ https://github.com/alex-shpak/hugo-book
   
   <article class="markdown book-post">
     <h2>
-      <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%B8%80%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84bluez%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/">【Bluetooth蓝牙开发】十一、超详细的Bluez交叉编译</a>
+      <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%B8%80%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84bluez%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/">【Bluetooth蓝牙开发】十一、超详细的Bluez交叉编译</a>
     </h2>
     
   <h5>Jan 19, 2024</h5>
@@ -1649,30 +1650,42 @@ https://github.com/alex-shpak/hugo-book
   
   <div>
     
-      <a href="/categories/tech/">Tech</a>
+      <a href="/Yocreative.github.io/categories/tech/">Tech</a>
   </div>
   
 
   
   <div>
     
-      <a href="/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>, 
-      <a href="/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>, 
-      <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
+      <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>, 
+      <a href="/Yocreative.github.io/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>, 
+      <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
   </div>
   
 
 
 
 
-    <p> 我的圈子：高级工程师聚集地  创作理念：专注分享高质量嵌入式文章，让大家读有所得！  &nbsp; 亲爱的读者，你好：  感谢你对我的专栏的关注和支持，我很高兴能和你分享我的知识和经验。如果你喜欢我的内容，想要阅读更多的精彩技术文章，可以扫码加入我的社群。
-  欢迎关注【嵌入式艺术】，董哥原创！  
-    </p>
+    <p><div align=center><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/202206141400958.jpeg" alt="0c70cff6aab3f2894c2bfd2c973e9620" alt="img"  width = 15% height =15%/></div>
+<center><font color ="grey">我的圈子：<a href="https://t.zsxq.com/14hPUwE8z">
+高级工程师聚集地</a></font></center>
+<center><b> 创作理念：专注分享高质量嵌入式文章，让大家读有所得！</b></center>
+<div align=center><img src="https://bdn.135editor.com/files/images/editor_styles/d1c723e7e296ca791c2fb3b39ebee0f3.jpg" alt="img" width = 70% height =10%/>
+</div>
+<br>
+<br>
+&nbsp;
+亲爱的读者，你好：
+<p>  感谢你对我的专栏的关注和支持，我很高兴能和你分享我的知识和经验。如果你喜欢我的内容，想要阅读更多的精彩技术文章，可以扫码加入我的社群。</p>
+<p> </p>
+<center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
+<div align=center><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/blog.png" alt="img" width = "60%" height ="10%"/>
+</div></p>
   </article>
   
   <article class="markdown book-post">
     <h2>
-      <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%BA%8C%E8%93%9D%E7%89%99%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/">【Bluetooth蓝牙开发】十二、蓝牙调试工具【集合汇总】</a>
+      <a href="/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%BA%8C%E8%93%9D%E7%89%99%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/">【Bluetooth蓝牙开发】十二、蓝牙调试工具【集合汇总】</a>
     </h2>
     
   <h5>Jan 19, 2024</h5>
@@ -1685,38 +1698,50 @@ https://github.com/alex-shpak/hugo-book
   
   <div>
     
-      <a href="/categories/tech/">Tech</a>
+      <a href="/Yocreative.github.io/categories/tech/">Tech</a>
   </div>
   
 
   
   <div>
     
-      <a href="/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>, 
-      <a href="/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>, 
-      <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
+      <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>, 
+      <a href="/Yocreative.github.io/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>, 
+      <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
   </div>
   
 
 
 
 
-    <p> 我的圈子：高级工程师聚集地  创作理念：专注分享高质量嵌入式文章，让大家读有所得！  &nbsp; 亲爱的读者，你好：  感谢你对我的专栏的关注和支持，我很高兴能和你分享我的知识和经验。如果你喜欢我的内容，想要阅读更多的精彩技术文章，可以扫码加入我的社群。
-  欢迎关注【嵌入式艺术】，董哥原创！  
-    </p>
+    <p><div align=center><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/202206141400958.jpeg" alt="0c70cff6aab3f2894c2bfd2c973e9620" alt="img"  width = 15% height =15%/></div>
+<center><font color ="grey">我的圈子：<a href="https://t.zsxq.com/14hPUwE8z">
+高级工程师聚集地</a></font></center>
+<center><b> 创作理念：专注分享高质量嵌入式文章，让大家读有所得！</b></center>
+<div align=center><img src="https://bdn.135editor.com/files/images/editor_styles/d1c723e7e296ca791c2fb3b39ebee0f3.jpg" alt="img" width = 70% height =10%/>
+</div>
+<br>
+<br>
+&nbsp;
+亲爱的读者，你好：
+<p>  感谢你对我的专栏的关注和支持，我很高兴能和你分享我的知识和经验。如果你喜欢我的内容，想要阅读更多的精彩技术文章，可以扫码加入我的社群。</p>
+<p> </p>
+<center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
+<div align=center><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/blog.png" alt="img" width = "60%" height ="10%"/>
+</div></p>
   </article>
   
 
   
     <ul class="pagination pagination-default">
       <li class="page-item">
-        <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+        <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/" aria-label="Page 1" class="page-link" role="button">1</a>
+        <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/" aria-label="Page 1" class="page-link" role="button">1</a>
       </li>
       <li class="page-item active">
         <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
@@ -1751,7 +1776,7 @@ https://github.com/alex-shpak/hugo-book
   </span>
 </div>
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  
@@ -1778,7 +1803,7 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
-          <a href="/categories/tech/">Tech</a>
+          <a href="/Yocreative.github.io/categories/tech/">Tech</a>
           <span>73</span>
         </li>
       
@@ -1792,208 +1817,208 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
-          <a href="/tags/tag1/">tag1</a>
+          <a href="/Yocreative.github.io/tags/tag1/">Tag1</a>
           <span>7</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/tag2/">tag2</a>
+          <a href="/Yocreative.github.io/tags/tag2/">Tag2</a>
           <span>7</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">WIFI基础知识</a>
+          <a href="/Yocreative.github.io/tags/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">WIFI基础知识</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/wifi%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">WiFi开发详解</a>
+          <a href="/Yocreative.github.io/tags/wifi%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">WiFi开发详解</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/wifi%E6%8A%80%E6%9C%AF/">WIFI技术</a>
+          <a href="/Yocreative.github.io/tags/wifi%E6%8A%80%E6%9C%AF/">WIFI技术</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/">无线网络知识</a>
+          <a href="/Yocreative.github.io/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/">无线网络知识</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/iperf/">Iperf</a>
+          <a href="/Yocreative.github.io/tags/iperf/">Iperf</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/iperf%E5%B7%A5%E5%85%B7/">Iperf工具</a>
+          <a href="/Yocreative.github.io/tags/iperf%E5%B7%A5%E5%85%B7/">Iperf工具</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux网络性能测试工具</a>
+          <a href="/Yocreative.github.io/tags/linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux网络性能测试工具</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">Linux驱动开发基础</a>
+          <a href="/Yocreative.github.io/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">Linux驱动开发基础</a>
           <span>3</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/typedef/">typedef</a>
+          <a href="/Yocreative.github.io/tags/typedef/">Typedef</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">Linux设备树详解</a>
+          <a href="/Yocreative.github.io/tags/linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">Linux设备树详解</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/">Linux字符设备驱动</a>
+          <a href="/Yocreative.github.io/tags/linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/">Linux字符设备驱动</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux调试工具</a>
+          <a href="/Yocreative.github.io/tags/linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux调试工具</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">Linux驱动开发</a>
+          <a href="/Yocreative.github.io/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">Linux驱动开发</a>
           <span>16</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F/">MMC子系统</a>
+          <a href="/Yocreative.github.io/tags/mmc/sd/sdio/">MMC/SD/SDIO</a>
           <span>6</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>
+          <a href="/Yocreative.github.io/tags/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F/">MMC子系统</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>
           <span>12</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
+          <a href="/Yocreative.github.io/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
           <span>12</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>
+          <a href="/Yocreative.github.io/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>
           <span>12</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F/">LED子系统</a>
+          <a href="/Yocreative.github.io/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F/">LED子系统</a>
           <span>10</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/">LED子系统深度剖析</a>
+          <a href="/Yocreative.github.io/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/">LED子系统深度剖析</a>
           <span>10</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/led%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">LED驱动开发</a>
+          <a href="/Yocreative.github.io/tags/led%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">LED驱动开发</a>
           <span>10</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"> Linux 系统开发</a>
+          <a href="/Yocreative.github.io/tags/-linux-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"> Linux 系统开发</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux-%E5%86%85%E6%A0%B8/">Linux 内核</a>
+          <a href="/Yocreative.github.io/tags/linux-%E5%86%85%E6%A0%B8/">Linux 内核</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux-%E9%94%81%E6%9C%BA%E5%88%B6/">Linux 锁机制</a>
+          <a href="/Yocreative.github.io/tags/linux-%E9%94%81%E6%9C%BA%E5%88%B6/">Linux 锁机制</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%86%85%E6%A0%B8%E9%94%81/">内核锁</a>
+          <a href="/Yocreative.github.io/tags/%E5%86%85%E6%A0%B8%E9%94%81/">内核锁</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%81/">操作系统锁</a>
+          <a href="/Yocreative.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%81/">操作系统锁</a>
           <span>8</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/efuse/">Efuse</a>
+          <a href="/Yocreative.github.io/tags/efuse/">Efuse</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F/">NVMEM子系统</a>
+          <a href="/Yocreative.github.io/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F/">NVMEM子系统</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90/">NVMEM子系统深入剖析</a>
+          <a href="/Yocreative.github.io/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90/">NVMEM子系统深入剖析</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8/">安全启动</a>
+          <a href="/Yocreative.github.io/tags/%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8/">安全启动</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/">Linux面试指南</a>
+          <a href="/Yocreative.github.io/tags/linux%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/">Linux面试指南</a>
           <span>3</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/uboot%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Uboot开发详解</a>
+          <a href="/Yocreative.github.io/tags/uboot%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Uboot开发详解</a>
           <span>4</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Linux内存管理</a>
+          <a href="/Yocreative.github.io/tags/linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Linux内存管理</a>
           <span>6</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/linux-api-%E6%8F%AD%E7%A7%98/">Linux API 揭秘</a>
+          <a href="/Yocreative.github.io/tags/linux-api-%E6%8F%AD%E7%A7%98/">Linux API 揭秘</a>
           <span>2</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/">嵌入式Linux</a>
+          <a href="/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/">嵌入式Linux</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">嵌入式基础必备知识</a>
+          <a href="/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">嵌入式基础必备知识</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/embeded-technology/">Embeded Technology</a>
+          <a href="/Yocreative.github.io/tags/embeded-technology/">Embeded Technology</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式学习路线</a>
+          <a href="/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式学习路线</a>
           <span>1</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%85%BB%E6%88%90%E8%AE%B0/">嵌入式工程师养成记</a>
+          <a href="/Yocreative.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%85%BB%E6%88%90%E8%AE%B0/">嵌入式工程师养成记</a>
           <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/mmc/sd/sdio/">MMC/SD/SDIO</a>
-          <span>6</span>
         </li>
       
       </ul>

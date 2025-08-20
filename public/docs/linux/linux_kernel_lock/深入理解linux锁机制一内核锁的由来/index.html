@@ -60,7 +60,8 @@ CPU0的中断和CPU1的中断之间
   #
 
 
-现代的高性能编译器，为了提高Cache命中率以及CPU的Load/Store工作效率，会对目标代码进行乱序优化，减少逻辑上不必要的访存！
+
+  现代的高性能编译器，为了提高Cache命中率以及CPU的Load/Store工作效率，会对目标代码进行乱序优化，减少逻辑上不必要的访存！
 因此，在打开编译器优化后，生成的汇编码并没有严格按照代码的逻辑顺序执行，这是正常的。
 为了解决编译乱序的问题，可以加入barrier()编译屏障。
 顾名思义，编译屏障，也就是为了阻挡编译器的编译优化，加入barrier()编译屏障，即可保证正确的执行顺序。
@@ -113,7 +114,7 @@ __asm__：向编译器说明在此插入汇编代码 __volatile__：用于告诉
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -136,7 +137,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1602,10 +1603,11 @@ https://github.com/alex-shpak/hugo-book
   3.1 编译乱序
   <a class="anchor" href="#31-%e7%bc%96%e8%af%91%e4%b9%b1%e5%ba%8f">#</a>
 </h3>
-<blockquote>
-<p><strong>现代的高性能编译器，为了提高Cache命中率以及CPU的Load/Store工作效率，会对目标代码进行乱序优化，减少逻辑上不必要的访存！</strong></p>
-<p>因此，在打开编译器优化后，生成的汇编码并没有严格按照代码的逻辑顺序执行，这是正常的。</p></blockquote>
-<p><strong>为了解决编译乱序的问题，可以加入<code>barrier()</code>编译屏障</strong>。</p>
+
+<blockquote class='book-hint '>
+  <p><strong>现代的高性能编译器，为了提高Cache命中率以及CPU的Load/Store工作效率，会对目标代码进行乱序优化，减少逻辑上不必要的访存！</strong></p>
+<p>因此，在打开编译器优化后，生成的汇编码并没有严格按照代码的逻辑顺序执行，这是正常的。</p>
+</blockquote><p><strong>为了解决编译乱序的问题，可以加入<code>barrier()</code>编译屏障</strong>。</p>
 <p>顾名思义，编译屏障，也就是为了阻挡编译器的编译优化，加入<code>barrier()</code>编译屏障，即可保证正确的执行顺序。</p>
 <p>编译屏障代码实现如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">#define barrier() __asm__ __volatile__(&#34;&#34;: : :&#34;memory&#34;)
@@ -1633,9 +1635,10 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <p><span style="color: red;"><strong>编译乱序是编译器的行为，而执行乱序就是处理器运行时的行为。</strong></span></p>
 <p>**高级的<code>CPU</code>往往会根据自身的缓存特性，将访存指令重新排序执行！**这样就导致了多个顺序的指令，后发的指令仍有可能先执行完毕。</p>
-<blockquote>
-<p>这种执行乱序，在多个<code>CPU</code>之间，以及单个<code>CPU</code>内部，都是非常常见的。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>这种执行乱序，在多个<code>CPU</code>之间，以及单个<code>CPU</code>内部，都是非常常见的。</p>
+</blockquote><p> </p>
 <h4 id="321-多cpu之间">
   3.2.1 多CPU之间
   <a class="anchor" href="#321-%e5%a4%9acpu%e4%b9%8b%e9%97%b4">#</a>
@@ -1651,12 +1654,14 @@ https://github.com/alex-shpak/hugo-book
   3.2.2 单CPU内部
   <a class="anchor" href="#322-%e5%8d%95cpu%e5%86%85%e9%83%a8">#</a>
 </h4>
-<blockquote>
-<p>在单<code>CPU</code>中，我们常遇到访问外设寄存器时，某些外设寄存器就对读写顺序有很高的要求，为了避免执行乱序的发生，这时候就需要<code>CPU</code>的一些内存屏障指令了。</p></blockquote>
-<p><code>CPU</code>内部，为了解决这种问题，<code>CPU</code>提供了一些内存屏障指令：</p>
-<blockquote>
-<p>可以参考<code>Documentation/memory-devices.txt</code>和<code>Documentation/io_ordering.txt</code></p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>在单<code>CPU</code>中，我们常遇到访问外设寄存器时，某些外设寄存器就对读写顺序有很高的要求，为了避免执行乱序的发生，这时候就需要<code>CPU</code>的一些内存屏障指令了。</p>
+</blockquote><p><code>CPU</code>内部，为了解决这种问题，<code>CPU</code>提供了一些内存屏障指令：</p>
+
+<blockquote class='book-hint '>
+  <p>可以参考<code>Documentation/memory-devices.txt</code>和<code>Documentation/io_ordering.txt</code></p>
+</blockquote><ul>
 <li>读写屏障：<code>mb()</code></li>
 <li>读屏障：<code>rmb()</code></li>
 <li>写屏障：<code>wmb()</code></li>
@@ -1674,9 +1679,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define writeb(v,c)		({ __iowmb(); writeb_relaxed(v,c); })
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define writew(v,c)		({ __iowmb(); writew_relaxed(v,c); })
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define writel(v,c)		({ __iowmb(); writel_relaxed(v,c); })
-</span></span></span></code></pre></div><blockquote>
-<p><code>writel</code>与<code>writel_relaxed</code>的区别就在于有无屏障。</p></blockquote>
-<p> </p>
+</span></span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p><code>writel</code>与<code>writel_relaxed</code>的区别就在于有无屏障。</p>
+</blockquote><p> </p>
 <h2 id="4总结">
   4、总结
   <a class="anchor" href="#4%e6%80%bb%e7%bb%93">#</a>

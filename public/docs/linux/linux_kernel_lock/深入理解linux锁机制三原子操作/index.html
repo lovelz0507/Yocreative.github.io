@@ -15,7 +15,8 @@
 原子操作（atomic operation），不可分割的操作。其通过原子变量来实现，以保证单个CPU周期内，读写该变量不能被打断，进而判断该变量的值，来解决并发引起的互斥。
 Atomic类型的变量可以在执行期间禁止中断，并保证在访问变量时的原子性。
 
-简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。
+
+  简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。
 其原子性表现在：操作该标志位的值，不可被打断。
 在Linux内核中，提供了两类原子操作的接口，分别是针对位和整型变量的原子操作。
 
@@ -28,7 +29,8 @@ Atomic类型的变量可以在执行期间禁止中断，并保证在访问变�
   #
 
 
-对于整形变量的原子操作，内核提供了一系列的 API接口
+
+  对于整形变量的原子操作，内核提供了一系列的 API接口
 /*设置原子变量的值*/
 atomic_t v = ATOMIC_INIT(0);            /* 定义原子变量v并初始化为0 */
 void atomic_set(atomic_t *v, int i);    /* 设置原子变量的值为i */
@@ -59,7 +61,8 @@ int atomic_dec_return(atomic_t *v);
   #
 
 
-我们下面就介绍几个稍微有代表性的接口实现">
+
+  我们下面就介绍几个稍微有代表性的接口实现">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/Yocreative.github.io/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/">
@@ -87,7 +90,7 @@ Atomic类型的变量可以在执行期间禁止中断，并保证在访问变�
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -110,7 +113,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1530,10 +1533,11 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>原子操作<code>（atomic operation）</code>，不可分割的操作。其通过原子变量来实现，以保证单个<code>CPU</code>周期内，读写该变量不能被打断，进而判断该变量的值，来解决并发引起的互斥。</p>
 <p><strong><code>Atomic</code>类型的变量可以在执行期间禁止中断，并保证在访问变量时的原子性。</strong></p>
-<blockquote>
-<p>简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。</p>
-<p>其原子性表现在：操作该标志位的值，不可被打断。</p></blockquote>
-<p>在<code>Linux</code>内核中，提供了两类原子操作的接口，分别是针对<strong>位</strong>和<strong>整型变量</strong>的原子操作。</p>
+
+<blockquote class='book-hint '>
+  <p>简单来说，我们可以把原子变量看作为一个标志位，然后再来检测该标志位的值。</p>
+<p>其原子性表现在：操作该标志位的值，不可被打断。</p>
+</blockquote><p>在<code>Linux</code>内核中，提供了两类原子操作的接口，分别是针对<strong>位</strong>和<strong>整型变量</strong>的原子操作。</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230730171728090.png" alt="image-20230730171728090" /></p>
 <h2 id="2整型变量原子操作">
   2、整型变量原子操作
@@ -1543,9 +1547,10 @@ https://github.com/alex-shpak/hugo-book
   2.1 API接口
   <a class="anchor" href="#21-api%e6%8e%a5%e5%8f%a3">#</a>
 </h3>
-<blockquote>
-<p>对于整形变量的原子操作，内核提供了一系列的 <code>API</code>接口</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6272a4">/*设置原子变量的值*/</span>
+
+<blockquote class='book-hint '>
+  <p>对于整形变量的原子操作，内核提供了一系列的 <code>API</code>接口</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6272a4">/*设置原子变量的值*/</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd">atomic_t</span> v <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">ATOMIC_INIT</span>(<span style="color:#bd93f9">0</span>);            <span style="color:#6272a4">/* 定义原子变量v并初始化为0 */</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">atomic_set</span>(<span style="color:#8be9fd">atomic_t</span> <span style="color:#ff79c6">*</span>v, <span style="color:#8be9fd">int</span> i);    <span style="color:#6272a4">/* 设置原子变量的值为i */</span>
 </span></span><span style="display:flex;"><span>
@@ -1574,10 +1579,11 @@ https://github.com/alex-shpak/hugo-book
   2.2 API实现
   <a class="anchor" href="#22-api%e5%ae%9e%e7%8e%b0">#</a>
 </h3>
-<blockquote>
-<p>我们下面就介绍几个稍微有代表性的接口实现</p>
-<p>以下基于<code>Linux</code>内核源码<code>4.19</code>，刚看是看的时候，有点摸不着头脑，因为定义的地方和引用的地方较多，不太容易找到，后来才慢慢得窥门径。</p></blockquote>
-<h4 id="221-原子变量结构体">
+
+<blockquote class='book-hint '>
+  <p>我们下面就介绍几个稍微有代表性的接口实现</p>
+<p>以下基于<code>Linux</code>内核源码<code>4.19</code>，刚看是看的时候，有点摸不着头脑，因为定义的地方和引用的地方较多，不太容易找到，后来才慢慢得窥门径。</p>
+</blockquote><h4 id="221-原子变量结构体">
   2.2.1 原子变量结构体
   <a class="anchor" href="#221-%e5%8e%9f%e5%ad%90%e5%8f%98%e9%87%8f%e7%bb%93%e6%9e%84%e4%bd%93">#</a>
 </h4>
@@ -1591,13 +1597,14 @@ https://github.com/alex-shpak/hugo-book
   2.2.2 设置原子变量操作
   <a class="anchor" href="#222-%e8%ae%be%e7%bd%ae%e5%8e%9f%e5%ad%90%e5%8f%98%e9%87%8f%e6%93%8d%e4%bd%9c">#</a>
 </h4>
-<blockquote>
-<p>设置原子变量的值的方式有两种：</p>
+
+<blockquote class='book-hint '>
+  <p>设置原子变量的值的方式有两种：</p>
 <ol>
 <li>通过<code>ATOMIC_INIT</code>宏定义来设置</li>
 <li>通过<code>atomic_set</code>函数来定义</li>
-</ol></blockquote>
-<h5 id="2221-atomic_init">
+</ol>
+</blockquote><h5 id="2221-atomic_init">
   2.2.2.1 ATOMIC_INIT
   <a class="anchor" href="#2221-atomic_init">#</a>
 </h5>
@@ -1743,15 +1750,17 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>    
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">ATOMIC_OPS</span>(add, <span style="color:#ff79c6">+=</span>, add)
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">ATOMIC_OPS</span>(sub, <span style="color:#ff79c6">-=</span>, sub)
-</span></span></code></pre></div><blockquote>
-<p>找<code>atomic_add</code>找半天，还找到了不同的架构下面。:(</p>
-<p>原来内核通过各种宏定义将其操作全部管理起来，宏定义在内核中的使用也是非常广泛了。</p></blockquote>
-<p><strong>函数作用</strong>：通过一些列宏定义，来实现原子变量的<code>add</code>、<code>sub</code>、<code>and</code>、<code>or</code>等原子变量操作</p>
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>找<code>atomic_add</code>找半天，还找到了不同的架构下面。:(</p>
+<p>原来内核通过各种宏定义将其操作全部管理起来，宏定义在内核中的使用也是非常广泛了。</p>
+</blockquote><p><strong>函数作用</strong>：通过一些列宏定义，来实现原子变量的<code>add</code>、<code>sub</code>、<code>and</code>、<code>or</code>等原子变量操作</p>
 <p><strong>文件位置</strong>：<code>arch/arm/include/asm/atomic.h</code></p>
 <p><strong>实现方式</strong>：</p>
-<blockquote>
-<p>我们以<code>atomic_##op</code>为例来介绍，其他大同小异！</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#define ATOMIC_OP(op, c_op, asm_op)					\
+
+<blockquote class='book-hint '>
+  <p>我们以<code>atomic_##op</code>为例来介绍，其他大同小异！</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#define ATOMIC_OP(op, c_op, asm_op)					\
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">static inline void atomic_##op(int i, atomic_t *v)			\
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">{									\
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    unsigned long tmp;						\
@@ -1782,23 +1791,26 @@ https://github.com/alex-shpak/hugo-book
 <li><code>: &quot;cc&quot;</code>：表示可能会修改条件码寄存器，编译期间需要优化。</li>
 </ol>
 <p><span style="color: red;"><strong>总结：上述原子操作，通过<code>ldrex</code>和<code>strex</code>也就是我们说的<code>load</code>和<code>store</code>指令，来完成数据的读写，同时也保证了其原子性！</strong></span></p>
-<blockquote>
-<p>这一部分，牵涉到汇编的语法，需要提前了解下基础的汇编指令。</p></blockquote>
-<h5 id="2232-atomic_add和atomic_sub定义">
+
+<blockquote class='book-hint '>
+  <p>这一部分，牵涉到汇编的语法，需要提前了解下基础的汇编指令。</p>
+</blockquote><h5 id="2232-atomic_add和atomic_sub定义">
   2.2.3.2 atomic_add和atomic_sub定义
   <a class="anchor" href="#2232-atomic_add%e5%92%8catomic_sub%e5%ae%9a%e4%b9%89">#</a>
 </h5>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#50fa7b">ATOMIC_OPS</span>(add, <span style="color:#ff79c6">+=</span>, add)
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">ATOMIC_OPS</span>(sub, <span style="color:#ff79c6">-=</span>, sub)
-</span></span></code></pre></div><blockquote>
-<p>通过宏定义来实现<code>atomic_add</code>和<code>atomic_sub</code>的定义，下面我们就不一一分析了，原理都是通过<code>ARM</code>提供的<code>ldrex</code> <code>strex</code>也就是我们常说的<code>Load</code>和<code>Store</code>指令实现读取操作，确保操作的原子性。</p></blockquote>
-<h2 id="3位原子操作">
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>通过宏定义来实现<code>atomic_add</code>和<code>atomic_sub</code>的定义，下面我们就不一一分析了，原理都是通过<code>ARM</code>提供的<code>ldrex</code> <code>strex</code>也就是我们常说的<code>Load</code>和<code>Store</code>指令实现读取操作，确保操作的原子性。</p>
+</blockquote><h2 id="3位原子操作">
   3、位原子操作
   <a class="anchor" href="#3%e4%bd%8d%e5%8e%9f%e5%ad%90%e6%93%8d%e4%bd%9c">#</a>
 </h2>
-<blockquote>
-<p>对于位原子操作，内核也提供了一系列的 <code>API</code>接口</p></blockquote>
-<h3 id="31-api接口">
+
+<blockquote class='book-hint '>
+  <p>对于位原子操作，内核也提供了一系列的 <code>API</code>接口</p>
+</blockquote><h3 id="31-api接口">
   3.1 API接口
   <a class="anchor" href="#31-api%e6%8e%a5%e5%8f%a3">#</a>
 </h3>
@@ -1813,9 +1825,10 @@ https://github.com/alex-shpak/hugo-book
   3.2 API实现
   <a class="anchor" href="#32-api%e5%ae%9e%e7%8e%b0">#</a>
 </h3>
-<blockquote>
-<p>同样，我们还是简单介绍几个接口，其他核心实现原理相同</p></blockquote>
-<h4 id="321-set_bit">
+
+<blockquote class='book-hint '>
+  <p>同样，我们还是简单介绍几个接口，其他核心实现原理相同</p>
+</blockquote><h4 id="321-set_bit">
   3.2.1 set_bit
   <a class="anchor" href="#321-set_bit">#</a>
 </h4>

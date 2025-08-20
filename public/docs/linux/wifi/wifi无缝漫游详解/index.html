@@ -12,14 +12,16 @@
   #
 
 
-百度百科：：当网络环境存在多个相同SSID的AP，且它们的覆盖范围的重合时，无线用户可以在整个WLAN覆盖区内移动，无线网卡能够自动发现附近信号强度最大的AP，并通过这个AP收发数据，保持不间断的网络连接，这就称为无线漫游。
+
+  百度百科：：当网络环境存在多个相同SSID的AP，且它们的覆盖范围的重合时，无线用户可以在整个WLAN覆盖区内移动，无线网卡能够自动发现附近信号强度最大的AP，并通过这个AP收发数据，保持不间断的网络连接，这就称为无线漫游。
 简单来说：WLAN漫游是指STA在不同的AP覆盖范围之间移动，且保持用户业务不中断的行为。
 
 AP：也就是无线接入点，是一个无线网络的创建者，是网络的中心节点。一般家庭或办公室使用的无线路由器就一个AP。
 STA：每一个连接到无线网络中的终端(如笔记本电脑、PDA及其它可以联网的用户设备)都可称为一个站点。
 
 
-如下图所示，STA1从AP1的覆盖范围移动到AP2的覆盖范围时保持业务不中断。
+
+  如下图所示，STA1从AP1的覆盖范围移动到AP2的覆盖范围时保持业务不中断。
 
  
 
@@ -42,12 +44,14 @@ WiFi漫游
 更进一阶，引入AC控制器，利用AC&#43;AP的组合形式实现wifi漫游。目前市面上主流的TPlink、爱快、Mesh等产品的方案多是如此。
 其根本的原理是通过AC设定AP的RSSI阈值，将信号不稳定的设备T下线，迫使终端设备重新连接信号最强的AP，实现AP的自动切换。
 
-实话实说这种方案对于绝大多数的用户是完全够用的，AP切换过程中网络中断时间一般在200ms-500ms左右，影响不大，确实优化了网络体验。对于网络要求不高的朋友推荐选择。不过在该方案下游戏会有一段明显的卡顿，但不会掉线。
+
+  实话实说这种方案对于绝大多数的用户是完全够用的，AP切换过程中网络中断时间一般在200ms-500ms左右，影响不大，确实优化了网络体验。对于网络要求不高的朋友推荐选择。不过在该方案下游戏会有一段明显的卡顿，但不会掉线。
 
 WiFi快速漫游
 
 
-如果你是一个追求完美网络体验的朋友，而且想一次到位部署网络，不再折腾了，那么你就需要Wifi快速漫游了。上面介绍的第二种方案，虽然效果说得过去，但仍然无法保证切换过程尽可能的少丢包及进一步缩短网络中断时间。这个时候就必须引入Wifi快速漫游方案了，通过Wifi快速漫游进一步缩短网络中断时间，提高网络使用体验，真正实现游戏中不卡顿
+
+  如果你是一个追求完美网络体验的朋友，而且想一次到位部署网络，不再折腾了，那么你就需要Wifi快速漫游了。上面介绍的第二种方案，虽然效果说得过去，但仍然无法保证切换过程尽可能的少丢包及进一步缩短网络中断时间。这个时候就必须引入Wifi快速漫游方案了，通过Wifi快速漫游进一步缩短网络中断时间，提高网络使用体验，真正实现游戏中不卡顿
  
 对于有AC控制器的Wifi网络系统中，漫游过程可以简单分为3个阶段：漫游触发→选择新AP→重新认证。这时候就需要802.11k/v/r协议登场了。
 
@@ -121,7 +125,7 @@ AC控制器：可用来集中化控制和管理无线AP，是一个无线网络�
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -144,7 +148,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1565,16 +1569,18 @@ https://github.com/alex-shpak/hugo-book
   1、WLAN漫游简介
   <a class="anchor" href="#1wlan%e6%bc%ab%e6%b8%b8%e7%ae%80%e4%bb%8b">#</a>
 </h2>
-<blockquote>
-<p><strong>百度百科</strong>：：当网络环境存在多个相同SSID的AP，且它们的覆盖范围的重合时，无线用户可以在整个WLAN覆盖区内移动，无线网卡能够自动发现附近信号强度最大的AP，并通过这个AP收发数据，保持不间断的网络连接，这就称为无线漫游。</p></blockquote>
-<p><strong>简单来说</strong>：<code>WLAN</code>漫游是指<code>STA</code>在不同的<code>AP</code>覆盖范围之间移动，且保持用户业务不中断的行为。</p>
+
+<blockquote class='book-hint '>
+  <p><strong>百度百科</strong>：：当网络环境存在多个相同SSID的AP，且它们的覆盖范围的重合时，无线用户可以在整个WLAN覆盖区内移动，无线网卡能够自动发现附近信号强度最大的AP，并通过这个AP收发数据，保持不间断的网络连接，这就称为无线漫游。</p>
+</blockquote><p><strong>简单来说</strong>：<code>WLAN</code>漫游是指<code>STA</code>在不同的<code>AP</code>覆盖范围之间移动，且保持用户业务不中断的行为。</p>
 <ul>
 <li><strong>AP</strong>：也就是无线接入点，是一个无线网络的创建者，是<strong>网络的中心节点</strong>。一般家庭或办公室使用的无线路由器就一个AP。</li>
 <li><strong>STA</strong>：每一个连接到无线网络中的<strong>终端</strong>(如笔记本电脑、PDA及其它可以联网的用户设备)都可称为一个站点。</li>
 </ul>
-<blockquote>
-<p>如下图所示，<code>STA1</code>从<code>AP1</code>的覆盖范围移动到<code>AP2</code>的覆盖范围时保持业务不中断。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/1161761-20190808105029933-1487137636.png" alt="img" /></p>
+
+<blockquote class='book-hint '>
+  <p>如下图所示，<code>STA1</code>从<code>AP1</code>的覆盖范围移动到<code>AP2</code>的覆盖范围时保持业务不中断。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/1161761-20190808105029933-1487137636.png" alt="img" /></p>
 <p> </p>
 <h2 id="2wifi漫游由来">
   2、WiFi漫游由来
@@ -1595,14 +1601,16 @@ https://github.com/alex-shpak/hugo-book
 <p>最次的方案也是要<strong>保证DHCP服务器的统一，保证切换Wifi时候IP地址不变。</strong></p>
 <p>更进一阶，引入AC控制器，利用AC+AP的组合形式实现wifi漫游。目前市面上主流的TPlink、爱快、Mesh等产品的方案多是如此。</p>
 <p>其根本的原理是通过AC设定AP的RSSI阈值，将信号不稳定的设备T下线，迫使终端设备重新连接信号最强的AP，实现AP的自动切换。</p>
-<blockquote>
-<p>实话实说这种方案对于绝大多数的用户是完全够用的，AP切换过程中网络中断时间一般在200ms-500ms左右，影响不大，确实优化了网络体验。对于网络要求不高的朋友推荐选择。不过在该方案下游戏会有一段明显的卡顿，但不会掉线。</p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>实话实说这种方案对于绝大多数的用户是完全够用的，AP切换过程中网络中断时间一般在200ms-500ms左右，影响不大，确实优化了网络体验。对于网络要求不高的朋友推荐选择。不过在该方案下游戏会有一段明显的卡顿，但不会掉线。</p>
+</blockquote><ul>
 <li><strong>WiFi快速漫游</strong></li>
 </ul>
-<blockquote>
-<p>如果你是一个追求完美网络体验的朋友，而且想一次到位部署网络，不再折腾了，那么你就需要<strong>Wifi快速漫游</strong>了。上面介绍的第二种方案，虽然效果说得过去，但仍然无法保证切换过程尽可能的少丢包及进一步缩短网络中断时间。这个时候就必须引入<strong>Wifi快速漫游</strong>方案了，通过<strong>Wifi快速漫游进一步缩短网络中断时间</strong>，提高网络使用体验，真正实现游戏中不卡顿</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>如果你是一个追求完美网络体验的朋友，而且想一次到位部署网络，不再折腾了，那么你就需要<strong>Wifi快速漫游</strong>了。上面介绍的第二种方案，虽然效果说得过去，但仍然无法保证切换过程尽可能的少丢包及进一步缩短网络中断时间。这个时候就必须引入<strong>Wifi快速漫游</strong>方案了，通过<strong>Wifi快速漫游进一步缩短网络中断时间</strong>，提高网络使用体验，真正实现游戏中不卡顿</p>
+</blockquote><p> </p>
 <p>对于有AC控制器的Wifi网络系统中，漫游过程可以简单分为3个阶段：<strong>漫游触发→选择新AP→重新认证</strong>。这时候就需要802.11k/v/r协议登场了。</p>
 <ul>
 <li>由于Wifi网络密码的存在，在重新认证阶段终端在切换AP的时候需要出示其缓存的密钥，AP检查密钥并进行四次握手，产生数据加密密钥，漫游完成。802.11r协议可以在以上基础上省略4次握手，进一步缩减了断网的时间。</li>
@@ -1654,16 +1662,19 @@ https://github.com/alex-shpak/hugo-book
 <li>所有网络部署的AP是胖AP，没有AC。</li>
 <li>所有网络部署的AP是瘦AP，没有AC也可以工作。</li>
 </ul>
-<blockquote>
-<p>胖瘦AP的区别：https://zhuanlan.zhihu.com/p/64648479</p></blockquote>
-<blockquote>
-<p>上面两种情况，主要是我们国情产生的，客户不停的压价还要一大堆需要。大家为了降低成本，没有部署AC。只需要SSID、加密配置和信道岔开即可。实际效果第中远好于第一种，因为第二种是在一个DHCP下，第一种就相当安装了很多的家用路由器，问题多多!</p></blockquote>
-</li>
+
+<blockquote class='book-hint '>
+  <p>胖瘦AP的区别：https://zhuanlan.zhihu.com/p/64648479</p>
+</blockquote>
+<blockquote class='book-hint '>
+  <p>上面两种情况，主要是我们国情产生的，客户不停的压价还要一大堆需要。大家为了降低成本，没有部署AC。只需要SSID、加密配置和信道岔开即可。实际效果第中远好于第一种，因为第二种是在一个DHCP下，第一种就相当安装了很多的家用路由器，问题多多!</p>
+</blockquote></li>
 <li>
 <p><strong>无缝漫游</strong>：</p>
-<blockquote>
-<p>无缝漫游能够做到的是在 AP 与 AP间的切换时间控制在毫秒级，基本不掉包，在业务运用上感受不到有任何停顿，这样客户终端在移动时从一个 AP 快速自由地切换到另一个 AP， 这就是无缝漫游。</p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>无缝漫游能够做到的是在 AP 与 AP间的切换时间控制在毫秒级，基本不掉包，在业务运用上感受不到有任何停顿，这样客户终端在移动时从一个 AP 快速自由地切换到另一个 AP， 这就是无缝漫游。</p>
+</blockquote><ul>
 <li>二层漫游：同一AC下的快速漫游，AP与AC直连组网，AP和AC连接在同一个VLAN内，可以实现二层漫游。</li>
 <li>三层漫游：跨VLAN的三层漫游，当网络规模比较大，VLAN不一样，IP网段也不相同，因为支持三层无缝漫游，从而保证用户在不一样VLAN间漫游而业务不中断。</li>
 </ul>
@@ -1750,9 +1761,10 @@ https://github.com/alex-shpak/hugo-book
 <ol>
 <li><strong>切换检测</strong>：当STA检测到要发生快速切换时，将向各信道发送切换请求。</li>
 </ol>
-<blockquote>
-<p>STA监听各信道beacon，发现新AP满足漫游条件，向新AP发送probe请求。新AP在其信道中收到请求后，通过在信道中发送应答来进行响应。STA收到应答后，对其进行评估，确定同哪个AP关联最合适。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/1161761-20190808111837035-725221065.png" alt="img" /></p>
+
+<blockquote class='book-hint '>
+  <p>STA监听各信道beacon，发现新AP满足漫游条件，向新AP发送probe请求。新AP在其信道中收到请求后，通过在信道中发送应答来进行响应。STA收到应答后，对其进行评估，确定同哪个AP关联最合适。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/1161761-20190808111837035-725221065.png" alt="img" /></p>
 <ol start="2">
 <li>
 <p><strong>切换触发</strong>：STA达到漫游阈值就会触发切换，对于触发条件，不同的STA会有不同的方式：</p>
@@ -1770,9 +1782,10 @@ https://github.com/alex-shpak/hugo-book
 <ol start="3">
 <li><strong>切换操作</strong>：关联新AP，解除与老AP的关联</li>
 </ol>
-<blockquote>
-<p>不同的STA会有不同的操作方式，一般情况，STA在发送切换请求后，发送关联新AP的请求，待请求被接受后，再关联新的AP，然后解除与老AP的关联。但有的STA也会先解除与老AP的关联，再关联新AP</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/1161761-20190808112728830-1243620432.png" alt="img" /></p>
+
+<blockquote class='book-hint '>
+  <p>不同的STA会有不同的操作方式，一般情况，STA在发送切换请求后，发送关联新AP的请求，待请求被接受后，再关联新的AP，然后解除与老AP的关联。但有的STA也会先解除与老AP的关联，再关联新AP</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/1161761-20190808112728830-1243620432.png" alt="img" /></p>
 <p> </p>
 <h2 id="6切换方式">
   6、切换方式
@@ -1808,11 +1821,12 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>
 <p><strong>信号相互覆盖的无线AP不能使用相同的频道</strong>。</p>
-<blockquote>
-<p>由于多个AP信号覆盖区域相互交叉重叠，因此，各个AP覆盖区域所占频道之间必须遵守一定的规范，邻近的相同频道之间不能相互覆盖，也就是说，相互覆盖区域的无线AP不能采用同一频道，否则，会造成AP在信号传输时的相互干扰，从而降低AP的工作效率。</p>
+
+<blockquote class='book-hint '>
+  <p>由于多个AP信号覆盖区域相互交叉重叠，因此，各个AP覆盖区域所占频道之间必须遵守一定的规范，邻近的相同频道之间不能相互覆盖，也就是说，相互覆盖区域的无线AP不能采用同一频道，否则，会造成AP在信号传输时的相互干扰，从而降低AP的工作效率。</p>
 <p>在可用的11个频道中，仅有3个频道是完全不覆盖的，他们分别是频道1、频道6和频道11，利用这些频道作为多蜂窝覆盖是最合适的。另外，用于实现无线漫游网络的无线AP必须使用同一网络名称（SSID），使用同一网段的IP地址，否则，无线客户端将无法实现漫游功能。</p>
-<p>无线漫游网络中，客户端的配置与接入点网络中的配置完全相同。用户在移动过程中，根本感觉不到无线AP间进行切换。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20220913153218889.png" alt="image-20220913153218889" /></p>
+<p>无线漫游网络中，客户端的配置与接入点网络中的配置完全相同。用户在移动过程中，根本感觉不到无线AP间进行切换。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20220913153218889.png" alt="image-20220913153218889" /></p>
 <p><strong>通过<code>wirelessMon</code>工具，可以查看不同信道的占用情况！</strong></p>
 </li>
 <li>

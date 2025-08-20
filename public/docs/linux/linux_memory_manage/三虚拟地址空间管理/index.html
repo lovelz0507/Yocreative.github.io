@@ -92,7 +92,7 @@ mm_struct的结构体如下：
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -115,7 +115,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1628,9 +1628,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">                    IA32_PAGE_OFFSET : TASK_SIZE_MAX)
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>......
 </span></span></code></pre></div><p>这里我们只需要知道<code>TASK_SIZE</code>默认值3为<code>PAGE_OFFSET</code>，并且默认为<code>0xC0000000</code>为分界线的，即用户空间<code>3GB</code>，内核空间<code>1GB</code>；当然这个可以由我们动态配置，可以配置<code>PAGE_OFFSET</code>为<code>0x80000000</code>，即用户空间和内核空间均为<code>2GB</code>，取决于我们的应用场合，当你看到与我们讲解不同时，也不用大惊小怪。</p>
-<blockquote>
-<p>以上，表达的概念很简单，如下图：</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/8e6efc5f2c39a39959c337077359a824.png" alt="image.png" /></p>
+
+<blockquote class='book-hint '>
+  <p>以上，表达的概念很简单，如下图：</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/8e6efc5f2c39a39959c337077359a824.png" alt="image.png" /></p>
 <p> </p>
 <h3 id="14-位置信息描述">
   1.4 位置信息描述
@@ -1650,9 +1651,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></code></pre></div><ul>
 <li><code>total_vm</code>：总映射页面的数目。（这么大的虚拟内存空间，不可能全部映射到真实的物理内存，都是按需映射的，这里表示当前映射的页面总数目）</li>
 </ul>
-<blockquote>
-<p>由于物理内存比较小，当内存吃紧的时候，就会发生<strong>换入换出</strong>的操作，即将暂时不用的页面换出到硬盘上，有的页面比较重要，不能换出。</p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>由于物理内存比较小，当内存吃紧的时候，就会发生<strong>换入换出</strong>的操作，即将暂时不用的页面换出到硬盘上，有的页面比较重要，不能换出。</p>
+</blockquote><ul>
 <li><code>locked_vm</code>：被锁定不能换出的页面</li>
 <li><code>pinned_vm</code> ：不能换出、也不能移动的页面</li>
 <li><code>data_vm</code>：存放数据页的页的数目</li>
@@ -1720,9 +1722,10 @@ https://github.com/alex-shpak/hugo-book
 <p>用户态空间的每个区域都由该结构体来管理，最终形成下面的这个结构：</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231008184824770.png" alt="image-20231008184824770" /></p>
 <p> </p>
-<blockquote>
-<p>顺便介绍一下 我的圈子：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，期待大家的加入。</p></blockquote>
-<h2 id="2内核态空间管理">
+
+<blockquote class='book-hint '>
+  <p>顺便介绍一下 我的圈子：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，期待大家的加入。</p>
+</blockquote><h2 id="2内核态空间管理">
   2、内核态空间管理
   <a class="anchor" href="#2%e5%86%85%e6%a0%b8%e6%80%81%e7%a9%ba%e9%97%b4%e7%ae%a1%e7%90%86">#</a>
 </h2>
@@ -1737,9 +1740,10 @@ https://github.com/alex-shpak/hugo-book
 </ol>
 <p> </p>
 <p>内核态空间管理并不像用户态那样使用结构体来统一管理，而是直接使用宏来定义每个区域的分界线，</p>
-<blockquote>
-<p>下面我们以<code>x86</code>架构来分析内核态空间的管理</p></blockquote>
-<h3 id="21-分界线定义">
+
+<blockquote class='book-hint '>
+  <p>下面我们以<code>x86</code>架构来分析内核态空间的管理</p>
+</blockquote><h3 id="21-分界线定义">
   2.1 分界线定义
   <a class="anchor" href="#21-%e5%88%86%e7%95%8c%e7%ba%bf%e5%ae%9a%e4%b9%89">#</a>
 </h3>
@@ -1777,9 +1781,10 @@ https://github.com/alex-shpak/hugo-book
 <li><code>PAGE_OFFSET</code>：表示内核镜像的起始地址，上文已经说明。</li>
 <li><code>high_memory</code>也是表示的就是<code>896M</code>这个值，表示高端内存的分界线。</li>
 </ul>
-<blockquote>
-<p>顺便说明以下，<code>TASK_SIZE</code>和<code>PAGE_OFFSET</code>在不同架构下是不同的，在<code>ARM</code>架构下，两者并不相等，本文以<code>X86</code>架构为例</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231010073949813.png" alt="image-20231010073949813" /></p>
+
+<blockquote class='book-hint '>
+  <p>顺便说明以下，<code>TASK_SIZE</code>和<code>PAGE_OFFSET</code>在不同架构下是不同的，在<code>ARM</code>架构下，两者并不相等，本文以<code>X86</code>架构为例</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231010073949813.png" alt="image-20231010073949813" /></p>
 <h3 id="23-安全保护区定义">
   2.3 安全保护区定义
   <a class="anchor" href="#23-%e5%ae%89%e5%85%a8%e4%bf%9d%e6%8a%a4%e5%8c%ba%e5%ae%9a%e4%b9%89">#</a>
@@ -1812,9 +1817,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#24-%e6%b0%b8%e4%b9%85%e6%98%a0%e5%b0%84%e5%8c%ba%e5%ae%9a%e4%b9%89">#</a>
 </h3>
 <p><code>PKMAP_BASE</code> 到 <code>FIXADDR_START</code> 的空间称为永久内核映射，在内核的这段虚拟地址空间中允许建立与物理高端内存的长期映射关系。</p>
-<blockquote>
-<p>比如内核通过 alloc_pages() 函数在物理内存的高端内存中申请获取到的物理内存页，这些物理内存页可以通过调用 kmap 映射到永久映射区中。</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">#define PKMAP_BASE		\
+
+<blockquote class='book-hint '>
+  <p>比如内核通过 alloc_pages() 函数在物理内存的高端内存中申请获取到的物理内存页，这些物理内存页可以通过调用 kmap 映射到永久映射区中。</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">#define PKMAP_BASE		\
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">    ((LDT_BASE_ADDR - PAGE_SIZE) &amp; PMD_MASK)
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>    
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define LDT_BASE_ADDR		\
@@ -1860,9 +1866,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#26-%e4%b8%b4%e6%97%b6%e6%98%a0%e5%b0%84%e5%8c%ba%e5%ae%9a%e4%b9%89">#</a>
 </h3>
 <p>最后<code>FIXADDR_TOP</code>到<code>0xFFFFFFFF</code>之间的区域称为临时映射区。</p>
-<blockquote>
-<p>它主要用来做什么呢，网上举的一个例子，大家参考以下。</p></blockquote>
-<p>假设用户态的进程要映射一个文件到内存中，先要映射用户态进程空间的一段虚拟地址到物理内存，然后将文件内容写入这个物理内存供用户态进程访问。</p>
+
+<blockquote class='book-hint '>
+  <p>它主要用来做什么呢，网上举的一个例子，大家参考以下。</p>
+</blockquote><p>假设用户态的进程要映射一个文件到内存中，先要映射用户态进程空间的一段虚拟地址到物理内存，然后将文件内容写入这个物理内存供用户态进程访问。</p>
 <p>给用户态进程分配物理内存页可以通过 alloc_pages()，分配完毕后，按说将用户态进程虚拟地址和物理内存的映射关系放在用户态进程的页表中，就完事大吉了。这个时候，用户态进程可以通过用户态的虚拟地址，也即 0 至 3G 的部分，经过页表映射后访问物理内存，并不需要内核态的虚拟地址里面也划出一块来，映射到这个物理内存页。</p>
 <p>但是如果要把文件内容写入物理内存，这件事情要内核来干了，这就只好通过 <code>kmap_atomic</code> 做一个临时映射，写入物理内存完毕后，再 <code>kunmap_atomic</code> 来解映射即可。</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231011195939077.png" alt="image-20231011195939077" /></p>

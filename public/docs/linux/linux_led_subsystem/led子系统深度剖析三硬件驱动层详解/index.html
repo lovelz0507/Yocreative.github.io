@@ -8,11 +8,13 @@
   #
 
 
-上篇文章我们了解了子系统的框架，下面我们来分析驱动框架中每层的实现以及作用。
+
+  上篇文章我们了解了子系统的框架，下面我们来分析驱动框架中每层的实现以及作用。
 
 在LED子系统中，硬件驱动层相关文件在包括：kernel/drivers/leds/ 目录下，其主要的函数有：led-gpio.c、led-xxx.c，其中led-gpio.c为通用的平台驱动程序，led-xxx.c为不同厂家提供的平台驱动程序。
 
-我们在这里主要分析led-gpio.c
+
+  我们在这里主要分析led-gpio.c
 
   1、gpio_led_probe分析
   #
@@ -39,7 +41,8 @@ struct gpio_led_platform_data {
 文件位置：include/linux/leds.h
 主要作用：LED的平台数据，用于对LED硬件设备的统一管理
 
-这个结构体用于父节点向子节点传递的数据时使用
+
+  这个结构体用于父节点向子节点传递的数据时使用
 
   1.1.2 gpio_leds_priv
   #
@@ -77,7 +80,7 @@ struct gpio_leds_priv {
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -100,7 +103,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1530,13 +1533,15 @@ https://github.com/alex-shpak/hugo-book
   【LED子系统深度剖析】三、硬件驱动层详解
   <a class="anchor" href="#led%e5%ad%90%e7%b3%bb%e7%bb%9f%e6%b7%b1%e5%ba%a6%e5%89%96%e6%9e%90%e4%b8%89%e7%a1%ac%e4%bb%b6%e9%a9%b1%e5%8a%a8%e5%b1%82%e8%af%a6%e8%a7%a3">#</a>
 </h1>
-<blockquote>
-<p>上篇文章我们了解了子系统的框架，下面我们来分析驱动框架中每层的实现以及作用。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230417084033734.png" alt="image-20230417084033734" /></p>
+
+<blockquote class='book-hint '>
+  <p>上篇文章我们了解了子系统的框架，下面我们来分析驱动框架中每层的实现以及作用。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230417084033734.png" alt="image-20230417084033734" /></p>
 <p>在<code>LED</code>子系统中，硬件驱动层相关文件在包括：<code>kernel/drivers/leds/</code> 目录下，其主要的函数有：<code>led-gpio.c</code>、<code>led-xxx.c</code>，其中<code>led-gpio.c</code>为通用的平台驱动程序，<code>led-xxx.c</code>为不同厂家提供的平台驱动程序。</p>
-<blockquote>
-<p>我们在这里主要分析<code>led-gpio.c</code></p></blockquote>
-<h2 id="1gpio_led_probe分析">
+
+<blockquote class='book-hint '>
+  <p>我们在这里主要分析<code>led-gpio.c</code></p>
+</blockquote><h2 id="1gpio_led_probe分析">
   1、gpio_led_probe分析
   <a class="anchor" href="#1gpio_led_probe%e5%88%86%e6%9e%90">#</a>
 </h2>
@@ -1561,9 +1566,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></code></pre></div><p><strong>结构体名称</strong>：<code>gpio_led_platform_data</code></p>
 <p><strong>文件位置</strong>：<code>include/linux/leds.h</code></p>
 <p><strong>主要作用</strong>：<code>LED</code>的平台数据，用于对<code>LED</code>硬件设备的统一管理</p>
-<blockquote>
-<p>这个结构体用于父节点向子节点传递的数据时使用</p></blockquote>
-<h4 id="112-gpio_leds_priv">
+
+<blockquote class='book-hint '>
+  <p>这个结构体用于父节点向子节点传递的数据时使用</p>
+</blockquote><h4 id="112-gpio_leds_priv">
   1.1.2 gpio_leds_priv
   <a class="anchor" href="#112-gpio_leds_priv">#</a>
 </h4>
@@ -1574,10 +1580,11 @@ https://github.com/alex-shpak/hugo-book
 </span></span></code></pre></div><p><strong>结构体名称</strong>：<code>gpio_leds_priv</code></p>
 <p><strong>文件位置</strong>：<code>drivers/leds/leds-gpio.c</code></p>
 <p><strong>主要作用</strong>：<code>LED</code>驱动的私有数据类型，管理全部的<code>LED</code>设备。</p>
-<blockquote>
-<p>这里的<code>num_leds</code>通过解析设备树的子节点的个数来获取</p>
-<p><code>leds[]</code>根据获取的<code>num_leds</code>个数，分配对应的空间，来初始化相关数据</p></blockquote>
-<h3 id="12-实现流程">
+
+<blockquote class='book-hint '>
+  <p>这里的<code>num_leds</code>通过解析设备树的子节点的个数来获取</p>
+<p><code>leds[]</code>根据获取的<code>num_leds</code>个数，分配对应的空间，来初始化相关数据</p>
+</blockquote><h3 id="12-实现流程">
   1.2 实现流程
   <a class="anchor" href="#12-%e5%ae%9e%e7%8e%b0%e6%b5%81%e7%a8%8b">#</a>
 </h3>
@@ -1648,9 +1655,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></code></pre></div><p><strong>结构体名称</strong>：<code>gpio_led</code></p>
 <p><strong>文件位置</strong>：<code>include/linux/leds.h</code></p>
 <p><strong>主要作用</strong>：<code>LED</code>的硬件描述结构，包括名称，<code>GPIO</code>编号，有效电平等等信息。</p>
-<blockquote>
-<p>该结构体的信息大多由解析设备树获得，将设备树中<code>label</code>解析为<code>name</code>，<code>gpios</code>解析为<code>gpiod</code>，<code>linux,default-trigger</code>解析为<code>default_trigger</code>等</p></blockquote>
-<h4 id="212-gpio_led_data">
+
+<blockquote class='book-hint '>
+  <p>该结构体的信息大多由解析设备树获得，将设备树中<code>label</code>解析为<code>name</code>，<code>gpios</code>解析为<code>gpiod</code>，<code>linux,default-trigger</code>解析为<code>default_trigger</code>等</p>
+</blockquote><h4 id="212-gpio_led_data">
   2.1.2 gpio_led_data
   <a class="anchor" href="#212-gpio_led_data">#</a>
 </h4>
@@ -1664,9 +1672,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span></code></pre></div><p><strong>结构体名称</strong>：<code>gpio_led_data</code></p>
 <p><strong>文件位置</strong>：<code>drivers/leds/leds-gpio.c</code></p>
 <p><strong>主要作用</strong>：<code>LED</code>相关数据信息，主要在于<code>led_classdev</code>，用于注册设备节点信息</p>
-<blockquote>
-<p>由设备树解析出来的<code>gpio_led</code>，然后将部分属性赋值到<code>gpio_led_data</code>中，并且初始化<code>led_classdev</code>相关属性，并且实现<code>led_classdev</code>结构体中的部分函数。</p></blockquote>
-<h3 id="22-实现流程">
+
+<blockquote class='book-hint '>
+  <p>由设备树解析出来的<code>gpio_led</code>，然后将部分属性赋值到<code>gpio_led_data</code>中，并且初始化<code>led_classdev</code>相关属性，并且实现<code>led_classdev</code>结构体中的部分函数。</p>
+</blockquote><h3 id="22-实现流程">
   2.2 实现流程
   <a class="anchor" href="#22-%e5%ae%9e%e7%8e%b0%e6%b5%81%e7%a8%8b">#</a>
 </h3>
@@ -1758,9 +1767,10 @@ https://github.com/alex-shpak/hugo-book
   3.1.1 led_classdev
   <a class="anchor" href="#311-led_classdev">#</a>
 </h4>
-<blockquote>
-<p>该数据结构属于核心层，在硬件驱动层需要与其进行关联，遂在此介绍。</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> led_classdev {
+
+<blockquote class='book-hint '>
+  <p>该数据结构属于核心层，在硬件驱动层需要与其进行关联，遂在此介绍。</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> led_classdev {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span>		<span style="color:#ff79c6">*</span>name;
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">enum</span> led_brightness	 brightness;
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">enum</span> led_brightness	 max_brightness;
@@ -1857,9 +1867,10 @@ https://github.com/alex-shpak/hugo-book
 <li><code>LED</code>闪烁功能控制：<code>blink_timer</code>、<code>blink_brightness</code>、<code>new_blink_brightness</code>等</li>
 <li><code>attribute_group</code>：创建<code>sysfs</code>文件节点，向上提供用户访问接口</li>
 </ul>
-<blockquote>
-<p>由上面可知，在创建<code>gpio_led_data</code>时，顺便初始化 <code>led_classdev</code>结构体，赋值相关属性以及部分回调函数，最终将<code>led_classdev</code>注册进入<code>LED</code>子系统框架中，在<code>sysfs</code>中创建对应的文件节点。</p></blockquote>
-<h3 id="32-实现流程">
+
+<blockquote class='book-hint '>
+  <p>由上面可知，在创建<code>gpio_led_data</code>时，顺便初始化 <code>led_classdev</code>结构体，赋值相关属性以及部分回调函数，最终将<code>led_classdev</code>注册进入<code>LED</code>子系统框架中，在<code>sysfs</code>中创建对应的文件节点。</p>
+</blockquote><h3 id="32-实现流程">
   3.2 实现流程
   <a class="anchor" href="#32-%e5%ae%9e%e7%8e%b0%e6%b5%81%e7%a8%8b">#</a>
 </h3>
@@ -1943,9 +1954,10 @@ https://github.com/alex-shpak/hugo-book
   4、回调函数分析
   <a class="anchor" href="#4%e5%9b%9e%e8%b0%83%e5%87%bd%e6%95%b0%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>硬件驱动层，肯定包括最终操作硬件的部分，也就是上面提到的一些回调函数，属于我们驱动工程师开发的内容。</p></blockquote>
-<h3 id="41-gpio_blink_set">
+
+<blockquote class='book-hint '>
+  <p>硬件驱动层，肯定包括最终操作硬件的部分，也就是上面提到的一些回调函数，属于我们驱动工程师开发的内容。</p>
+</blockquote><h3 id="41-gpio_blink_set">
   4.1 gpio_blink_set
   <a class="anchor" href="#41-gpio_blink_set">#</a>
 </h3>

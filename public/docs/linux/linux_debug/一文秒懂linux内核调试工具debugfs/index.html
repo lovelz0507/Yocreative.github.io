@@ -25,7 +25,8 @@ Debugfs其存在的主要意义是为了内核开发者向用户空间传递更�
 
 进去menuconfig选项中，按下/搜索CONFIG_DEBUG_FS关键词即可！
 
-当然，可以看Location在内核中的位置。
+
+  当然，可以看Location在内核中的位置。
 
   2.2 挂载Debugfs
   #
@@ -46,7 +47,8 @@ cat gpio
  gpio-43  (                    |wakeup              ) in  lo IRQ
  gpio-64  (                    |cd                  ) in  lo IRQ
 
-上述只是简单的调试GPIO的方法，而Debugfs功能远不止于此，其提供了一些API接口，方便我们在内核中Debug使用。
+
+  上述只是简单的调试GPIO的方法，而Debugfs功能远不止于此，其提供了一些API接口，方便我们在内核中Debug使用。
 而我们要做的，就是在我们想要进行Debug的地方，注册debugfs接口，然后查看我们要调试的信息。
 
   2.4 GPIO的实现
@@ -115,7 +117,7 @@ name：文件夹名称">
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -138,7 +140,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1571,9 +1573,10 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20220813152331070.png" alt="image-20220813152331070" /></p>
 <p>进去<code>menuconfig</code>选项中，按下<code>/</code>搜索<code>CONFIG_DEBUG_FS</code>关键词即可！</p>
-<blockquote>
-<p>当然，可以看<code>Location</code>在内核中的位置。</p></blockquote>
-<h3 id="22-挂载debugfs">
+
+<blockquote class='book-hint '>
+  <p>当然，可以看<code>Location</code>在内核中的位置。</p>
+</blockquote><h3 id="22-挂载debugfs">
   2.2 挂载<code>Debugfs</code>
   <a class="anchor" href="#22-%e6%8c%82%e8%bd%bddebugfs">#</a>
 </h3>
@@ -1592,10 +1595,11 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> gpio-43  <span style="color:#ff79c6">(</span>                    |wakeup              <span style="color:#ff79c6">)</span> in  lo IRQ
 </span></span><span style="display:flex;"><span> gpio-64  <span style="color:#ff79c6">(</span>                    |<span style="color:#8be9fd;font-style:italic">cd</span>                  <span style="color:#ff79c6">)</span> in  lo IRQ
-</span></span></code></pre></div><blockquote>
-<p>上述只是简单的调试<code>GPIO</code>的方法，而<code>Debugfs</code>功能远不止于此，其提供了一些API接口，方便我们在内核中<code>Debug</code>使用。</p>
-<p>而我们要做的，就是在我们想要进行<code>Debug</code>的地方，注册<code>debugfs</code>接口，然后查看我们要调试的信息。</p></blockquote>
-<h3 id="24-gpio的实现">
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>上述只是简单的调试<code>GPIO</code>的方法，而<code>Debugfs</code>功能远不止于此，其提供了一些API接口，方便我们在内核中<code>Debug</code>使用。</p>
+<p>而我们要做的，就是在我们想要进行<code>Debug</code>的地方，注册<code>debugfs</code>接口，然后查看我们要调试的信息。</p>
+</blockquote><h3 id="24-gpio的实现">
   2.4 GPIO的实现
   <a class="anchor" href="#24-gpio%e7%9a%84%e5%ae%9e%e7%8e%b0">#</a>
 </h3>

@@ -21,7 +21,8 @@ SMARSEMEM：稀疏内存模型
 
 Linux内核为了用统一的代码获取最大程度的兼容性，对物理内存的定义方面，引入了：内存结点（node）、内存区域（zone），内存页（page）的概念，下面我们来一一探究。
 
-更多干货可见：高级工程师聚集地，助力大家更上一层楼！
+
+  更多干货可见：高级工程师聚集地，助力大家更上一层楼！
  
 
   1、内存节点node
@@ -29,7 +30,8 @@ Linux内核为了用统一的代码获取最大程度的兼容性，对物理内
 
 内存节点的引入，是Linux为了最大程度的提高兼容性，将UMA和NUMA系统统一起来，对于UMA而言是只有一个节点的系统。
 
-下面的代码部分，我们尽可能的只保留暂时用的到的部分，不涉及太多的体系架相关的细节。
+
+  下面的代码部分，我们尽可能的只保留暂时用的到的部分，不涉及太多的体系架相关的细节。
 在Linux内核中，我们使用 typedef struct pglist_data pg_data_t表示一个节点
 /*
  * On NUMA machines, each NUMA node would have a pg_data_t to describe
@@ -78,7 +80,7 @@ FLATMEM：平坦内存模型 DISCONTIGMEM：不连续内存模型 SMARSEMEM：�
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -101,7 +103,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1521,17 +1523,19 @@ https://github.com/alex-shpak/hugo-book
 <li><code>SMARSEMEM</code>：稀疏内存模型</li>
 </ul>
 <p><code>Linux</code>内核为了用统一的代码获取最大程度的兼容性，对物理内存的定义方面，引入了：内存结点<code>（node）</code>、内存区域<code>（zone）</code>，内存页<code>（page）</code>的概念，下面我们来一一探究。</p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h2 id="1内存节点node">
   1、内存节点node
   <a class="anchor" href="#1%e5%86%85%e5%ad%98%e8%8a%82%e7%82%b9node">#</a>
 </h2>
 <p><span style="color: red;"><strong>内存节点的引入，是<code>Linux</code>为了最大程度的提高兼容性，将<code>UMA</code>和<code>NUMA</code>系统统一起来，对于<code>UMA</code>而言是只有一个节点的系统</strong>。</span></p>
-<blockquote>
-<p>下面的代码部分，我们尽可能的只保留暂时用的到的部分，不涉及太多的体系架相关的细节。</p></blockquote>
-<p>在<code>Linux</code>内核中，我们使用 <code>typedef struct pglist_data pg_data_t</code>表示一个节点</p>
+
+<blockquote class='book-hint '>
+  <p>下面的代码部分，我们尽可能的只保留暂时用的到的部分，不涉及太多的体系架相关的细节。</p>
+</blockquote><p>在<code>Linux</code>内核中，我们使用 <code>typedef struct pglist_data pg_data_t</code>表示一个节点</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6272a4">/*
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * On NUMA machines, each NUMA node would have a pg_data_t to describe
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * it&#39;s memory layout. On UMA machines there is a single pglist_data which
@@ -1568,11 +1572,12 @@ https://github.com/alex-shpak/hugo-book
 <p><code>node_spanned_pages</code>：这个节点所包含的物理内存的页面数，包括不连续的内存空洞</p>
 </li>
 </ul>
-<blockquote>
-<p>例如，64M 物理内存隔着一个 4M 的空洞，然后是另外的 64M 物理内存。</p>
+
+<blockquote class='book-hint '>
+  <p>例如，64M 物理内存隔着一个 4M 的空洞，然后是另外的 64M 物理内存。</p>
 <p>这样换算成页面数目就是，16K 个页面隔着 1K 个页面，然后是另外 16K 个页面。</p>
-<p>这种情况下，<code>node_spanned_pages</code> 就是 33K 个页面，<code>node_present_pages</code> 就是 32K 个页面。</p></blockquote>
-<p> </p>
+<p>这种情况下，<code>node_spanned_pages</code> 就是 33K 个页面，<code>node_present_pages</code> 就是 32K 个页面。</p>
+</blockquote><p> </p>
 <p>内核使用了一个大小为 <code>MAX_NUMNODES</code> ，类型为 <code>struct pglist_data</code> 的全局数组 <code>node_data[]</code> 来管理所有的 <code>NUMA</code> 节点。</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20231018065244586.png" alt="image-20231018065244586" /></p>
 <h2 id="2内存区域zone">
@@ -1602,10 +1607,11 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>    __MAX_NR_ZONES
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><p><code>ZONE_DMA</code>：用作<code>DMA</code>的内存。</p>
-<blockquote>
-<p><code>DMA</code> 是这样一种机制：要把外设的数据读入内存或把内存的数据传送到外设，原来都要通过 <code>CPU</code> 控制完成，但是这会占用 <code>CPU</code>，影响 <code>CPU</code> 处理其他事情，所以有了 <code>DMA</code> 模式。</p>
-<p><code>CPU</code> 只需向 <code>DMA</code> 控制器下达指令，让 <code>DMA</code> 控制器来处理数据的传送，数据传送完毕再把信息反馈给 <code>CPU</code>，这样就可以解放 <code>CPU</code>。</p></blockquote>
-<p><code>ZONE_DMA32</code>：对于 <code>64</code> 位系统，有两个 <code>DMA</code> 区域。除了上面说的 <code>ZONE_DMA</code>，还有 <code>ZONE_DMA32</code>。</p>
+
+<blockquote class='book-hint '>
+  <p><code>DMA</code> 是这样一种机制：要把外设的数据读入内存或把内存的数据传送到外设，原来都要通过 <code>CPU</code> 控制完成，但是这会占用 <code>CPU</code>，影响 <code>CPU</code> 处理其他事情，所以有了 <code>DMA</code> 模式。</p>
+<p><code>CPU</code> 只需向 <code>DMA</code> 控制器下达指令，让 <code>DMA</code> 控制器来处理数据的传送，数据传送完毕再把信息反馈给 <code>CPU</code>，这样就可以解放 <code>CPU</code>。</p>
+</blockquote><p><code>ZONE_DMA32</code>：对于 <code>64</code> 位系统，有两个 <code>DMA</code> 区域。除了上面说的 <code>ZONE_DMA</code>，还有 <code>ZONE_DMA32</code>。</p>
 <p><code>ZONE_NORMAL</code>：直接映射区，也就i是之前讲的从物理内存到虚拟内存的内核区域，通过加上一个常量直接映射。</p>
 <p><code>ZONE_HIGHMEM</code>：高端内存区</p>
 <p><code>ZONE_MOVABLE</code>：可移动区域，通过将物理内存划分为可移动分配区域和不可移动分配区域来避免内存碎片。</p>
@@ -1615,9 +1621,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#22-%e5%90%84%e5%8c%ba%e5%9f%9f%e7%9a%84%e7%ae%a1%e7%90%86">#</a>
 </h3>
 <p>上面我们大致了解了，每个<code>zone</code>的布局情况，下面我们来看看内核是如何对其进行管理的。</p>
-<blockquote>
-<p>接着上面介绍的<code>pglist_data</code>结构体</p></blockquote>
-<pre tabindex="0"><code>/*
+
+<blockquote class='book-hint '>
+  <p>接着上面介绍的<code>pglist_data</code>结构体</p>
+</blockquote><pre tabindex="0"><code>/*
  * On NUMA machines, each NUMA node would have a pg_data_t to describe
  * it&#39;s memory layout. On UMA machines there is a single pglist_data which
  * describes the whole memory.
@@ -1644,17 +1651,19 @@ typedef struct pglist_data {
 </code></pre><ul>
 <li><code>nr_zones</code>：用于统计 <code>NUMA</code> 节点内包含的物理内存区域个数，<span style="color: red;"><strong>不是每个 <code>NUMA</code> 节点都会包含以上介绍的所有物理内存区域，<code>NUMA</code> 节点之间所包含的物理内存区域个数是不一样的</strong>。</span></li>
 </ul>
-<blockquote>
-<p>事实上只有第一个 <code>NUMA</code> 节点可以包含所有的物理内存区域，其它的节点并不能包含所有的区域类型，因为有些内存区域比如：<code>ZONE_DMA</code>，<code>ZONE_DMA32</code> 必须从物理内存的起点开始。这些在物理内存开始的区域可能已经被划分到第一个 <code>NUMA</code> 节点了，后面的物理内存才会被依次划分给接下来的 <code>NUMA</code> 节点。因此后面的 <code>NUMA</code> 节点并不会包含 <code>ZONE_DMA</code>，<code>ZONE_DMA32</code> 区域。</p>
-<p><code>ZONE_NORMAL</code>、<code>ZONE_HIGHMEM</code> 和 <code>ZONE_MOVABLE</code> 是可以出现在所有 <code>NUMA</code> 节点上的。</p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>事实上只有第一个 <code>NUMA</code> 节点可以包含所有的物理内存区域，其它的节点并不能包含所有的区域类型，因为有些内存区域比如：<code>ZONE_DMA</code>，<code>ZONE_DMA32</code> 必须从物理内存的起点开始。这些在物理内存开始的区域可能已经被划分到第一个 <code>NUMA</code> 节点了，后面的物理内存才会被依次划分给接下来的 <code>NUMA</code> 节点。因此后面的 <code>NUMA</code> 节点并不会包含 <code>ZONE_DMA</code>，<code>ZONE_DMA32</code> 区域。</p>
+<p><code>ZONE_NORMAL</code>、<code>ZONE_HIGHMEM</code> 和 <code>ZONE_MOVABLE</code> 是可以出现在所有 <code>NUMA</code> 节点上的。</p>
+</blockquote><ul>
 <li><code>node_zones[MAX_NR_ZONES]</code>：<code>node_zones</code>该数组包括了所有的<code>zone</code>物理内存区域</li>
 <li><code>node_zonelists[MAX_ZONELISTS]</code>：是 <code>struct zonelist</code> 类型的数组，它包含了备用 <code>NUMA</code> 节点和这些备用节点中的物理内存区域。</li>
 </ul>
 <p> </p>
-<blockquote>
-<p>下面我们看一下<code>struct zone</code>结构体</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> zone {
+
+<blockquote class='book-hint '>
+  <p>下面我们看一下<code>struct zone</code>结构体</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> zone {
 </span></span><span style="display:flex;"><span>......
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> pglist_data	<span style="color:#ff79c6">*</span>zone_pgdat;
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> per_cpu_pageset __percpu <span style="color:#ff79c6">*</span>pageset;
@@ -1704,21 +1713,24 @@ typedef struct pglist_data {
 <li><code>managed_pages</code>：看注释我们可以知道，<code>managed_pages = present_pages - reserved_pages</code>，被伙伴系统管理的所有页面数。</li>
 <li><code>per_cpu_pageset</code>：用于区分冷热页，</li>
 </ul>
-<blockquote>
-<p>什么叫冷热页呢？咱们讲 x86 体系结构的时候讲过，为了让 CPU 快速访问段描述符，在 CPU 里面有段描述符缓存。CPU 访问这个缓存的速度比内存快得多。同样对于页面来讲，也是这样的。如果一个页被加载到 CPU 高速缓存里面，这就是一个热页（Hot Page），CPU 读起来速度会快很多，如果没有就是冷页（Cold Page）。由于每个 CPU 都有自己的高速缓存，因而 per_cpu_pageset 也是每个 CPU 一个。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/b1ec8d6f4a2f6955654f791052c1a006.png" alt="image.png" /></p>
+
+<blockquote class='book-hint '>
+  <p>什么叫冷热页呢？咱们讲 x86 体系结构的时候讲过，为了让 CPU 快速访问段描述符，在 CPU 里面有段描述符缓存。CPU 访问这个缓存的速度比内存快得多。同样对于页面来讲，也是这样的。如果一个页被加载到 CPU 高速缓存里面，这就是一个热页（Hot Page），CPU 读起来速度会快很多，如果没有就是冷页（Cold Page）。由于每个 CPU 都有自己的高速缓存，因而 per_cpu_pageset 也是每个 CPU 一个。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/b1ec8d6f4a2f6955654f791052c1a006.png" alt="image.png" /></p>
 <p> </p>
-<blockquote>
-<p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>更多干货可见：<a href="https://t.zsxq.com/0eUcTOhdO">高级工程师聚集地</a>，助力大家更上一层楼！</p>
+</blockquote><p> </p>
 <h2 id="3内存页page">
   3、内存页page
   <a class="anchor" href="#3%e5%86%85%e5%ad%98%e9%a1%b5page">#</a>
 </h2>
 <p>内存页是物理内存最小单位，有时也叫页帧<code>（page frame）</code>，<code>Linux</code>会为系统的物理内存的每一个页都创建了<code>struct page</code>对象，并用全局变量<code>struct page *mem_map</code>来存放所有物理页<code>page</code>对象的指针，页的大小取决于<code>MMU（Memory Management Unit）</code>，后者主要用来将虚拟地址空间转换为物理地址空间。</p>
-<blockquote>
-<p>看一下<code>page</code>的结构体</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> page {
+
+<blockquote class='book-hint '>
+  <p>看一下<code>page</code>的结构体</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> page {
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> flags;		<span style="color:#6272a4">/* Atomic flags, some possibly
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                     * updated asynchronously */</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">union</span> {
@@ -1776,9 +1788,10 @@ typedef struct pglist_data {
 <li>第一种模式：直接用一整页，这一整页的物理内存直接与虚拟地址空间建立映射关系，我们把这种称为匿名页<code>（Anonymous Page）</code>。或者用于关联一个文件，然后再和虚拟地址空间建立映射关系，这样的文件，我们称为内存映射文件<code>（Memory-mapped File）</code>，这种分配页级别的，<code>Linux</code>采用一种被称为<strong>伙伴系统</strong><code>（Buddy System）</code>的技术。</li>
 <li>第二种模式：仅需要分配小的内存块。有时候，我们不需要一下子分配这么多的内存，例如分配一个 <code>task_struct</code> 结构，只需要分配小块的内存，去存储这个进程描述结构的对象。为了满足对这种小内存块的需要，<code>Linux</code> 系统采用了一种被称为<strong>slab allocator</strong>的技术</li>
 </ul>
-<blockquote>
-<p>上面说的两种，都是页的分配方式，也就是物理内存的分配方式，下一章，我们继续深入分析物理内存的这两种分配方式。</p></blockquote>
-<center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
+
+<blockquote class='book-hint '>
+  <p>上面说的两种，都是页的分配方式，也就是物理内存的分配方式，下一章，我们继续深入分析物理内存的这两种分配方式。</p>
+</blockquote><center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
 <div align=center><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/blog.png" alt="img" width = "60%" height ="10%"/>
 </div>
 </article>

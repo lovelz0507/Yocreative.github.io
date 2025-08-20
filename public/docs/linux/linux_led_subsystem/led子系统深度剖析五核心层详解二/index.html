@@ -12,7 +12,8 @@
   #
 
 
-上篇文章我们了解了子系统的核心层led-class.c，下面我们来分析驱动框架中核心层的led-core.c实现以及作用。
+
+  上篇文章我们了解了子系统的核心层led-class.c，下面我们来分析驱动框架中核心层的led-core.c实现以及作用。
 
 我们接着从led-core.c文件开始分析
 
@@ -20,7 +21,8 @@
   #
 
 
-上一篇文章，我们知道在将leds_classdev注册进入子系统后，会调用led_init_core函数，初始化核心层，下面我们以led_init_core该函数为突破口分析。
+
+  上一篇文章，我们知道在将leds_classdev注册进入子系统后，会调用led_init_core函数，初始化核心层，下面我们以led_init_core该函数为突破口分析。
 
   2.1 相关数据结构
   #
@@ -85,7 +87,7 @@ struct timer_list {
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -108,7 +110,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1533,17 +1535,19 @@ https://github.com/alex-shpak/hugo-book
   1、前言
   <a class="anchor" href="#1%e5%89%8d%e8%a8%80">#</a>
 </h2>
-<blockquote>
-<p>上篇文章我们了解了子系统的核心层<code>led-class.c</code>，下面我们来分析驱动框架中核心层的<code>led-core.c</code>实现以及作用。</p></blockquote>
-<p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230417084033734.png" alt="image-20230417084033734" /></p>
+
+<blockquote class='book-hint '>
+  <p>上篇文章我们了解了子系统的核心层<code>led-class.c</code>，下面我们来分析驱动框架中核心层的<code>led-core.c</code>实现以及作用。</p>
+</blockquote><p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20230417084033734.png" alt="image-20230417084033734" /></p>
 <p><span style="color: red;"><strong>我们接着从<code>led-core.c</code>文件开始分析</strong></span></p>
 <h2 id="2led_init_core分析">
   2、led_init_core分析
   <a class="anchor" href="#2led_init_core%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>上一篇文章，我们知道在将<code>leds_classdev</code>注册进入子系统后，会调用<code>led_init_core</code>函数，初始化核心层，下面我们以<code>led_init_core</code>该函数为突破口分析。</p></blockquote>
-<h3 id="21-相关数据结构">
+
+<blockquote class='book-hint '>
+  <p>上一篇文章，我们知道在将<code>leds_classdev</code>注册进入子系统后，会调用<code>led_init_core</code>函数，初始化核心层，下面我们以<code>led_init_core</code>该函数为突破口分析。</p>
+</blockquote><h3 id="21-相关数据结构">
   2.1 相关数据结构
   <a class="anchor" href="#21-%e7%9b%b8%e5%85%b3%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">#</a>
 </h3>
@@ -1640,16 +1644,18 @@ https://github.com/alex-shpak/hugo-book
 </h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>    <span style="color:#50fa7b">timer_setup</span>(<span style="color:#ff79c6">&amp;</span>led_cdev<span style="color:#ff79c6">-&gt;</span>blink_timer, led_timer_function, <span style="color:#bd93f9">0</span>);
 </span></span></code></pre></div><p><strong>函数介绍</strong>：这里不展开介绍，同上，将定时器指针和处理函数作为参数，直接初始化。定时器的超时时间通过<code>mod_timer</code>来设置。</p>
-<blockquote>
-<p>由上文可知，我们<code>led-core.c</code>的核心是初始化了一个工作队列和一个定时器函数，<span style="color: red;"><strong>通过延迟工作队列来设置 <code>LED</code> 亮度，并通过计时器来进行软件闪烁。</strong></span></p>
-<p>我们先来分析<code>led_timer_function</code>函数</p></blockquote>
-<h2 id="3led_timer_function分析">
+
+<blockquote class='book-hint '>
+  <p>由上文可知，我们<code>led-core.c</code>的核心是初始化了一个工作队列和一个定时器函数，<span style="color: red;"><strong>通过延迟工作队列来设置 <code>LED</code> 亮度，并通过计时器来进行软件闪烁。</strong></span></p>
+<p>我们先来分析<code>led_timer_function</code>函数</p>
+</blockquote><h2 id="3led_timer_function分析">
   3、led_timer_function分析
   <a class="anchor" href="#3led_timer_function%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>由上文可知，<code>led_timer_function</code>主要负责<code>LED</code>的闪烁功能</p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">led_timer_function</span>(<span style="color:#ff79c6">struct</span> timer_list <span style="color:#ff79c6">*</span>t)
+
+<blockquote class='book-hint '>
+  <p>由上文可知，<code>led_timer_function</code>主要负责<code>LED</code>的闪烁功能</p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">led_timer_function</span>(<span style="color:#ff79c6">struct</span> timer_list <span style="color:#ff79c6">*</span>t)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> led_classdev <span style="color:#ff79c6">*</span>led_cdev <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">from_timer</span>(led_cdev, t, blink_timer);	<span style="color:#6272a4">//	获取结构体指针
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span> brightness;
@@ -1787,9 +1793,10 @@ https://github.com/alex-shpak/hugo-book
   4、set_brightness_delayed分析
   <a class="anchor" href="#4set_brightness_delayed%e5%88%86%e6%9e%90">#</a>
 </h2>
-<blockquote>
-<p>由上面可知，如果子系统打开了休眠功能，设置<code>LED</code>亮度时，需要加入工作队列，而工作队列的处理函数即： <code>set_brightness_delayed</code></p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">set_brightness_delayed</span>(<span style="color:#ff79c6">struct</span> work_struct <span style="color:#ff79c6">*</span>ws)
+
+<blockquote class='book-hint '>
+  <p>由上面可知，如果子系统打开了休眠功能，设置<code>LED</code>亮度时，需要加入工作队列，而工作队列的处理函数即： <code>set_brightness_delayed</code></p>
+</blockquote><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">set_brightness_delayed</span>(<span style="color:#ff79c6">struct</span> work_struct <span style="color:#ff79c6">*</span>ws)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> led_classdev <span style="color:#ff79c6">*</span>led_cdev <span style="color:#ff79c6">=</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">container_of</span>(ws, <span style="color:#ff79c6">struct</span> led_classdev, set_brightness_work);
@@ -1846,9 +1853,10 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> led_cdev<span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">brightness_set_blocking</span>(led_cdev, value);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>函数介绍</strong>：<strong>阻塞</strong>设置<code>LED</code>亮度，该函数调用<code>led-gpio.c</code>硬件驱动层分配的函数来操作硬件实现，<strong>用于在支持休眠时，避免休眠打断该函数执行</strong>。</p>
-<blockquote>
-<p>这两个函数，如果看源码的话，还是有点绕的，因为<code>__led_set_brightness_blocking</code>内部竟然也直接调用了<code>__led_set_brightness</code>，所以这里也尽量还原代码原本的意思。</p></blockquote>
-<p>这篇就先讲到这里，当然该文件中还有一些<code>xxx_blink</code>相关的函数，主要用于管理闪烁，我们放到后面再了解。</p>
+
+<blockquote class='book-hint '>
+  <p>这两个函数，如果看源码的话，还是有点绕的，因为<code>__led_set_brightness_blocking</code>内部竟然也直接调用了<code>__led_set_brightness</code>，所以这里也尽量还原代码原本的意思。</p>
+</blockquote><p>这篇就先讲到这里，当然该文件中还有一些<code>xxx_blink</code>相关的函数，主要用于管理闪烁，我们放到后面再了解。</p>
 <h2 id="5总结">
   5、总结
   <a class="anchor" href="#5%e6%80%bb%e7%bb%93">#</a>

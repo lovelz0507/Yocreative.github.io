@@ -13,10 +13,12 @@
 
 在Linux内核开发中，Kmemleak是一种用于检测内核中内存泄漏的工具。
 
-内存泄漏指的是程序中已经不再使用的内存没有被妥善地释放，导致内存的浪费。内核中的内存泄漏同样会导致系统性能下降、系统崩溃等问题。
+
+  内存泄漏指的是程序中已经不再使用的内存没有被妥善地释放，导致内存的浪费。内核中的内存泄漏同样会导致系统性能下降、系统崩溃等问题。
 Kmemleak能够检测内核中的内存泄漏，通过检测内核中未被释放但又无法找到其使用位置的内存，进一步定位、修复内存泄漏的问题。
 
-在用户空间，我们常用Valgrind来检测；
+
+  在用户空间，我们常用Valgrind来检测；
 在内核空间，我们常用Kmemleak来检测。
  
 
@@ -54,7 +56,8 @@ mount -t debugfs nodev /sys/kernel/debug/			#	挂在debugfs
 
 echo scan=10 &gt; /sys/kernel/debug/kmemleak			#	10S扫描一次
 
-默认内存泄露检测时间为10min，上面设置为10s一次
+
+  默认内存泄露检测时间为10min，上面设置为10s一次
 
 查看泄露情况：
 
@@ -99,7 +102,7 @@ CONFIG_DEBUG_KERNEL：打开内核调试功能 CONFIG_DEBUG_FS：需要借助到
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -122,7 +125,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1539,13 +1542,15 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#1kmemleak%e4%bb%8b%e7%bb%8d">#</a>
 </h2>
 <p>在<code>Linux</code>内核开发中，<code>Kmemleak</code>是一种用于<strong>检测内核中内存泄漏的工具</strong>。</p>
-<blockquote>
-<p><strong>内存泄漏</strong>指的是程序中已经不再使用的内存没有被妥善地释放，导致内存的浪费。内核中的内存泄漏同样会导致系统性能下降、系统崩溃等问题。</p></blockquote>
-<p><code>Kmemleak</code>能够检测内核中的内存泄漏，通过检测内核中未被释放但又无法找到其使用位置的内存，进一步定位、修复内存泄漏的问题。</p>
-<blockquote>
-<p>在用户空间，我们常用<code>Valgrind</code>来检测；</p>
-<p>在内核空间，我们常用<code>Kmemleak</code>来检测。</p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p><strong>内存泄漏</strong>指的是程序中已经不再使用的内存没有被妥善地释放，导致内存的浪费。内核中的内存泄漏同样会导致系统性能下降、系统崩溃等问题。</p>
+</blockquote><p><code>Kmemleak</code>能够检测内核中的内存泄漏，通过检测内核中未被释放但又无法找到其使用位置的内存，进一步定位、修复内存泄漏的问题。</p>
+
+<blockquote class='book-hint '>
+  <p>在用户空间，我们常用<code>Valgrind</code>来检测；</p>
+<p>在内核空间，我们常用<code>Kmemleak</code>来检测。</p>
+</blockquote><p> </p>
 <h2 id="2如何使用kmemleak">
   2、如何使用Kmemleak
   <a class="anchor" href="#2%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8kmemleak">#</a>
@@ -1580,9 +1585,10 @@ https://github.com/alex-shpak/hugo-book
 <li><strong>设置扫描时间</strong>：</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#8be9fd;font-style:italic">scan</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span> &gt; /sys/kernel/debug/kmemleak			<span style="color:#6272a4">#	10S扫描一次</span>
-</span></span></code></pre></div><blockquote>
-<p>默认内存泄露检测时间为<code>10min</code>，上面设置为<code>10s</code>一次</p></blockquote>
-<ul>
+</span></span></code></pre></div>
+<blockquote class='book-hint '>
+  <p>默认内存泄露检测时间为<code>10min</code>，上面设置为<code>10s</code>一次</p>
+</blockquote><ul>
 <li><strong>查看泄露情况</strong>：</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /sys/kernel/debug/kmemleak						<span style="color:#6272a4">#	查看内存泄露情况</span>
@@ -1610,15 +1616,17 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#3kmemleak%e5%8e%9f%e7%90%86">#</a>
 </h2>
 <p><code>Kmemleak</code>提供了一种跟踪垃圾回收器<a href="https://en.wikipedia.org/wiki/Tracing_garbage_collection">tracing garbage collector</a>的原理，来检测内核中存在的内存泄露，其不同之处在于：孤立的对象并没有被释放掉，而是通过<code>/sys/kernel/debug/kmemleak</code>仅仅被报告。</p>
-<blockquote>
-<p>这种方法同样应用于<code>Valgrind</code>中，不过该工具主要用于检测用户空间不同应用的内存泄露情况。</p>
+
+<blockquote class='book-hint '>
+  <p>这种方法同样应用于<code>Valgrind</code>中，不过该工具主要用于检测用户空间不同应用的内存泄露情况。</p>
 <p>在用户空间，我们常用<code>Valgrind</code>来检测应用进程；</p>
-<p>在内核空间，我们常用<code>Kmemleak</code>来检测内核代码。</p></blockquote>
-<p>通过<code>kmalloc()</code>、<code>vmalloc（）</code>、<code>kmem_cache_alloc()</code>等函数分配内存时，会跟踪指针，堆栈等信息，将其存储在一个红黑树中。</p>
+<p>在内核空间，我们常用<code>Kmemleak</code>来检测内核代码。</p>
+</blockquote><p>通过<code>kmalloc()</code>、<code>vmalloc（）</code>、<code>kmem_cache_alloc()</code>等函数分配内存时，会跟踪指针，堆栈等信息，将其存储在一个红黑树中。</p>
 <p>同时跟踪相应的释放函数调用，并从<code>kmemleak</code>数据结构中删除指针。</p>
-<blockquote>
-<p><strong>简单理解</strong>：相当于追踪内存分配相关接口，记录分配内存的首地址，堆栈大小等信息，在内存释放阶段将其删除。</p></blockquote>
-<p>我们通过查看相关内核文档可知，内存泄露检测的扫描算法步骤如下：</p>
+
+<blockquote class='book-hint '>
+  <p><strong>简单理解</strong>：相当于追踪内存分配相关接口，记录分配内存的首地址，堆栈大小等信息，在内存释放阶段将其删除。</p>
+</blockquote><p>我们通过查看相关内核文档可知，内存泄露检测的扫描算法步骤如下：</p>
 <ul>
 <li>将所有对象标记为白色（最后剩余的白色对象将被视为孤立对象）</li>
 <li>从数据段和堆栈开始扫描内存，根据红黑树中存储的地址信息来检查值，如果找到指向白色对象的指针，则添加到灰色列表</li>

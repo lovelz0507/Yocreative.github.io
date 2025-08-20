@@ -15,7 +15,8 @@
 为了更好的去踏入蓝牙开发的大门，蓝牙协议栈是一个我们不得不去跨越的门槛！
 
 
-蓝牙协议及其复杂，并非一文能够道尽，本篇文章主要在于对蓝牙整体的协议架构进行梳理，文末官方协议附下载链接。
+
+  蓝牙协议及其复杂，并非一文能够道尽，本篇文章主要在于对蓝牙整体的协议架构进行梳理，文末官方协议附下载链接。
  
 
   2、蓝牙芯片架构
@@ -49,13 +50,7 @@ MAC/PHY (AMP) Controller：二级控制器，可替代的，内部包含 802.11 
   #
 
 
-==上图为官方协议中所提及的图片，由全局到局部来看==
-
-  3.1 全局分析
-  #
-
-
-由下到上分析">
+==上图为官方协议中所提及的图片，由全局到局部来看==">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/Yocreative.github.io/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%89%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E6%80%BB%E8%A7%88%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE/">
@@ -68,8 +63,7 @@ MAC/PHY (AMP) Controller：二级控制器，可替代的，内部包含 802.11 
 BT Host：一个逻辑实体，在HCI（Host Controller Interface）的上层。 BT Controller：一个逻辑实体，在HCI（Host Controller Interface）的下层。 Bluetooth的主控制器，可能是以下几种：
 BR/EDR Controller：内部包含Radio, Baseband，Link Manager，可选的HCI。 LE Controller ：内部包含LE PHY，Link Layer ，可选的HCI BR/EDR &amp; LE Controller ：BR/EDR与LE的组合的控制器 MAC/PHY (AMP) Controller：二级控制器，可替代的，内部包含 802.11 PAL (Protocol Adaptation Layer)，802.11 MAC，PHY，可选的HCI。 根据Host与Controller的组成关系，常见的蓝牙芯片也分为以下几种架构：
 单模蓝牙芯片：单一传统蓝牙的芯片，单一低功耗蓝牙的芯片。即（1个Host结合1个Controller） 双模蓝牙芯片：同时支持传统蓝牙和低功耗蓝牙的芯片。即（1个Host结合多个Controller） 如下图：
-3、蓝牙协议架构——视角1 # ==上图为官方协议中所提及的图片，由全局到局部来看==
-3.1 全局分析 # 由下到上分析">
+3、蓝牙协议架构——视角1 # ==上图为官方协议中所提及的图片，由全局到局部来看==">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -83,7 +77,7 @@ BR/EDR Controller：内部包含Radio, Baseband，Link Manager，可选的HCI。
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -106,7 +100,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1529,9 +1523,10 @@ https://github.com/alex-shpak/hugo-book
 <p>在我们上一章节，学习了蓝牙的基础概念，发展历程，以及常见的蓝牙架构，相信大家对蓝牙也有了一定的了解！</p>
 <p>为了更好的去踏入蓝牙开发的大门，蓝牙协议栈是一个我们不得不去跨越的门槛！</p>
 <p><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20220930070002304.png" alt="" /></p>
-<blockquote>
-<p>蓝牙协议及其复杂，并非一文能够道尽，本篇文章主要在于对蓝牙整体的协议架构进行梳理，<span style="color: red;"><strong>文末官方协议附下载链接。</strong></span></p></blockquote>
-<p> </p>
+
+<blockquote class='book-hint '>
+  <p>蓝牙协议及其复杂，并非一文能够道尽，本篇文章主要在于对蓝牙整体的协议架构进行梳理，<span style="color: red;"><strong>文末官方协议附下载链接。</strong></span></p>
+</blockquote><p> </p>
 <h2 id="2蓝牙芯片架构">
   2、蓝牙芯片架构
   <a class="anchor" href="#2%e8%93%9d%e7%89%99%e8%8a%af%e7%89%87%e6%9e%b6%e6%9e%84">#</a>
@@ -1569,9 +1564,10 @@ https://github.com/alex-shpak/hugo-book
   3.1 全局分析
   <a class="anchor" href="#31-%e5%85%a8%e5%b1%80%e5%88%86%e6%9e%90">#</a>
 </h3>
-<blockquote>
-<p><strong>由下到上分析</strong></p></blockquote>
-<p><strong>Controller</strong>：</p>
+
+<blockquote class='book-hint '>
+  <p><strong>由下到上分析</strong></p>
+</blockquote><p><strong>Controller</strong>：</p>
 <ul>
 <li><strong>BR/EDR Controller</strong>：由<code>BR/EDR Radio</code>、<code>Link Controller</code>、<code>Link Manager</code>组成</li>
 <li><strong>LE Controller</strong>：由 <code>LE Radio</code> 、<code>Link Controller</code>、<code>Link Manager</code>组成</li>
@@ -1587,9 +1583,10 @@ https://github.com/alex-shpak/hugo-book
   5.3.2 局部分析
   <a class="anchor" href="#532-%e5%b1%80%e9%83%a8%e5%88%86%e6%9e%90">#</a>
 </h3>
-<blockquote>
-<p><strong>由上到下分析</strong></p></blockquote>
-<h4 id="host层">
+
+<blockquote class='book-hint '>
+  <p><strong>由上到下分析</strong></p>
+</blockquote><h4 id="host层">
   Host层
   <a class="anchor" href="#host%e5%b1%82">#</a>
 </h4>

@@ -21,7 +21,7 @@
 <link rel="icon" href="/Yocreative.github.io/favicon.png" >
 <link rel="stylesheet" href="/Yocreative.github.io/book.min.4ae964196dcc6279a3d1841429e333370db34743a39dd47a1618e36a7415ed3d.css" integrity="sha256-SulkGW3MYnmj0YQUKeMzNw2zR0OjndR6FhjjanQV7T0=" crossorigin="anonymous">
   <script defer src="/Yocreative.github.io/flexsearch.min.js"></script>
-  <script defer src="/Yocreative.github.io/en.search.min.f09d15baf528d6d6309ab7cf3a0e2186adbb7d5e3beece38147d7ef1a654744a.js" integrity="sha256-8J0VuvUo1tYwmrfPOg4hhq27fV477s44FH1&#43;8aZUdEo=" crossorigin="anonymous"></script>
+  <script defer src="/Yocreative.github.io/en.search.min.cb6a9fbdd65acbc8f8f7caae06304cb4ccde9409f2da6f01325d8e3e43e4dea8.js" integrity="sha256-y2qfvdZay8j498quBjBMtMzelAny2m8BMl2OPkPk3qg=" crossorigin="anonymous"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <meta name="referrer" content="no-referrer-when-downgrade"><!--
 Made with Book Theme
@@ -44,7 +44,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 <div class="book-search">
-  <input type="text" id="book-search-input" placeholder="" aria-label="" maxlength="64" data-hotkeys="s/" />
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
@@ -1563,18 +1563,20 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>make V<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span> ARCH<span style="color:#ff79c6">=</span>arm CROSS_COMPILE<span style="color:#ff79c6">=</span>arm<span style="color:#ff79c6">-</span>linux<span style="color:#ff79c6">-</span>gnueabihf<span style="color:#ff79c6">-</span> <span style="color:#ff79c6">-</span>j8
 </span></span></code></pre></div><p><code>ARCH=arm</code>：arm架构</p>
 <p><code>CROSS_COMPILE</code>：使用的交叉编译器</p>
-<blockquote>
-<p>如果编译出错，your compile older 6.0，可以参考【<a href="https://blog.csdn.net/Jun626/article/details/90448830">1</a>】</p></blockquote>
-<p><code>colibri-imx6ull_defconfig</code>：指定一个<code>config</code>文件，作为相关版型的配置信息</p>
+
+<blockquote class='book-hint '>
+  <p>如果编译出错，your compile older 6.0，可以参考【<a href="https://blog.csdn.net/Jun626/article/details/90448830">1</a>】</p>
+</blockquote><p><code>colibri-imx6ull_defconfig</code>：指定一个<code>config</code>文件，作为相关版型的配置信息</p>
 <p><code>V=1</code>：这个选项能显示出编译过程中的详细信息，即是verbose编译模式</p>
 <p><code>-j8</code>：多核并行编译，可以提高编译速度，受硬件限制</p>
 <h2 id="6-u-boot工作模式">
   6. U-boot工作模式
   <a class="anchor" href="#6-u-boot%e5%b7%a5%e4%bd%9c%e6%a8%a1%e5%bc%8f">#</a>
 </h2>
-<blockquote>
-<p>U-boot的工作模式有：<strong>启动加载模式和下载模式</strong></p></blockquote>
-<ul>
+
+<blockquote class='book-hint '>
+  <p>U-boot的工作模式有：<strong>启动加载模式和下载模式</strong></p>
+</blockquote><ul>
 <li><strong>启动加载模式</strong>：</li>
 </ul>
 <p><strong>启动加载模式</strong>，为Bootloader正常工作模式，一款开发板，正常上电后，Bootloader将嵌入式操作系统==<strong>从FLASH中加载到SDRAM中</strong>==运行。</p>
@@ -1592,9 +1594,10 @@ https://github.com/alex-shpak/hugo-book
   8. U-boot系列文章汇总
   <a class="anchor" href="#8-u-boot%e7%b3%bb%e5%88%97%e6%96%87%e7%ab%a0%e6%b1%87%e6%80%bb">#</a>
 </h2>
-<blockquote>
-<p>下面是进行U-boot开发期间，感觉比较不错的资料，总结分享一下！</p></blockquote>
-<p>[1] : <a href="http://www.denx.de/wiki/U-Boot/">Uboot官网</a>、<a href="http://www.denx.de/wiki/DULG/Manual">Uboot官方指南</a>、<a href="https://u-boot.readthedocs.io/en/latest/index.html">官方指南2</a></p>
+
+<blockquote class='book-hint '>
+  <p>下面是进行U-boot开发期间，感觉比较不错的资料，总结分享一下！</p>
+</blockquote><p>[1] : <a href="http://www.denx.de/wiki/U-Boot/">Uboot官网</a>、<a href="http://www.denx.de/wiki/DULG/Manual">Uboot官方指南</a>、<a href="https://u-boot.readthedocs.io/en/latest/index.html">官方指南2</a></p>
 <p>[2] : <a href="https://blog.51cto.com/u_9291927/category5">https://blog.51cto.com/u_9291927/category5</a></p>
 <p>[3] : <a href="https://blog.csdn.net/ooonebook/category_6484145.html">https://blog.csdn.net/ooonebook/category_6484145.html</a></p>
 <p>[4]：<a href="https://blog.csdn.net/qq_36310253/category_9332618.html">https://blog.csdn.net/qq_36310253/category_9332618.html</a></p>
