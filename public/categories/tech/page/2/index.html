@@ -1,0 +1,2455 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Tech" />
+<meta property="og:description" content="高级嵌入式Linux开发工程师，曾就职于世界五百强，目前就职于芯片原厂独角兽企业，有多年嵌入式Linux驱动、系统开发经验。荣获优质嵌入式领域创作者称号，拿下2022年度博客之星嵌入式领域TOP 5，全网收获超百万读者。公众号：【嵌入式艺术】" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://uniondong.github.io/categories/tech/" />
+
+<title>Tech | Donge Blog</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b4905ed755e1c0335b3e405fbf0366df4ad2fc56a3731c6ad87e843b20296de1.css" integrity="sha256-tJBe11XhwDNbPkBfvwNm30rS/Fajcxxq2H6EOyApbeE=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.a72538c8a0bc372faa5c97cbec2f4e7236f2a92710063dfde31965b9a0bfe977.js" integrity="sha256-pyU4yKC8Ny&#43;qXJfL7C9OcjbyqScQBj394xlluaC/6Xc=" crossorigin="anonymous"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade"><link rel="alternate" type="application/rss+xml" href="https://uniondong.github.io/categories/tech/index.xml" title="Donge Blog" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/img/logo.png" alt="Logo" /><span>Donge Blog</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://blog.csdn.net/dong__ge"  target="_blank" rel="noopener">
+        CSDN
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://www.zhihu.com/people/Embedded_Art"  target="_blank" rel="noopener">
+        知乎
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/UNIONDONG"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>嵌入式</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3ebd3b438738bd5ab63f55999004f0e7" class="toggle"  />
+    <label for="section-3ebd3b438738bd5ab63f55999004f0e7" class="flex justify-between">
+      <a role="button" class="">嵌入式工程师养成记</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/embeded_tech/self_improve/10w&#43;%E9%98%85%E8%AF%BB%E8%80%97%E6%97%B6%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E8%B6%85%E8%AF%A6%E7%BB%86/" class="">【10W&#43;阅读】耗时一周总结的嵌入式学习路线，超详细</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-979254fc07de711332325335a96d33d1" class="toggle"  />
+    <label for="section-979254fc07de711332325335a96d33d1" class="flex justify-between">
+      <a role="button" class="">嵌入式面经</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/" class="">Soc的Bring Up流程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/embeded_tech/embeded_interview/cpu%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" class="">CPU体系架构</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/embeded_tech/embeded_interview/linux%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="">Linux用户态和内核态交互的几种方式</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Uboot开发</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/uboot/%E4%B8%80uboot%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" class="">一、uboot基础了解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/uboot/%E4%BA%8Cuboot%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="">二、uboot启动流程分析</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/uboot/%E4%B8%89uboot%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/" class="">三、Uboot驱动模型</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/uboot/%E5%9B%9Buboot%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90/" class="">四、Uboot命令行模式分析</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Linux开发</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-00ea238a2f9544b32c1424d14ac8d5b7" class="toggle"  />
+    <label for="section-00ea238a2f9544b32c1424d14ac8d5b7" class="flex justify-between">
+      <a role="button" class="">Linux 驱动开发基础</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/" class="">【一文秒懂】Linux字符设备驱动</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux设备树详解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E4%B8%BA%E4%BB%80%E4%B9%88linux%E5%86%85%E6%A0%B8%E4%B8%AD%E4%B8%8D%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8typedef/" class="">【一文秒懂】为什么Linux内核中不经常使用typedef</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3eeeb8a1a5c1ce449ec7070209d774d9" class="toggle"  />
+    <label for="section-3eeeb8a1a5c1ce449ec7070209d774d9" class="flex justify-between">
+      <a role="button" class="">Linux API 揭秘</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98module_init%E4%B8%8Emodule_exit/" class="">【Linux API 揭秘】module_init与module_exit</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98container_of%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" class="">【Linux API 揭秘】container_of函数详解</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-cad08b32e77ccfb31b07972873519838" class="toggle"  />
+    <label for="section-cad08b32e77ccfb31b07972873519838" class="flex justify-between">
+      <a role="button" class="">Linux 调试工具</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7devmem/" class="">【一文秒懂】Linux内核调试工具——devmem</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82ftrace%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97/" class="">【一文秒懂】Ftrace系统调试工具使用终极指南</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82top%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】TOP命令详解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7debugfs/" class="">【一文秒懂】Linux内核调试工具——Debugfs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7iperf/" class="">【一文秒懂】Linux网络性能测试工具——Iperf</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdb%E4%BB%8B%E7%BB%8D/" class="">【一文秒懂】Linux调试工具——GDB介绍</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdbserver/" class="">【一文秒懂】Linux远程调试工具——gdbserver</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B/" class="">【一文秒懂】Linux内核死锁检测</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90core-dump%E6%96%87%E4%BB%B6/" class="">【一文秒懂】如何生成core Dump文件</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E4%B9%8Bcore-dump%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux之Core Dump文件详解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%80%81%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/" class="">【一文秒懂】Linux内核态内存泄露检测工具</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b3bfa0c2506d9fd89a39b0698e122f31" class="toggle"  />
+    <label for="section-b3bfa0c2506d9fd89a39b0698e122f31" class="flex justify-between">
+      <a role="button" class="">Linux 内存管理</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E4%B8%80%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E7%94%B1%E6%9D%A5%E5%8F%8A%E6%80%9D%E6%83%B3/" class="">一、内存管理的由来及思想</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/" class="">二、虚拟地址空间布局</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E4%B8%89%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/" class="">三、虚拟地址空间管理</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E5%9B%9B%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%9E%8B/" class="">四、物理地址空间设计模型</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E4%BA%94%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80%E5%8F%8A%E7%AE%A1%E7%90%86/" class="">五、物理内存空间布局及管理</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E5%85%AD%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F/" class="">六、物理内存分配——伙伴系统</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2455edf5b3ea22c6053a61d28029cb9a" class="toggle"  />
+    <label for="section-2455edf5b3ea22c6053a61d28029cb9a" class="flex justify-between">
+      <a role="button" class="">Linux 内核锁详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%80%E5%86%85%E6%A0%B8%E9%94%81%E7%9A%84%E7%94%B1%E6%9D%A5/" class="">【深入理解Linux锁机制】一、内核锁的由来</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD/" class="">【深入理解Linux锁机制】二、中断屏蔽</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" class="">【深入理解Linux锁机制】三、原子操作</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%9B%9B%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】四、自旋锁</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%94%E8%A1%8D%E7%94%9F%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】五、衍生自旋锁</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AD%E4%BF%A1%E5%8F%B7%E9%87%8F/" class="">【深入理解Linux锁机制】六、信号量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%83%E4%BA%92%E6%96%A5%E4%BD%93/" class="">【深入理解Linux锁机制】七、互斥体</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AB%E5%AE%8C%E6%88%90%E9%87%8F/" class="">【深入理解Linux锁机制】八、完成量</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3e346f9c1e7b71569b8cd088121d9787" class="toggle"  />
+    <label for="section-3e346f9c1e7b71569b8cd088121d9787" class="flex justify-between">
+      <a role="button" class="">Linux NVMEM 子系统</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%80efuse%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8%E6%B5%85%E6%9E%90/" class="">【NVMEM子系统深入剖析】一、Efuse介绍及安全启动浅析</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%BA%8Cnvmem%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" class="">【NVMEM子系统深入剖析】二、NVMEM驱动框架</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%89%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%86%85%E5%9C%A8%E5%85%B3%E8%81%94/" class="">【NVMEM子系统深入剖析】三、核心数据结构及内在关联</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%9B%9Befuse%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B/" class="">【NVMEM子系统深入剖析】四、efuse驱动实现流程</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9ae83851c5fe25a6d227e96b400b1ab9" class="toggle"  />
+    <label for="section-9ae83851c5fe25a6d227e96b400b1ab9" class="flex justify-between">
+      <a role="button" class="">Linux LED子系统</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%80linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%BF%85%E8%AF%BB/" class="">【LED子系统深度剖析】一、开篇词|Linux驱动开发新手必读</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%8Cled%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" class="">【LED子系统深度剖析】二、LED子系统框架分析</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%89%E7%A1%AC%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%B1%82%E8%AF%A6%E8%A7%A3/" class="">【LED子系统深度剖析】三、硬件驱动层详解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%9B%9B%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%80/" class="">【LED子系统深度剖析】四、核心层详解（一）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%94%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%BA%8C/" class="">【LED子系统深度剖析】五、核心层详解（二）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AD%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%89/" class="">【LED子系统深度剖析】六、核心层详解（三）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%83%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9E%E7%8E%B0/" class="">【LED子系统深度剖析】七、触发器实现</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AB%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/" class="">【LED子系统深度剖析】八、小试牛刀</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B9%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】九、数据结构详解（番外篇）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%8D%81%E8%AF%A6%E7%BB%86%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】十、详细实现流程（番外篇）</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf0229851221605a75715f5f9633256a" class="toggle"  />
+    <label for="section-bf0229851221605a75715f5f9633256a" class="flex justify-between">
+      <a role="button" class="">Linux MMC 子系统</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%80mmc_sd_sdio%E4%BB%8B%E7%BB%8D/" class="">【MMC子系统】一、MMC_SD_SDIO介绍</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%8Cemmc%E5%8D%8F%E8%AE%AE/" class="">【MMC子系统】二、EMMC协议</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%89mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/" class="">【MMC子系统】三、MMC子系统框架</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%9B%9Bmmc%E6%8E%A7%E5%88%B6%E5%99%A8%E9%A9%B1%E5%8A%A8%E5%B1%82/" class="">【MMC子系统】四、MMC控制器驱动层</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%94mmc%E6%A0%B8%E5%BF%83%E5%B1%82/" class="">【MMC子系统】五、MMC核心层</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%85%ADmmc%E5%9D%97%E8%AE%BE%E5%A4%87%E5%B1%82/" class="">【MMC子系统】六、MMC块设备层</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-541874a152001b263009202c99a285c4" class="toggle"  />
+    <label for="section-541874a152001b263009202c99a285c4" class="flex justify-between">
+      <a role="button" class="">Bluetooth蓝牙开发详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%80%E6%89%93%E9%80%A0%E5%85%A8%E7%BD%91%E6%9C%80%E8%AF%A6%E7%BB%86%E7%9A%84bluetooth%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="">【Bluetooth蓝牙开发】一、打造全网最详细的Bluetooth开发教程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%8C%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" class="">【Bluetooth蓝牙开发】二、蓝牙开发入门</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%89%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E6%80%BB%E8%A7%88%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE/" class="">【Bluetooth蓝牙开发】三、一篇文章，带你总览蓝牙协议</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%9B%9Bble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E7%89%A9%E7%90%86%E5%B1%82%E6%B5%85%E6%9E%90/" class="">【Bluetooth蓝牙开发】四、BLE协议之物理层浅析</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%94ble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%93%BE%E8%B7%AF%E5%B1%82/" class="">【Bluetooth蓝牙开发】五、BLE协议之链路层</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ADble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%BC%A0%E8%BE%93%E5%B1%82/" class="">【Bluetooth蓝牙开发】六、BLE协议之传输层</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%83ble%E5%8D%8F%E8%AE%AE%E4%B9%8Bl2cap/" class="">【Bluetooth蓝牙开发】七、BLE协议之L2CAP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ABble%E5%8D%8F%E8%AE%AE%E4%B9%8Batt/" class="">【Bluetooth蓝牙开发】八、BLE协议之ATT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B9%9Dble%E5%8D%8F%E8%AE%AEgatt/" class="">【Bluetooth蓝牙开发】九、BLE协议——GATT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81ble%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%B9%BF%E6%92%AD%E6%89%AB%E6%8F%8F%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5/" class="">【Bluetooth蓝牙开发】十、BLE蓝牙通信流程（建立连接，广播，扫描，断开连接）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%B8%80%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84bluez%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" class="">【Bluetooth蓝牙开发】十一、超详细的Bluez交叉编译</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%BA%8C%E8%93%9D%E7%89%99%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/" class="">【Bluetooth蓝牙开发】十二、蓝牙调试工具【集合汇总】</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3962d06d522e4ac6aca7d70bdb913d71" class="toggle"  />
+    <label for="section-3962d06d522e4ac6aca7d70bdb913d71" class="flex justify-between">
+      <a role="button" class="">WiFi开发详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/wifi/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="">WIFI基础知识汇总</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/wifi/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" class="">一文详解路由器配置信息</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/wifi/wifi%E6%97%A0%E7%BC%9D%E6%BC%AB%E6%B8%B8%E8%AF%A6%E8%A7%A3/" class="">WiFi无缝漫游详解</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Tech</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <strong>Categories</strong>
+      <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/tech/">Tech</a>
+          <span>73</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <strong>Tags</strong>
+      <ul>
+      
+        <li class="flex justify-between">
+          <a href="/tags/tag1/">tag1</a>
+          <span>7</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/tag2/">tag2</a>
+          <span>7</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">WIFI基础知识</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/wifi%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">WiFi开发详解</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/wifi%E6%8A%80%E6%9C%AF/">WIFI技术</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/">无线网络知识</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/iperf/">Iperf</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/iperf%E5%B7%A5%E5%85%B7/">Iperf工具</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux网络性能测试工具</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">Linux驱动开发基础</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/typedef/">typedef</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">Linux设备树详解</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/">Linux字符设备驱动</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux调试工具</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">Linux驱动开发</a>
+          <span>16</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F/">MMC子系统</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>
+          <span>12</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
+          <span>12</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>
+          <span>12</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F/">LED子系统</a>
+          <span>10</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/">LED子系统深度剖析</a>
+          <span>10</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/led%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">LED驱动开发</a>
+          <span>10</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"> Linux 系统开发</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux-%E5%86%85%E6%A0%B8/">Linux 内核</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux-%E9%94%81%E6%9C%BA%E5%88%B6/">Linux 锁机制</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%86%85%E6%A0%B8%E9%94%81/">内核锁</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%81/">操作系统锁</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/efuse/">Efuse</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F/">NVMEM子系统</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90/">NVMEM子系统深入剖析</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8/">安全启动</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/">Linux面试指南</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/uboot%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Uboot开发详解</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Linux内存管理</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux-api-%E6%8F%AD%E7%A7%98/">Linux API 揭秘</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/">嵌入式Linux</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">嵌入式基础必备知识</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/embeded-technology/">Embeded Technology</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式学习路线</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%85%BB%E6%88%90%E8%AE%B0/">嵌入式工程师养成记</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/mmc/sd/sdio/">MMC/SD/SDIO</a>
+          <span>6</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98module_init%E4%B8%8Emodule_exit/">【Linux API 揭秘】module_init与module_exit</a>
+    </h2>
+    
+  <h5>Nov 22, 2023</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/linux-api-%E6%8F%AD%E7%A7%98/">Linux API 揭秘</a>
+  </div>
+  
+
+
+
+<p>
+  
+    <img src=/img/post-bg-coffee.jpeg />
+  
+</p>
+
+
+    <p>【Linux API 揭秘】module_init与module_exit #   Linux Version：6.6
+Author：Donge
+Github：linux-api-insides
+  1、函数作用 #  module_init和module_exit是驱动中最常用的两个接口，主要用来注册、注销设备驱动程序。
+并且这两个接口的实现机制是一样的，我们先以module_init为切入点分析。
+ 2、module_init函数解析 #  2.1 module_init #  #ifndef MODULE /** * module_init() - driver initialization entry point * @x: function to be run at kernel boot time or module insertion * * module_init() will either be called during do_initcalls() (if * builtin) or at module insertion time (if a module). There can only * be one per module.
+        <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98module_init%E4%B8%8Emodule_exit/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/uboot/%E4%B8%80uboot%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/">一、uboot基础了解</a>
+    </h2>
+    
+  <h5>Nov 17, 2023</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/uboot%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Uboot开发详解</a>
+  </div>
+  
+
+
+
+<p>
+  
+    <img src=/img/post-bg-halting.jpg />
+  
+</p>
+
+
+    <p>一、uboot基础了解 #  1. U-boot是什么 #  U-Boot，全称 Universal Boot Loader，是遵循GPL条款的从FADSROM、8xxROM、PPCBOOT逐步发展演化而来的 开放源码项目。
+U-boot，是一个主要用于嵌入式系统的引导加载程序，可以支持多种不同的计算机系统结构，其主要作用为：==引导系统的启动！==目前，U-Boot不仅支持Linux系统的引导，还支持NetBSD, VxWorks, QNX, RTEMS, ARTOS, LynxOS, android等多种嵌入式操作系统。
+2. U-boot主要特性及功能 #   开放：开放的源代码 多平台：支持多种嵌入式操作系统，如Linux、NetBSD、android等 生态：有丰富的设备驱动源码，如以太网、SDRAM、LCD等，同时也具有丰富的开发文档。  3. U-boot下载地址 #  Uboot开发源码：
+  https://source.denx.de/u-boot/u-boot
+  https://ftp.denx.de/pub/u-boot/
+  其他厂商定制的uboot源码：
+ 野火  4. U-boot目录结构 #     目录 含义     arch 各个厂商的硬件信息，目录下包括支持的处理器类型   arch/arm/cpu/xxx **每一个子文件夹，包含一种cpu系列。**每个子文件夹下包含cpu.c（CPU初始化），interrupts.c（设置中断和异常），start.S（U-boot的启动文件，早期的初始化）。   board 与开发板有关，每一个子文件夹代表一个芯片厂家，芯片厂家下，每一个子文件夹，表示一个开发板   common 存放与处理器体系无关的通用代码，可以说为通用核心代码！   cmd 存放uboot的相关命令实现部分   drivers 存放外围芯片驱动，网卡，USB等   disk 存放驱动磁盘的分区处理代码   fs 本目录下存放文件系统相关代码，每一个子文件夹表示文件系统   net 网络协议相关代码   doc uboot说明文档   include 各种头文件   post 上电自检代码   api 外部扩展程序的API和示例   tools 编译S-Record或者U-boot镜像的相关工具    5.
+        <a href="/docs/uboot/%E4%B8%80uboot%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/">Soc的Bring Up流程</a>
+    </h2>
+    
+  <h5>Nov 12, 2023</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/linux%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/">Linux面试指南</a>, 
+      <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">嵌入式基础必备知识</a>, 
+      <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/">嵌入式Linux</a>
+  </div>
+  
+
+
+
+<p>
+  
+    <img src=/img/post-bg-miui6.jpg />
+  
+</p>
+
+
+    <p>1、Bring Up流程 #  SOC (System on a Chip) bring-up是一个复杂的过程，涉及到硬件、固件和软件的集成和验证，以下是一个基于BROM，SPL，UBOOT和Linux的启动流程的概述：
+ BROM (Boot Read-Only Memory)启动：启动的最初阶段，在这个阶段，系统会执行芯片ROM里面的代码，这部分代码主要用来检查启动模式，包括NOR、Nand、Emmc等，然后从对应的存储介质中加载SPL(Secondary Program Loader)代码。 SPL (Secondary Program Loader)启动：SPL属于Uboot的一部分，它的主要作用就是：初始化硬件并加载完整的U-boot，主要体现在初始化时钟、看门狗、DDR、GPIO以及存储外设，最后将U-boot代码加载到DDR中执行。 U-Boot启动：U-boot的主要作用是：引导加载Kernel和DTS。U-boot在启动之后，同样初始化Soc硬件资源，然后会计时等待，并执行默认的启动命令，将Kernel和DTS信息从存储介质中读取出来并加载到内存中执行。 Kernel启动：在U-Boot加载了内核映像和设备树之后，系统会启动Linux。在这个阶段，系统会初始化各种硬件设备，加载驱动程序并启动用户空间应用程序。   更多干货可见：高级工程师聚集地，助力大家更上一层楼！
+  2、常见问题 #  Q：为什么上一个阶段已经初始化了硬件资源，下一个阶段为何重复初始化？
+A：
+  每个阶段的硬件初始化，其目标和需求都不同，硬件配置也会不一样，因此在不同阶段进行不同的初始化。
+  硬件状态可能会改变，在SOC启动过程中，硬件状态可能会因为电源管理、时钟管理等原因而改变，这可能需要在每个阶段都重新初始化以确保其正确工作
+  为了保证硬件资源的可靠性，最好每个阶段都重新初始化一次
+   Q：U-boot加载内核时，会进行重定位的操作，这一操作有何意义？
+A：
+ U-boot的重定位，主要作用是为了 给内核提供一个连续的、大的内存空间，供内核和其他应用程序使用 U-boot的加载过程分两个阶段，即：SPL和U-boot，   在SPL阶段，主要将U-boot代码从Flash中加载到RAM指定位置 在U-boot阶段，U-boot会将自身从RAM的开始部分移动到RAM的末尾，占用高地址空间，从而让低地址空间可以作为一个连续的，大的内存空间供内核和其他应用程序使用。   Q：在Bring Up中，为了保证启动时间，如何裁剪？
+A：
+ 启动时间的裁剪是一个重要的步骤，其主要目标是缩短从电源打开到操作系统完全启动的时间。
+  优化Bootloader：减小Bootloader的代码大小，减少硬件初始化（只初始化必要硬件设备）等 优化Kernel：减少启动服务数量，优化服务的启动顺序，使用预加载技术等方法来实现。 使用快速启动模式：一些SOC支持快速启动模式，这种模式下，SOC会跳过一些不必要的硬件初始化和自检过程，从而更快地启动。 使用休眠和唤醒技术：一些SOC还支持休眠和唤醒技术，这种技术可以将系统的状态保存到非易失性存储器中，然后关闭系统。当系统再次启动时，可以直接从非易失性存储器中恢复系统的状态，从而更快地启动。  &nbsp;
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/linux/wifi/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/">一文详解路由器配置信息</a>
+    </h2>
+    
+  <h5>Jan 20, 2024</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/wifi%E6%8A%80%E6%9C%AF/">WIFI技术</a>, 
+      <a href="/tags/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">WIFI基础知识</a>, 
+      <a href="/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/">无线网络知识</a>, 
+      <a href="/tags/wifi%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">WiFi开发详解</a>
+  </div>
+  
+
+
+
+
+    <p>一文详解路由器配置信息 #  上一篇文章，WIFI基础知识汇总，讲述了Wi-Fi的基础知识，这篇文章，我们以路由器视角，来更加详细的分析Wi-Fi的相关设置。
+ 1. 路由器铭牌 #  我们买到的路由器，仔细观察背后的铭牌，都会看到路由器的设置网址及登录的账户名以及密码。
+按照铭牌的提示信息，用电脑连接该路由器，确保电脑和路由器在同一局域网下，然后登录该网址，进行路由器配置！
+ 2、登录路由器主页 #  登录后的路由器主页如下：
+ 不同路由器，信息会略有不同，但是大同小异，该有的功能都有的！
+  3、路由设置 #  找到【路由设置】选项，然后进行WiFi配置，并且打开2.4G或5G的WiFi。
+在2.4G和5G模式中，有不同的网络协议进行选择，具体差别可以看上节文章：【WIFI基础知识汇总】
+ 2.4Gwifi有b/g/n模设置；5Gwifi有ac a/n/ac混合模式设置。 无线频宽代表每个通道的信道宽度。  找到【无线账号和密码】，进行设置WiFi的模式以及名称，密码！
+ 4、路由信息 #  找到【系统状态】，查看路由信息：
+在这个页面，我们能够看到路由器的详细信息，包括：IP地址、MAC地址、WiFi名称等信息。
+根据路由器的详细信息，我们也再详细了解一下路由器的一些特性。
+ 4.1 路由器的WAN口 #  WAN口就是路由器的外网接口，相当于外面的进线接口，它有自己的IP，MAC地址，和获取IP的多种方式。
+如下配置：
+可以选择动态IP，也可以选择静态IP，分配静态IP时，需要手动进行配置。
+同时，可以设置WAN口的通信速率，最大通信包，以及MAC地址等。
+ 4.2 路由器的LAN口 #  LAN的MAC就是路由器上LAN口一端的端口物理地址，一般我们连接电脑或电视。
+路由器的每一个端口，都有一个默认的MAC地址。
+ 4.3 路由器的无线MAC地址 #  该MAC地址，指的是路由器开启热点后的MAC地址信息，对应的还有IP地址。
+ Summary：
+路由器的每个端口都会有一个自己的MAC
+LAN的MAC就是路由器上连接电脑的一端的端口物理地址
+WAN的MAC就是路由器上连接猫或外网网线的端口物理地址
+在自己电脑上查到的MAC地址是自己电脑网卡的MAC地址，也就是自己电脑上网口的MAC地址
+开启的热点WIFI，也对应有无线的MAC
+ 4.4 无线中继 #  无线中继是将两台以上无线路由器组合，将收到的WIFI信号再发射出去，延伸无线网络的覆盖范围实现信号的中继和放大。
+        <a href="/docs/linux/wifi/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">【一文秒懂】Linux设备树详解</a>
+    </h2>
+    
+  <h5>Jan 19, 2024</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">Linux设备树详解</a>, 
+      <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">Linux驱动开发基础</a>
+  </div>
+  
+
+
+
+
+    <p>【一文秒懂】Linux设备树详解 #  1、Linux设备树概念 #  Linux内核是从V2.6开始引入设备树的概念，其起源于OF:OpenFirmware， 用于描述一个硬件平台的硬件资源信息，这些信息包括：CPU的数量和类别、内存基地址和大小、总线和桥、外设连接、中断控制器和中断使用情况、GPIO控制器和GPIO使用情况、Clock控制器和Clock使用情况等等。
+官方说明：
+ The &ldquo;Open Firmware Device Tree&rdquo;, or simply Device Tree (DT), is a data structure and language for describing hardware.
+设备树是一种数据结构和一种用于描述硬件信息的语言。
+ 设备树的特点：
+ 实现驱动代码与设备硬件信息相分离。 通过被bootloader(uboot)和Linux传递到内核， 内核可以从设备树中获取对应的硬件信息。 对于同一SOC的不同主板，只需更换设备树文件即可实现不同主板的无差异支持，而无需更换内核文件，实现了内核和不同板级硬件数据的拆分。   2、设备树的由来 #  明白了设备树的概念，不妨思考一下：为什么要引入设备树？
+在Linux内核v2.6版本以前，ARM架构用于描述不同的硬件信息的文件都存放在arch/arm/plat-xxx和arch/arm/mach-xxx文件夹下，如下：
+在这些文件内，都是通过手动定义不同的硬件设备，步骤非常繁琐
+这样就导致了Linux内核代码中充斥着大量的垃圾代码，因为不同的板级他们的硬件信息都不相同，这些都是硬件特有的信息，对内核而言没有任何的意义，但是往往这部分代码特别的多，造成内核的冗余。
+设备树的引入就是为了解决这个问题，通过引入设备树，我们可以直接通过它来传递给Linux，而不再需要内核中大量的垃圾代码。
+ 3、设备树组成 #   整个设备树牵涉面比较广，即增加了新的用于描述设备硬件信息的文本格式，又增加了编译这个文本的工具，同时还得支持Bootloader解析设备树，并将信息传递给内核。
+ 整个设备树包含DTC（device tree compiler），DTS（device tree source）和DTB（device tree blob）。
+ DTS（device tree source）  DTS是一种ASCII文本格式的设备树描述，在ARM Linux中，一个dts文件对应一个ARM的设备，该文件一般放在arch/arm/boot/dts/目录中。
+ 当然，我们还会看到一些dtsi文件，这些文件有什么用呢？
+        <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%8Cemmc%E5%8D%8F%E8%AE%AE/">【MMC子系统】二、EMMC协议</a>
+    </h2>
+    
+  <h5>Jan 19, 2024</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F/">MMC子系统</a>, 
+      <a href="/tags/mmc/sd/sdio/">MMC/SD/SDIO</a>, 
+      <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">Linux驱动开发</a>
+  </div>
+  
+
+
+
+
+    <p>【MMC子系统】 二、EMMC协议 #  1、前言 #  在上一节，我们知道EMMC、SD、SDIO三种规范都是在MMC规范之上发展而来，协议相差不大，所以Linux Kernel才能使用MMC子系统来统一管理！
+下面，我们以MMC协议为例，来了解一下相关协议!
+ 2、EMMC基本了解 #  2.1 物理线路 #     物理接口 接口含义     CLK 时钟线，此信号的每一周期控制命令线上的 1 bit 传输，以及所有数据线上 1 bit（1x） 或 2 bit（2x）传输。   CMD 命令线，此信号是双向命令通道，用于设备初始化和命令传输。CMD信号有两种工 作模式：用于初始化模式开漏模式和快速命令传输推拉模式。   DAT0-7 这些是双向的数据通道。DAT 信号以推拉模式工作。缺省状态，只有DAT0处于推拉模式，DAT1-7处于上拉（内含上拉），进入4bit后，DAT0-3处于推拉     2.2 EMMC相关寄存器了解 #   2.3 其他特性了解 #    读写模式：单块读写，多块读写
+  寻址方式：字节寻址和扇区寻址，字节寻址允许最大2GB，容量超过2GB的，使用扇区（512B）寻址
+  电压模式：支持高电压和双电压模式
+  支持增强分区模式等
+        <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%8Cemmc%E5%8D%8F%E8%AE%AE/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%8C%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">【Bluetooth蓝牙开发】二、蓝牙开发入门</a>
+    </h2>
+    
+  <h5>Jan 19, 2024</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>, 
+      <a href="/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>, 
+      <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
+  </div>
+  
+
+
+
+
+    <p>【Bluetooth|蓝牙开发】二、蓝牙开发入门 #  1、蓝牙基础概念 #  蓝牙，是一种利用低功率无线电，支持设备短距离通信的无线电技术，能在包括移动电话、PDA、无线耳机、笔记本电脑、相关外设等众多设备之间进行无线信息交换，蓝牙工作在全球通用的2.4GHz ISM（即工业、科学、医学）频段，使用IEEE802.11协议。
+ 2、蓝牙发展历程 #  自1994年由爱立信推出至今，蓝牙技术已经走过了20个岁月。从最初的Bluetooth V1.0，到Bluetooth V5.2，经历了近9个版本的修订后，发展为当前的状况。
+ “蓝牙”的形成背景是这样的：
+ 1998 年 5 月，爱立信、诺基亚、东芝、 IBM和英特尔公司等五家著名厂商， 在联合开展短程无线通信技术的标准化活动时提出了蓝牙技术，其宗旨是提供一种短距离、 低成本的无线传输应用技术。
+芯片霸主 Intel 公司负责半导体芯片和传输软件的开发，爱立信负责无线射频和移动电话软件的开发， IBM 和东芝负责笔记本电脑接口规格的开发。
+1999 年下半年，著名的业界巨头微软、摩托罗拉、三星、朗讯与蓝牙特别小组的五家公司共同发起成立了蓝牙技术推广组织，从而在全球范围内掀起了一股“蓝牙”热潮。
+全球业界即将开发一大批蓝牙技术的应用产品， 使蓝牙技术呈现出极其广阔的市场前景，并预示着 21 世纪初将迎来波澜壮阔的全球无线通信浪潮。
+  第一代蓝牙：关于短距离通讯早期的探索，使用的是BR技术，此时蓝牙的理论传输速率，只能达到721.2Kbps。 第二代蓝牙：新增的 EDR（Enhanced Data Rate）技术，使得蓝牙设备的传输率可达 3Mbps。 第三代蓝牙：核心是 AMP（Generic Alternate MAC/PHY），这是一种全新的交替射频技术，支持动态地选择正确射频，传输速率高达 24Mbps 第四代蓝牙：主推” Low Energy”低功耗， BLE（Bluetooth Low Energy）低功耗功能 第五代蓝牙：开启「物联网」时代大门，在低功耗模式下具备更快更远的传输能力   3、蓝牙技术概述 #  蓝牙协议包括两种技术：BR：Basic Rate和LE：Low Energy。这两种技术都包括搜索（discovery）管理、连接（connection）管理等机制，但它们是相互独立的，不能互通的技术！
+ 厂商如果只实现了一种，那么只能与同样实现该技术的设备互通。
+如果厂商要确保能和所有的蓝牙设备互通，那么就只能同时实现两种技术，而不去管是否真的需要。
+  3.1 Basic Rate(BR) #  BR：Basic Rate是正宗的蓝牙技术，可以包括**可选（optional）的EDR（Enhanced Data Rate）技术，以及交替使用的（Alternate）**的MAC（Media Access Control）层和PHY层扩展（简称AMP（Alternate MAC and PHY layer extension））。
+        <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%8C%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%8Cled%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/">【LED子系统深度剖析】二、LED子系统框架分析</a>
+    </h2>
+    
+  <h5>Jan 19, 2024</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F/">LED子系统</a>, 
+      <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/">LED子系统深度剖析</a>, 
+      <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">Linux驱动开发</a>, 
+      <a href="/tags/led%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">LED驱动开发</a>
+  </div>
+  
+
+
+
+
+    <p>【LED子系统深度剖析】二、LED子系统框架分析 #  1、前言 #  我们学习嵌入式，无论是C51、STM32或者是ARM，都是从点灯开始的，点灯在嵌入式中的地位等同于Hello World在各大语言中的地位！
+虽然LED功能简单，但是其麻雀虽小，五脏俱全，在学习Linux驱动开发的过程中，学习LED子系统，往往也能够起到牵一发而动全身的作用，也更有益于大家熟悉驱动开发的框架！
+2、LED裸机处理 #  我们在学习Linux驱动框架的时候，第一步要做的就是去掉子系统的面纱，先弄明白裸机处理的流程！
+有嵌入式经验的朋友，对LED的裸机在清楚不过了，上面是LED的硬件电路，通常一端接到VCC，一端接到GPIO，当GPIO拉低时，LED亮；当GPIO拉高时，LED灭。
+在这里裸机我们不过多了解了，目的在于窥探LED子系统。
+3、LED子系统框架 #  框架是什么？
+框架是一个规范，为我们开发者增加限制的同时，也是为了更好的开发新的程序，新的功能，其目的主要是：将不变的成分剥离开来，固化进框架，让开发者做最少的事情!
+框架所处的位置，正如上图所示，由下往上看：
+ Hardware：我们的硬件设备，指的是LED 硬件驱动层：是直接操作硬件的实现，用于驱动硬件，实现相应的功能，并且将硬件设备注册进框架之中。 核心层：将LED进行统一管理，提供注册，注销，管理LED等相关接口，起到呈上启下的作用，方便上层调用。 用户层：用户通过sysfs文件系统中对应的文件节点，能够直接控制LED的亮灭。  4、LED子系统目录结构及核心文件 #  了解完LED子系统框架之后，我们来分析一下其相关的目录结构！
+ketnel │ └── driver │ │ └── leds │ │ │ ├──	Makefile │ │ │ ├──	led-core.c │ │ │ ├──	led-gpio.c │ │ │ ├──	led-class.c │ │ │ ├──	led-triggers.c │ │ │ ├──	...... │ │ │ └── trigger │ │ │ │ ├── ledtrig-cpu.
+        <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%8Cled%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD/">【深入理解Linux锁机制】二、中断屏蔽</a>
+    </h2>
+    
+  <h5>Jan 18, 2024</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/%E5%86%85%E6%A0%B8%E9%94%81/">内核锁</a>, 
+      <a href="/tags/linux-%E9%94%81%E6%9C%BA%E5%88%B6/">Linux 锁机制</a>, 
+      <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%81/">操作系统锁</a>, 
+      <a href="/tags/linux-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"> Linux 系统开发</a>, 
+      <a href="/tags/linux-%E5%86%85%E6%A0%B8/">Linux 内核</a>
+  </div>
+  
+
+
+
+
+    <p>【深入理解Linux内核锁】二、中断屏蔽 #   上一篇了解了内核锁的由来，本篇文章主要来讲一下中断屏蔽的底层实现以及原理。
+  1、中断屏蔽思想 #  中断屏蔽，正如其名，屏蔽掉CPU的中断响应功能，解决并发引起的竞态问题。
+ 在进入临界区前屏蔽中断，这么做有什么好处，以及有什么弊端？
+ 好处在于：
+ 解决了进程与中断之间的并发：保证在执行临界区代码时，不被中断所打断。 解决了进程与进程之间调度的并发：系统的进程调度与中断息息相关，同时也限制了系统进程的并发，解决了系统进程并发带来的竞态问题。  弊端在于：
+ 各类中断类型较多，一棒子打死影响大：Linux内核中，除了系统进程调度依赖中断，还有一些异步I/O等众多操作都依赖中断，因此长时间屏蔽中断是很危险的，会对系统造成严重影响，因此也要求临界区代码要简短。 解决的不够完善：关闭中断能够解决进程调度、中断引发的竞态，但是这些都是单CPU内部的，对于SMP对称多处理器，仍然不可避免的会收到其他CPU的中断。因此，并不能解决SMP多CPU引发的竞态。  因此，单独使用中断屏蔽通常不是一种值得推荐的避免竞态的方法
+ 2、Linux内核中断屏蔽的实现 #  2.1 Linux内核提供的API接口 #   关于中断屏蔽，Linux内核所提供的接口如下：
+ local_irq_enable()	//	使能本CPU的中断 local_irq_disable()	//	禁止本CPU的中断 local_irq_save(flags)	//	禁止本CPU的中断，并保存CPU中断位的信息 local_irq_restore(flags)	//	使能本CPU的中断，并恢复CPU中断位的信息 local_bh_disable(void)	//	禁止本CPU底半部中断 local_bh_enable(void) //	使能本CPU底半部中断 文件位置：kernel/include/linux/irqflags.h
+ local_irq_enable与local_irq_disable：直接打开/关闭本CPU内的中断，包括了顶半部和底半部中断的打开和关闭。 local_irq_save与local_irq_restore：直接打开/关闭本CPU中断，并且保存中断屏蔽前的状态，便于后续恢复 local_bh_enable与local_bh_disable：直接打开/关闭本CPU内的底半部中断   2.2 API接口实现分析 #   因为中断屏蔽与底层芯片架构有关，不同架构处理方式不同，我们以ARM为例
+ 2.2.1 local_irq_enable #  #define local_irq_enable()	do { raw_local_irq_enable(); } while (0)  #define raw_local_irq_enable()	arch_local_irq_enable()  #define arch_local_irq_enable arch_local_irq_enable static inline void arch_local_irq_enable(void) { asm volatile( &#34;	cpsie i	@ arch_local_irq_enable&#34; : : : &#34;memory&#34;, &#34;cc&#34;); } 函数介绍：local_irq_enable函数用于将CPSR寄存器中的中断使能位设为1，从而使得CPU能够响应中断。
+        <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%BA%8Cnvmem%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">【NVMEM子系统深入剖析】二、NVMEM驱动框架</a>
+    </h2>
+    
+  <h5>Jan 18, 2024</h5>
+
+
+
+<span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+
+  
+  <div>
+    
+      <a href="/categories/tech/">Tech</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F/">NVMEM子系统</a>, 
+      <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90/">NVMEM子系统深入剖析</a>, 
+      <a href="/tags/efuse/">Efuse</a>, 
+      <a href="/tags/%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8/">安全启动</a>
+  </div>
+  
+
+
+
+
+    <p>【NVMEM子系统深入剖析】二、NVMEM驱动框架 #  1、前言 #   NVMEM SUBSYSTEM，该子系统整体架构不算太大，还是比较容易去理解的，下面我们一起去一探究竟！
+ NVMEM（Non Volatile Memory），该子系统主要用于实现EEPROM、Efuse等非易失存储器的统一管理。
+在早期，像EEPROM驱动是存放于/drivers/misc目录下，由于没有做到好的抽象，每次需要去访问相应内存空间，都需要去复制几乎一样的代码，去注册sysfs，这是一个相当大的抽象泄露。
+NVMEM子系统就是为了解决以往的抽象泄露问题。
+ 2、驱动框架 #   该驱动框架较为简单，也适合初学者去熟悉基本的驱动框架。
+ 应用层：可以通过用户空间所提供的文件节点，来读取或者修改nvmem存储器的数据。
+NVMEM 核心层：统一管理NVMEM设备，向上实现文件系统接口数据的传递，向下提供统一的注册，注销nvmem设备接口。
+NVMEM 总线驱动：注册NVMEM总线，实现NVMEM控制器的底层代码实现。
+TIP：
+nvmem子系统提供读写存储器的接口有两种，一种是通过文件系统读写，一种是在内核驱动直接读写。
+对于EEPROM，其可以进行读写操作，而对于efuse，更多用于读取密钥信息，进而判断镜像是否被篡改，在用户空间是不允许被更改的。
+这种是通过驱动提供的开放接口，直接获取指定位置的数据，详细的后面展开来说。
+ 3、源码目录结构 #  ketnel │ └── driver │ │ └── nvmem │ │ │ ├──	core.c	# NVMEM核心层 │ │ │ ├──	rockchip-efuse.c	# NVMEM总线驱动  4、用户空间下的目录结构 #  我们可以在用户空间去读取/写入数据，其所在的目录：/sys/bus/nvmem/devices/dev-name/nvmem
+hexdump /sys/bus/nvmem/devices/qfprom0/nvmem 0000000 0000 0000 0000 0000 0000 0000 0000 0000 * 00000a0 db10 2240 0000 e000 0c00 0c00 0000 0c00 0000000 0000 0000 0000 0000 0000 0000 0000 0000 .
+        <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%BA%8Cnvmem%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">...</a>
+      
+    </p>
+  </article>
+  
+
+  
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/categories/tech/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/tech/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/tech/" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/tech/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/tech/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/tech/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/tech/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/tech/page/8/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+<div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    👁️Total Views <span id="busuanzi_value_site_pv"></span> |
+  </span>
+  <span id="busuanzi_container_site_uv" >
+    👤Visitors <span id="busuanzi_value_site_uv"></span>
+  </span>
+</div>
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <strong>Categories</strong>
+      <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/tech/">Tech</a>
+          <span>73</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <strong>Tags</strong>
+      <ul>
+      
+        <li class="flex justify-between">
+          <a href="/tags/tag1/">tag1</a>
+          <span>7</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/tag2/">tag2</a>
+          <span>7</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">WIFI基础知识</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/wifi%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">WiFi开发详解</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/wifi%E6%8A%80%E6%9C%AF/">WIFI技术</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/">无线网络知识</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/iperf/">Iperf</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/iperf%E5%B7%A5%E5%85%B7/">Iperf工具</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux网络性能测试工具</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">Linux驱动开发基础</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/typedef/">typedef</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/">Linux设备树详解</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/">Linux字符设备驱动</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/">Linux调试工具</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">Linux驱动开发</a>
+          <span>16</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F/">MMC子系统</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/bluetooth%E5%BC%80%E5%8F%91/">Bluetooth开发</a>
+          <span>12</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/bluetooth%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Bluetooth开发详解</a>
+          <span>12</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">蓝牙开发教程</a>
+          <span>12</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F/">LED子系统</a>
+          <span>10</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/">LED子系统深度剖析</a>
+          <span>10</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/led%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">LED驱动开发</a>
+          <span>10</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"> Linux 系统开发</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux-%E5%86%85%E6%A0%B8/">Linux 内核</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux-%E9%94%81%E6%9C%BA%E5%88%B6/">Linux 锁机制</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%86%85%E6%A0%B8%E9%94%81/">内核锁</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%94%81/">操作系统锁</a>
+          <span>8</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/efuse/">Efuse</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F/">NVMEM子系统</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90/">NVMEM子系统深入剖析</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8/">安全启动</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/">Linux面试指南</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/uboot%E5%BC%80%E5%8F%91%E8%AF%A6%E8%A7%A3/">Uboot开发详解</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Linux内存管理</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/linux-api-%E6%8F%AD%E7%A7%98/">Linux API 揭秘</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/">嵌入式Linux</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">嵌入式基础必备知识</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/embeded-technology/">Embeded Technology</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式学习路线</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%85%BB%E6%88%90%E8%AE%B0/">嵌入式工程师养成记</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/mmc/sd/sdio/">MMC/SD/SDIO</a>
+          <span>6</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="同大多数的Bootloader一样，uboot的启动过程也分为BL1、BL2两个阶段，分别对应着SPL和Uboot。SPL（BL1阶段）：负责开发板的基础配置和设备初始化，并且搬运Uboot到内存中，由汇编代码和少量的C语言实现.Uboot（BL2阶段）：主要负责初始化外部设备，引导Kernel启动，由纯C语言实现。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="二、uboot启动流程分析" />
+<meta property="og:description" content="同大多数的Bootloader一样，uboot的启动过程也分为BL1、BL2两个阶段，分别对应着SPL和Uboot。SPL（BL1阶段）：负责开发板的基础配置和设备初始化，并且搬运Uboot到内存中，由汇编代码和少量的C语言实现.Uboot（BL2阶段）：主要负责初始化外部设备，引导Kernel启动，由纯C语言实现。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://uniondong.github.io/docs/uboot/%E4%BA%8Cuboot%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-11-17T22:11:57+08:00" />
+<meta property="article:modified_time" content="2023-11-17T22:11:57+08:00" />
+
+<title>二、uboot启动流程分析 | Donge Blog</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.b4905ed755e1c0335b3e405fbf0366df4ad2fc56a3731c6ad87e843b20296de1.css" integrity="sha256-tJBe11XhwDNbPkBfvwNm30rS/Fajcxxq2H6EOyApbeE=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.a72538c8a0bc372faa5c97cbec2f4e7236f2a92710063dfde31965b9a0bfe977.js" integrity="sha256-pyU4yKC8Ny&#43;qXJfL7C9OcjbyqScQBj394xlluaC/6Xc=" crossorigin="anonymous"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade"><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/img/logo.png" alt="Logo" /><span>Donge Blog</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://blog.csdn.net/dong__ge"  target="_blank" rel="noopener">
+        CSDN
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://www.zhihu.com/people/Embedded_Art"  target="_blank" rel="noopener">
+        知乎
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/UNIONDONG"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>嵌入式</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3ebd3b438738bd5ab63f55999004f0e7" class="toggle"  />
+    <label for="section-3ebd3b438738bd5ab63f55999004f0e7" class="flex justify-between">
+      <a role="button" class="">嵌入式工程师养成记</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/embeded_tech/self_improve/10w&#43;%E9%98%85%E8%AF%BB%E8%80%97%E6%97%B6%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E8%B6%85%E8%AF%A6%E7%BB%86/" class="">【10W&#43;阅读】耗时一周总结的嵌入式学习路线，超详细</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-979254fc07de711332325335a96d33d1" class="toggle"  />
+    <label for="section-979254fc07de711332325335a96d33d1" class="flex justify-between">
+      <a role="button" class="">嵌入式面经</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/embeded_tech/embeded_interview/soc%E7%9A%84bringup%E6%B5%81%E7%A8%8B/" class="">Soc的Bring Up流程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/embeded_tech/embeded_interview/cpu%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" class="">CPU体系架构</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/embeded_tech/embeded_interview/linux%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="">Linux用户态和内核态交互的几种方式</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Uboot开发</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/uboot/%E4%B8%80uboot%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" class="">一、uboot基础了解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/uboot/%E4%BA%8Cuboot%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" class="active">二、uboot启动流程分析</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/uboot/%E4%B8%89uboot%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/" class="">三、Uboot驱动模型</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/uboot/%E5%9B%9Buboot%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90/" class="">四、Uboot命令行模式分析</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Linux开发</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-00ea238a2f9544b32c1424d14ac8d5b7" class="toggle"  />
+    <label for="section-00ea238a2f9544b32c1424d14ac8d5b7" class="flex justify-between">
+      <a role="button" class="">Linux 驱动开发基础</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8/" class="">【一文秒懂】Linux字符设备驱动</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%AE%BE%E5%A4%87%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux设备树详解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_driver_develop_basic/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E4%B8%BA%E4%BB%80%E4%B9%88linux%E5%86%85%E6%A0%B8%E4%B8%AD%E4%B8%8D%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8typedef/" class="">【一文秒懂】为什么Linux内核中不经常使用typedef</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3eeeb8a1a5c1ce449ec7070209d774d9" class="toggle"  />
+    <label for="section-3eeeb8a1a5c1ce449ec7070209d774d9" class="flex justify-between">
+      <a role="button" class="">Linux API 揭秘</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98module_init%E4%B8%8Emodule_exit/" class="">【Linux API 揭秘】module_init与module_exit</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_api/linux-api-%E6%8F%AD%E7%A7%98container_of%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" class="">【Linux API 揭秘】container_of函数详解</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-cad08b32e77ccfb31b07972873519838" class="toggle"  />
+    <label for="section-cad08b32e77ccfb31b07972873519838" class="flex justify-between">
+      <a role="button" class="">Linux 调试工具</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7devmem/" class="">【一文秒懂】Linux内核调试工具——devmem</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82ftrace%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97/" class="">【一文秒懂】Ftrace系统调试工具使用终极指南</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82top%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】TOP命令详解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7debugfs/" class="">【一文秒懂】Linux内核调试工具——Debugfs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7iperf/" class="">【一文秒懂】Linux网络性能测试工具——Iperf</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdb%E4%BB%8B%E7%BB%8D/" class="">【一文秒懂】Linux调试工具——GDB介绍</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7gdbserver/" class="">【一文秒懂】Linux远程调试工具——gdbserver</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B/" class="">【一文秒懂】Linux内核死锁检测</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90core-dump%E6%96%87%E4%BB%B6/" class="">【一文秒懂】如何生成core Dump文件</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E4%B9%8Bcore-dump%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="">【一文秒懂】Linux之Core Dump文件详解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_debug/%E4%B8%80%E6%96%87%E7%A7%92%E6%87%82linux%E5%86%85%E6%A0%B8%E6%80%81%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/" class="">【一文秒懂】Linux内核态内存泄露检测工具</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b3bfa0c2506d9fd89a39b0698e122f31" class="toggle"  />
+    <label for="section-b3bfa0c2506d9fd89a39b0698e122f31" class="flex justify-between">
+      <a role="button" class="">Linux 内存管理</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E4%B8%80%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E7%94%B1%E6%9D%A5%E5%8F%8A%E6%80%9D%E6%83%B3/" class="">一、内存管理的由来及思想</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/" class="">二、虚拟地址空间布局</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E4%B8%89%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86/" class="">三、虚拟地址空间管理</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E5%9B%9B%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%9E%8B/" class="">四、物理地址空间设计模型</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E4%BA%94%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80%E5%8F%8A%E7%AE%A1%E7%90%86/" class="">五、物理内存空间布局及管理</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_memory_manage/%E5%85%AD%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F/" class="">六、物理内存分配——伙伴系统</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2455edf5b3ea22c6053a61d28029cb9a" class="toggle"  />
+    <label for="section-2455edf5b3ea22c6053a61d28029cb9a" class="flex justify-between">
+      <a role="button" class="">Linux 内核锁详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%80%E5%86%85%E6%A0%B8%E9%94%81%E7%9A%84%E7%94%B1%E6%9D%A5/" class="">【深入理解Linux锁机制】一、内核锁的由来</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%8C%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD/" class="">【深入理解Linux锁机制】二、中断屏蔽</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%89%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" class="">【深入理解Linux锁机制】三、原子操作</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%9B%9B%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】四、自旋锁</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%BA%94%E8%A1%8D%E7%94%9F%E8%87%AA%E6%97%8B%E9%94%81/" class="">【深入理解Linux锁机制】五、衍生自旋锁</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AD%E4%BF%A1%E5%8F%B7%E9%87%8F/" class="">【深入理解Linux锁机制】六、信号量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E4%B8%83%E4%BA%92%E6%96%A5%E4%BD%93/" class="">【深入理解Linux锁机制】七、互斥体</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_kernel_lock/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3linux%E9%94%81%E6%9C%BA%E5%88%B6%E5%85%AB%E5%AE%8C%E6%88%90%E9%87%8F/" class="">【深入理解Linux锁机制】八、完成量</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3e346f9c1e7b71569b8cd088121d9787" class="toggle"  />
+    <label for="section-3e346f9c1e7b71569b8cd088121d9787" class="flex justify-between">
+      <a role="button" class="">Linux NVMEM 子系统</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%80efuse%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8%E6%B5%85%E6%9E%90/" class="">【NVMEM子系统深入剖析】一、Efuse介绍及安全启动浅析</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%BA%8Cnvmem%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" class="">【NVMEM子系统深入剖析】二、NVMEM驱动框架</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E4%B8%89%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%86%85%E5%9C%A8%E5%85%B3%E8%81%94/" class="">【NVMEM子系统深入剖析】三、核心数据结构及内在关联</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_nvmem_subsystem/nvmem%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%9B%9Befuse%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B/" class="">【NVMEM子系统深入剖析】四、efuse驱动实现流程</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9ae83851c5fe25a6d227e96b400b1ab9" class="toggle"  />
+    <label for="section-9ae83851c5fe25a6d227e96b400b1ab9" class="flex justify-between">
+      <a role="button" class="">Linux LED子系统</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%80linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%BF%85%E8%AF%BB/" class="">【LED子系统深度剖析】一、开篇词|Linux驱动开发新手必读</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%8Cled%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" class="">【LED子系统深度剖析】二、LED子系统框架分析</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%89%E7%A1%AC%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%B1%82%E8%AF%A6%E8%A7%A3/" class="">【LED子系统深度剖析】三、硬件驱动层详解</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%9B%9B%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%80/" class="">【LED子系统深度剖析】四、核心层详解（一）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%BA%94%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%BA%8C/" class="">【LED子系统深度剖析】五、核心层详解（二）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AD%E6%A0%B8%E5%BF%83%E5%B1%82%E8%AF%A6%E8%A7%A3%E4%B8%89/" class="">【LED子系统深度剖析】六、核心层详解（三）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B8%83%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9E%E7%8E%B0/" class="">【LED子系统深度剖析】七、触发器实现</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%85%AB%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/" class="">【LED子系统深度剖析】八、小试牛刀</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E4%B9%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】九、数据结构详解（番外篇）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_led_subsystem/led%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E5%8D%81%E8%AF%A6%E7%BB%86%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E7%95%AA%E5%A4%96%E7%AF%87/" class="">【LED子系统深度剖析】十、详细实现流程（番外篇）</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf0229851221605a75715f5f9633256a" class="toggle"  />
+    <label for="section-bf0229851221605a75715f5f9633256a" class="flex justify-between">
+      <a role="button" class="">Linux MMC 子系统</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%80mmc_sd_sdio%E4%BB%8B%E7%BB%8D/" class="">【MMC子系统】一、MMC_SD_SDIO介绍</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%8Cemmc%E5%8D%8F%E8%AE%AE/" class="">【MMC子系统】二、EMMC协议</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%89mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/" class="">【MMC子系统】三、MMC子系统框架</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%9B%9Bmmc%E6%8E%A7%E5%88%B6%E5%99%A8%E9%A9%B1%E5%8A%A8%E5%B1%82/" class="">【MMC子系统】四、MMC控制器驱动层</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BA%94mmc%E6%A0%B8%E5%BF%83%E5%B1%82/" class="">【MMC子系统】五、MMC核心层</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/linux_mmc_subsystem/mmc%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%85%ADmmc%E5%9D%97%E8%AE%BE%E5%A4%87%E5%B1%82/" class="">【MMC子系统】六、MMC块设备层</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-541874a152001b263009202c99a285c4" class="toggle"  />
+    <label for="section-541874a152001b263009202c99a285c4" class="flex justify-between">
+      <a role="button" class="">Bluetooth蓝牙开发详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%80%E6%89%93%E9%80%A0%E5%85%A8%E7%BD%91%E6%9C%80%E8%AF%A6%E7%BB%86%E7%9A%84bluetooth%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="">【Bluetooth蓝牙开发】一、打造全网最详细的Bluetooth开发教程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%8C%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" class="">【Bluetooth蓝牙开发】二、蓝牙开发入门</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%89%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E6%80%BB%E8%A7%88%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE/" class="">【Bluetooth蓝牙开发】三、一篇文章，带你总览蓝牙协议</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%9B%9Bble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E7%89%A9%E7%90%86%E5%B1%82%E6%B5%85%E6%9E%90/" class="">【Bluetooth蓝牙开发】四、BLE协议之物理层浅析</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%BA%94ble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%93%BE%E8%B7%AF%E5%B1%82/" class="">【Bluetooth蓝牙开发】五、BLE协议之链路层</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ADble%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%BC%A0%E8%BE%93%E5%B1%82/" class="">【Bluetooth蓝牙开发】六、BLE协议之传输层</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B8%83ble%E5%8D%8F%E8%AE%AE%E4%B9%8Bl2cap/" class="">【Bluetooth蓝牙开发】七、BLE协议之L2CAP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%85%ABble%E5%8D%8F%E8%AE%AE%E4%B9%8Batt/" class="">【Bluetooth蓝牙开发】八、BLE协议之ATT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E4%B9%9Dble%E5%8D%8F%E8%AE%AEgatt/" class="">【Bluetooth蓝牙开发】九、BLE协议——GATT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81ble%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%B9%BF%E6%92%AD%E6%89%AB%E6%8F%8F%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5/" class="">【Bluetooth蓝牙开发】十、BLE蓝牙通信流程（建立连接，广播，扫描，断开连接）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%B8%80%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84bluez%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" class="">【Bluetooth蓝牙开发】十一、超详细的Bluez交叉编译</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/bluetooth/bluetooth%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E5%8D%81%E4%BA%8C%E8%93%9D%E7%89%99%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88%E6%B1%87%E6%80%BB/" class="">【Bluetooth蓝牙开发】十二、蓝牙调试工具【集合汇总】</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3962d06d522e4ac6aca7d70bdb913d71" class="toggle"  />
+    <label for="section-3962d06d522e4ac6aca7d70bdb913d71" class="flex justify-between">
+      <a role="button" class="">WiFi开发详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/wifi/wifi%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="">WIFI基础知识汇总</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/wifi/%E4%B8%80%E6%96%87%E8%AF%A6%E8%A7%A3%E8%B7%AF%E7%94%B1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" class="">一文详解路由器配置信息</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/wifi/wifi%E6%97%A0%E7%BC%9D%E6%BC%AB%E6%B8%B8%E8%AF%A6%E8%A7%A3/" class="">WiFi无缝漫游详解</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>二、uboot启动流程分析</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <!DOCTYPE html>
+<html>
+<body>
+  <div class="card">
+    <img class="image" src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/dxh.jpg" alt="donge">
+    <div class="card-info">
+      <span>Donge</span>
+      <p style="font-size: 13px;">专注高质量嵌入式知识分享</p>
+    </div>
+    <a href="https://t.zsxq.com/14hPUwE8z" class="button">Folow</a>
+  </div>
+</body>
+</html>
+
+
+
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#二uboot启动流程分析">二、uboot启动流程分析</a>
+      <ul>
+        <li><a href="#21程序执行流程图">2.1、程序执行流程图</a></li>
+        <li><a href="#22u-bootldsuboot的入口函数">2.2、u-boot.lds——Uboot的入口函数</a></li>
+        <li><a href="#23board_init_f板级前置初始化">2.3、board_init_f——板级前置初始化</a></li>
+        <li><a href="#24relocate_code重定向">2.4、relocate_code重定向</a>
+          <ul>
+            <li><a href="#241-为什么需要重定向呢">2.4.1 为什么需要重定向呢？</a></li>
+            <li><a href="#242-uboot是如何重定向的">2.4.2 Uboot是如何重定向的？</a></li>
+            <li><a href="#243-uboot重定向作用">2.4.3 Uboot重定向作用</a></li>
+          </ul>
+        </li>
+        <li><a href="#25board_init_r板级后置初始化">2.5、board_init_r——板级后置初始化</a></li>
+        <li><a href="#26main_loopuboot主循环">2.6、main_loop——Uboot主循环</a>
+          <ul>
+            <li><a href="#261-bootdelay_process">2.6.1 bootdelay_process</a></li>
+            <li><a href="#262-autoboot_command">2.6.2 autoboot_command</a></li>
+            <li><a href="#263-cli_loop">2.6.3 cli_loop</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="card-toc-after">
+        <img class="drainage-image-toc-after" src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20240120185454193.png" alt="img"/>
+        <div class="bg-toc-after">
+        </div>
+        <div class="blob-toc-after"></div>
+      </div>
+</body>
+</html>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="二uboot启动流程分析">
+  二、uboot启动流程分析
+  <a class="anchor" href="#%e4%ba%8cuboot%e5%90%af%e5%8a%a8%e6%b5%81%e7%a8%8b%e5%88%86%e6%9e%90">#</a>
+</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/UNIONDONG/Get_Pic_Url/Media202203071811279.png" alt="Uboot启动流程" /></p>
+<blockquote>
+<p>上一篇文章：<a href="https://blog.csdn.net/dong__ge/article/details/122199992">（一）uboot基础了解</a> 下一篇文章：<a href="https://blog.csdn.net/dong__ge/article/details/122637220">（三）Uboot驱动模型</a></p>
+</blockquote>
+<p>同大多数的Bootloader一样，uboot的启动过程也分为BL1、BL2两个阶段，分别对应着<code>SPL</code>和<code>Uboot</code>。</p>
+<p><strong>SPL（BL1阶段）</strong>：负责开发板的基础配置和设备初始化，并且搬运Uboot到内存中，由汇编代码和少量的C语言实现</p>
+<p><strong>Uboot（BL2阶段）</strong>：主要负责初始化外部设备，引导Kernel启动，由纯C语言实现。</p>
+<blockquote>
+<p>我们这篇文章，主要介绍Uboot（BL2阶段）的启动流程，BL1阶段启动流程的详细分析，可以见我的后续文章。想要深入了解的，可以好好研究下！</p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/12/02/dXOn3fe91FZQWzq.jpg" alt="img" /></p>
+<h2 id="21程序执行流程图">
+  2.1、程序执行流程图
+  <a class="anchor" href="#21%e7%a8%8b%e5%ba%8f%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b%e5%9b%be">#</a>
+</h2>
+<p>我们先总体来看一下Uboot的执行步骤，这里以EMMC作为启动介质，进行分析！</p>
+<p>无论是哪种启动介质，基本流程都相似，我们这就往下看！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/UNIONDONG/Get_Pic_Url/Media202202101913627.png" alt="image-20220210191302537" /></p>
+<p><strong>==打开图片，结合文档、图片、代码进行理解！==</strong></p>
+<hr>
+<h2 id="22u-bootldsuboot的入口函数">
+  2.2、u-boot.lds——Uboot的入口函数
+  <a class="anchor" href="#22u-bootldsuboot%e7%9a%84%e5%85%a5%e5%8f%a3%e5%87%bd%e6%95%b0">#</a>
+</h2>
+<p><code>u-boot.lds</code>：是uboot工程的链接脚本文件，对于工程的编译和链接有非常重要的作用，决定了uboot的组装，并且<code>u-boot.lds</code>链接文件中的<code>ENTRY(_start)</code>指定了uboot程序的入口地址。</p>
+<blockquote>
+<p>如果不知道<code>u-boot.lds</code>放到在哪里，可以通过<code>find -name u-boot.lds</code>查找，根目录要进入到uboot的源码的位置哦！</p>
+<p>如果查找结果有很多，结合自己的板子信息，确定自己使用的<code>u-boot.lds</code>。</p>
+<p>当然，准确的方法是查看Makefile文件，分析出来<code>u-boot.lds</code>所生成的位置。</p>
+</blockquote>
+<p>在<code>u-boot.lds</code>的文件中，可以看到<code>.text</code>段，存放的就是执行的文本段。截取部分代码段如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm"><span style="color:#50fa7b">OUTPUT_FORMAT</span>(&#34;elf32-littlearm&#34;, &#34;elf32-littlearm&#34;, &#34;elf32-littlearm&#34;)
+<span style="color:#50fa7b">OUTPUT_ARCH</span>(arm)
+<span style="color:#50fa7b">ENTRY</span>(_start)
+<span style="color:#50fa7b">SECTIONS</span>
+{
+ . = 0<span style="color:#50fa7b">x00000000</span><span style="color:#6272a4">;				@起始地址
+</span><span style="color:#6272a4"></span> . = ALIGN(<span style="color:#bd93f9">4</span>)<span style="color:#6272a4">;					@四字节对齐
+</span><span style="color:#6272a4"></span> .text :			
+ {	
+  *(.__image_copy_start)		@映像文件复制起始地址
+  *(<span style="color:#50fa7b">.vectors</span>)					@异常向量表
+  <span style="color:#50fa7b">arch</span>/arm/cpu/armv7/start.o (.text*)	@启动函数
+ }
+ <span style="color:#50fa7b">......</span>
+}
+</code></pre></div><ul>
+<li>
+<p><code>ENTRY(_start)</code>：程序的入口函数，<code>_start</code>在<code>arch/arm/lib/vectors.S</code>中定义<code>.globl _start</code></p>
+</li>
+<li>
+<p><code>SECTIONS</code>定义了段，包括<code>text</code>文本段、<code>data</code>数据段、<code>bss</code>段等。</p>
+</li>
+<li>
+<p><code>__image_copy_start</code>在System.map和u-boot.map中均有定义</p>
+</li>
+<li>
+<p><code>arch/arm/cpu/armv7/start.o</code>对应文件<code>arch/arm/cpu/armv7/start.S</code>，该文件中定义了<code>main</code>函数的入口。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Tip</strong>：上面只进行大概分析，有汇编经验的朋友，可以详细进行分析！</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/UNIONDONG/Get_Pic_Url/Media202202271147055.png" alt="img" /></p>
+<h2 id="23board_init_f板级前置初始化">
+  2.3、board_init_f——板级前置初始化
+  <a class="anchor" href="#23board_init_f%e6%9d%bf%e7%ba%a7%e5%89%8d%e7%bd%ae%e5%88%9d%e5%a7%8b%e5%8c%96">#</a>
+</h2>
+<p>跟随上文的程序执行流程图，我们看<code>board_init_f</code>这个函数。其位于<code>common/board_f.c</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">board_init_f</span>(ulong boot_flags)
+{
+    gd<span style="color:#ff79c6">-&gt;</span>flags <span style="color:#ff79c6">=</span> boot_flags;
+    gd<span style="color:#ff79c6">-&gt;</span>have_console <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+
+    <span style="color:#ff79c6">if</span> (initcall_run_list(init_sequence_f))
+        hang();
+}
+
+<span style="color:#ff79c6">static</span> <span style="color:#ff79c6">const</span> init_fnc_t init_sequence_f[] <span style="color:#ff79c6">=</span> {
+    setup_mon_len,
+    ...
+    log_init,
+    arch_cpu_init,		<span style="color:#6272a4">/* basic arch cpu dependent setup */</span>
+    env_init,		<span style="color:#6272a4">/* initialize environment */</span>
+    ...       
+    reloc_fdt,
+    reloc_bootstage,
+    reloc_bloblist,
+    setup_reloc,
+    ...
+}
+</code></pre></div><p><code>board_init_f()</code>，其最核心的内容就是调用了<code>init_sequence_f</code>初始化序列，进行了一系列初始化的工作。</p>
+<p>主要包括：串口、定时器、设备树、DM驱动模型等，另外还包括<code>global_data</code>结构体相关对象的变量。</p>
+<blockquote>
+<p>详细分析，可以看文末的参考文章[1]</p>
+</blockquote>
+<p>我们需要注意的一点就是，在初始化队列末尾，执行了几个<code>reloc_xxx</code>的函数，这几个函数实现了Uboot的重定向功能。</p>
+<h2 id="24relocate_code重定向">
+  2.4、relocate_code重定向
+  <a class="anchor" href="#24relocate_code%e9%87%8d%e5%ae%9a%e5%90%91">#</a>
+</h2>
+<blockquote>
+<p>重定向技术，可以说也算是<code>Uboot</code>的一个重点了，也就是将<code>uboot</code>自身镜像拷贝到<code>ddr</code>上的另外一个位置的动作。</p>
+</blockquote>
+<h3 id="241-为什么需要重定向呢">
+  2.4.1 为什么需要重定向呢？
+  <a class="anchor" href="#241-%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e9%87%8d%e5%ae%9a%e5%90%91%e5%91%a2">#</a>
+</h3>
+<blockquote>
+<p>一般需要重定向的条件如下：</p>
+</blockquote>
+<ul>
+<li><code>uboot</code>存储在只读存储器上，比如<code>ROM</code>、<code>Nor flash</code>，需要将代码拷贝到<code>DDR</code>上，才能完整运行<code>Uboot</code>。</li>
+<li>为<code>Kernel</code>腾空间，<code>Kernel</code>一般会放在<code>DDR</code>的地段地址上，所以要把<code>Uboot</code>重定向到顶端地址，避免冲突。</li>
+</ul>
+<h3 id="242-uboot是如何重定向的">
+  2.4.2 Uboot是如何重定向的？
+  <a class="anchor" href="#242-uboot%e6%98%af%e5%a6%82%e4%bd%95%e9%87%8d%e5%ae%9a%e5%90%91%e7%9a%84">#</a>
+</h3>
+<p>Uboot的重定向有如下几个步骤：</p>
+<ul>
+<li>对<code>relocate</code>进行空间划分</li>
+<li>计算uboot代码空间到<code>relocate</code>的位置的偏移</li>
+<li><code>relocate</code>旧的<code>global_data</code>到新的<code>global_data</code>空间上</li>
+<li><code>relocate</code> Uboot</li>
+<li>修改<code>relocate</code>后的全局变量的<code>label</code></li>
+<li><code>relocate</code>中断向量表</li>
+</ul>
+<p><strong>运行大致流程：</strong></p>
+<p><code>arch/arm/lib/crt0.S</code>文件内，主要实现了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm"><span style="color:#50fa7b">ENTRY</span>(_main)
+    <span style="color:#50fa7b">bl</span>  board_init_f
+@@ 在<span style="color:#50fa7b">board_init_f里面实现了</span>
+@@                             （1）对<span style="color:#50fa7b">relocate进行空间规划</span>
+@@                             （2）计算<span style="color:#50fa7b">uboot代码空间到relocation的位置的偏移</span>
+@@                             （3）<span style="color:#50fa7b">relocate旧的global_data到新的global_data的空间上</span>
+
+    <span style="color:#50fa7b">ldr</span> sp, [r9, <span style="color:#6272a4">#GD_START_ADDR_SP] /* sp = gd-&gt;start_addr_sp */
+</span><span style="color:#6272a4"></span>    bic sp, sp, <span style="color:#6272a4">#7  /* 8-byte alignment for ABI compliance */
+</span><span style="color:#6272a4"></span>    ldr r9, [r9, <span style="color:#6272a4">#GD_BD]        /* r9 = gd-&gt;bd */
+</span><span style="color:#6272a4"></span>    sub r9, r9, <span style="color:#6272a4">#GD_SIZE        /* new GD is below bd */
+</span><span style="color:#6272a4"></span>@@ 把新的global_data地址放在r9寄存器中
+
+    <span style="color:#50fa7b">adr</span> lr, here
+    <span style="color:#50fa7b">ldr</span> r0, [r9, <span style="color:#6272a4">#GD_RELOC_OFF]     /* r0 = gd-&gt;reloc_off */
+</span><span style="color:#6272a4"></span>    add lr, lr, r0
+@@ 计算返回地址在新的<span style="color:#50fa7b">uboot空间中的地址</span>。b调用函数返回之后，就跳到了新的uboot代码空间中。
+
+    <span style="color:#50fa7b">ldr</span> r0, [r9, <span style="color:#6272a4">#GD_RELOCADDR]     /* r0 = gd-&gt;relocaddr */
+</span><span style="color:#6272a4"></span>@@ 把uboot的新的地址空间放到r0寄存器中，作为relocate_code的参数
+    <span style="color:#50fa7b">b</span>   relocate_code
+@@ 跳转到<span style="color:#50fa7b">relocate_code中</span>，在这里面实现了
+@@                                       （1）<span style="color:#50fa7b">relocate旧的uboot代码空间到新的空间上去</span>
+@@                                       （2）修改<span style="color:#50fa7b">relocate之后全局变量的label</span>
+@@ 注意，由于上述已经把<span style="color:#50fa7b">lr寄存器重定义到uboot新的代码空间中了</span>，所以返回之后，就已经跳到了新的代码空间了！！！！！！
+
+    <span style="color:#50fa7b">bl</span>  relocate_vectors
+@@ <span style="color:#50fa7b">relocate中断向量表</span>
+</code></pre></div><ul>
+<li><strong>setup_reloc——重定向地址查看（仿真有关）</strong></li>
+</ul>
+<p>在这里我们说明一下<code>board_init_f</code>里面的<code>setup_reloc</code>初始化函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#ff79c6">static</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">setup_reloc</span>(<span style="color:#8be9fd">void</span>)
+{
+    <span style="color:#ff79c6">if</span> (gd<span style="color:#ff79c6">-&gt;</span>flags <span style="color:#ff79c6">&amp;</span> GD_FLG_SKIP_RELOC) {
+        debug(<span style="color:#f1fa8c">&#34;Skipping relocation due to flag</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>);
+        <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+    }
+
+<span style="color:#ff79c6">#ifdef CONFIG_SYS_TEXT_BASE
+</span><span style="color:#ff79c6">#ifdef ARM
+</span><span style="color:#ff79c6"></span>    gd<span style="color:#ff79c6">-&gt;</span>reloc_off <span style="color:#ff79c6">=</span> gd<span style="color:#ff79c6">-&gt;</span>relocaddr <span style="color:#ff79c6">-</span> (<span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">long</span>)__image_copy_start;
+<span style="color:#ff79c6">#elif defined(CONFIG_M68K)
+</span><span style="color:#ff79c6"></span>    <span style="color:#6272a4">/*
+</span><span style="color:#6272a4">     * On all ColdFire arch cpu, monitor code starts always
+</span><span style="color:#6272a4">     * just after the default vector table location, so at 0x400
+</span><span style="color:#6272a4">     */</span>
+    gd<span style="color:#ff79c6">-&gt;</span>reloc_off <span style="color:#ff79c6">=</span> gd<span style="color:#ff79c6">-&gt;</span>relocaddr <span style="color:#ff79c6">-</span> (CONFIG_SYS_TEXT_BASE <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">0x400</span>);
+<span style="color:#ff79c6">#elif !defined(CONFIG_SANDBOX)
+</span><span style="color:#ff79c6"></span>    gd<span style="color:#ff79c6">-&gt;</span>reloc_off <span style="color:#ff79c6">=</span> gd<span style="color:#ff79c6">-&gt;</span>relocaddr <span style="color:#ff79c6">-</span> CONFIG_SYS_TEXT_BASE;
+<span style="color:#ff79c6">#endif
+</span><span style="color:#ff79c6">#endif
+</span><span style="color:#ff79c6"></span>    memcpy(gd<span style="color:#ff79c6">-&gt;</span>new_gd, (<span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>)gd, <span style="color:#ff79c6">sizeof</span>(gd_t));
+
+    debug(<span style="color:#f1fa8c">&#34;Relocation Offset is: %08lx</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>, gd<span style="color:#ff79c6">-&gt;</span>reloc_off);
+    <span style="color:#ff79c6">if</span> (is_debug_open()) {
+        printf(<span style="color:#f1fa8c">&#34;Relocating to %08lx, new gd at %08lx, sp at %08lx</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>,
+              gd<span style="color:#ff79c6">-&gt;</span>relocaddr, (ulong)map_to_sysmem(gd<span style="color:#ff79c6">-&gt;</span>new_gd),
+              gd<span style="color:#ff79c6">-&gt;</span>start_addr_sp);
+    }
+
+    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+}
+</code></pre></div><p>由于，<code>Uboot</code>进行了重定向，所以按照常规的地址仿真的话，我们可能访问到错误的内存空间，通过<code>setup_reloc</code>的<code>Relocating to %08lx</code>打印，我们可以得到重定向后的地址，方便我们仿真。</p>
+<p><code>Uboot</code>的重定向也有相当大的一部分知识点，上面也仅仅是简单介绍了<code>relocate</code>的基本步骤和流程，后续看大家需要，如果大家想了解，我再补上这一部分。</p>
+<h3 id="243-uboot重定向作用">
+  2.4.3 Uboot重定向作用
+  <a class="anchor" href="#243-uboot%e9%87%8d%e5%ae%9a%e5%90%91%e4%bd%9c%e7%94%a8">#</a>
+</h3>
+<p><strong>总之</strong>，<code>Uboot</code>重定向之后，把<code>Uboot</code>整体搬运到了高端内存区，为<code>Kernel</code>的加载提供空间，避免内存践踏。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/UNIONDONG/Get_Pic_Url/Media202202271147055.png" alt="img" /></p>
+<h2 id="25board_init_r板级后置初始化">
+  2.5、board_init_r——板级后置初始化
+  <a class="anchor" href="#25board_init_r%e6%9d%bf%e7%ba%a7%e5%90%8e%e7%bd%ae%e5%88%9d%e5%a7%8b%e5%8c%96">#</a>
+</h2>
+<blockquote>
+<p>我们接着跟着流程图往下看，重定向之后，Uboot运行于新的地址空间，接着我们执行<code>board_init_r</code>，主要作为<code>Uboot</code>运行的最后初始化步骤。</p>
+</blockquote>
+<p><code>board_init_r</code>这个函数，同样位于<code>common/board_f.c</code>，主要用于初始化各类外设信息</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">board_init_r</span>(gd_t <span style="color:#ff79c6">*</span>new_gd, ulong dest_addr)
+{	
+    <span style="color:#ff79c6">if</span> (initcall_run_list(init_sequence_r))
+        hang();
+
+    <span style="color:#6272a4">/* NOTREACHED - run_main_loop() does not return */</span>
+    hang();
+}
+<span style="color:#ff79c6">static</span> init_fnc_t init_sequence_r[] <span style="color:#ff79c6">=</span> {
+    initr_reloc,
+    initr_reloc_global_data,
+    board_init,	<span style="color:#6272a4">/* Setup chipselects */</span>
+    initr_dm,
+    initr_mmc,
+    ...
+    run_main_loop
+}
+</code></pre></div><p>与<code>board_init_f</code>相同，同样有一个<code>init_sequence_r</code>初始化列表，包括：<code>initr_dm</code>DM模型初始化，<code>initr_mmc</code>MMC驱动初始化，等等。</p>
+<p>最终，uboot就运行到了<code>run_main_loop</code>，进而执行<code>main_loop</code>这个函数。</p>
+<h2 id="26main_loopuboot主循环">
+  2.6、main_loop——Uboot主循环
+  <a class="anchor" href="#26main_loopuboot%e4%b8%bb%e5%be%aa%e7%8e%af">#</a>
+</h2>
+<blockquote>
+<p>该函数为Uboot的最终执行函数，无论是加载kernel还是uboot的命令行体系，均由此实现。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main_loop</span>(<span style="color:#8be9fd">void</span>)
+{
+    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>s;
+
+    bootstage_mark_name(BOOTSTAGE_ID_MAIN_LOOP, <span style="color:#f1fa8c">&#34;main_loop&#34;</span>);
+
+    <span style="color:#ff79c6">if</span> (IS_ENABLED(CONFIG_VERSION_VARIABLE))
+        env_set(<span style="color:#f1fa8c">&#34;ver&#34;</span>, version_string);  <span style="color:#6272a4">/* set version variable */</span>
+
+    cli_init();
+
+    <span style="color:#ff79c6">if</span> (IS_ENABLED(CONFIG_USE_PREBOOT))
+        run_preboot_environment_command();
+
+    <span style="color:#ff79c6">if</span> (IS_ENABLED(CONFIG_UPDATE_TFTP))
+        update_tftp(<span style="color:#bd93f9">0UL</span>, <span style="color:#8be9fd;font-style:italic">NULL</span>, <span style="color:#8be9fd;font-style:italic">NULL</span>);
+
+    s <span style="color:#ff79c6">=</span> bootdelay_process();
+    <span style="color:#ff79c6">if</span> (cli_process_fdt(<span style="color:#ff79c6">&amp;</span>s))
+        cli_secure_boot_cmd(s);
+
+    autoboot_command(s);
+
+    cli_loop();
+    panic(<span style="color:#f1fa8c">&#34;No CLI available&#34;</span>);
+}
+
+</code></pre></div><p><code>env_set</code>：设置环境变量，两个参数分别为<code>name</code>和<code>value</code></p>
+<p><code>cli_init</code>：用于初始化hash shell的一些变量</p>
+<p><code>run_preboot_environment_command</code>：执行预定义的环境变量的命令</p>
+<p><code>bootdelay_process</code>：加载延时处理，一般用于<code>Uboot</code>启动后，有几秒的倒计时，用于进入命令行模式。</p>
+<p><code>cli_loop</code>：命令行模式，主要作用于<code>Uboot</code>的命令行交互。</p>
+<h3 id="261-bootdelay_process">
+  2.6.1 bootdelay_process
+  <a class="anchor" href="#261-bootdelay_process">#</a>
+</h3>
+<blockquote>
+<p><strong>记得对照文章开始的执行流程图哦！</strong></p>
+</blockquote>
+<p>详细解释标注于代码中&hellip;&hellip;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span><span style="color:#50fa7b">bootdelay_process</span>(<span style="color:#8be9fd">void</span>)
+{
+    <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>s;
+    <span style="color:#8be9fd">int</span> bootdelay;
+
+    bootcount_inc();
+
+    s <span style="color:#ff79c6">=</span> env_get(<span style="color:#f1fa8c">&#34;bootdelay&#34;</span>);								<span style="color:#6272a4">//先判断是否有bootdelay环境变量，如果没有，就使用menuconfig中配置的CONFIG_BOOTDELAY时间
+</span><span style="color:#6272a4"></span>    bootdelay <span style="color:#ff79c6">=</span> s <span style="color:#ff79c6">?</span> (<span style="color:#8be9fd">int</span>)simple_strtol(s, <span style="color:#8be9fd;font-style:italic">NULL</span>, <span style="color:#bd93f9">10</span>) <span style="color:#ff79c6">:</span> CONFIG_BOOTDELAY;
+
+    <span style="color:#ff79c6">if</span> (IS_ENABLED(CONFIG_OF_CONTROL))						<span style="color:#6272a4">//是否使用设备树进行配置
+</span><span style="color:#6272a4"></span>        bootdelay <span style="color:#ff79c6">=</span> fdtdec_get_config_int(gd<span style="color:#ff79c6">-&gt;</span>fdt_blob, <span style="color:#f1fa8c">&#34;bootdelay&#34;</span>,
+                          bootdelay);
+
+    debug(<span style="color:#f1fa8c">&#34;### main_loop entered: bootdelay=%d</span><span style="color:#f1fa8c">\n\n</span><span style="color:#f1fa8c">&#34;</span>, bootdelay);
+
+    <span style="color:#ff79c6">if</span> (IS_ENABLED(CONFIG_AUTOBOOT_MENU_SHOW))
+        bootdelay <span style="color:#ff79c6">=</span> menu_show(bootdelay);
+    bootretry_init_cmd_timeout();
+
+<span style="color:#ff79c6">#ifdef CONFIG_POST
+</span><span style="color:#ff79c6"></span>    <span style="color:#ff79c6">if</span> (gd<span style="color:#ff79c6">-&gt;</span>flags <span style="color:#ff79c6">&amp;</span> GD_FLG_POSTFAIL) {
+        s <span style="color:#ff79c6">=</span> env_get(<span style="color:#f1fa8c">&#34;failbootcmd&#34;</span>);
+    } <span style="color:#ff79c6">else</span>
+<span style="color:#ff79c6">#endif </span><span style="color:#6272a4">/* CONFIG_POST */</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6"></span>    <span style="color:#ff79c6">if</span> (bootcount_error())
+        s <span style="color:#ff79c6">=</span> env_get(<span style="color:#f1fa8c">&#34;altbootcmd&#34;</span>);
+    <span style="color:#ff79c6">else</span>
+        s <span style="color:#ff79c6">=</span> env_get(<span style="color:#f1fa8c">&#34;bootcmd&#34;</span>);								<span style="color:#6272a4">//获取bootcmd环境变量，用于后续的命令执行
+</span><span style="color:#6272a4"></span>
+    <span style="color:#ff79c6">if</span> (IS_ENABLED(CONFIG_OF_CONTROL))
+        process_fdt_options(gd<span style="color:#ff79c6">-&gt;</span>fdt_blob);
+    stored_bootdelay <span style="color:#ff79c6">=</span> bootdelay;
+
+    <span style="color:#ff79c6">return</span> s;
+}
+</code></pre></div><h3 id="262-autoboot_command">
+  2.6.2 autoboot_command
+  <a class="anchor" href="#262-autoboot_command">#</a>
+</h3>
+<p>详细解释标注于代码中&hellip;&hellip;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">autoboot_command</span>(<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>s)
+{
+    debug(<span style="color:#f1fa8c">&#34;### main_loop: bootcmd=</span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">\&#34;\n</span><span style="color:#f1fa8c">&#34;</span>, s <span style="color:#ff79c6">?</span> <span style="color:#8be9fd;font-style:italic">s</span> : <span style="color:#f1fa8c">&#34;&lt;UNDEFINED&gt;&#34;</span>);
+
+    <span style="color:#ff79c6">if</span> (stored_bootdelay <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&amp;&amp;</span> s <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">!</span>abortboot(stored_bootdelay)) {
+        <span style="color:#8be9fd">bool</span> lock;
+        <span style="color:#8be9fd">int</span> prev;
+
+        lock <span style="color:#ff79c6">=</span> IS_ENABLED(CONFIG_AUTOBOOT_KEYED) <span style="color:#ff79c6">&amp;&amp;</span>
+            <span style="color:#ff79c6">!</span>IS_ENABLED(CONFIG_AUTOBOOT_KEYED_CTRLC);
+        <span style="color:#ff79c6">if</span> (lock)
+            prev <span style="color:#ff79c6">=</span> disable_ctrlc(<span style="color:#bd93f9">1</span>); <span style="color:#6272a4">/* disable Ctrl-C checking */</span>
+
+        run_command_list(s, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>);
+
+        <span style="color:#ff79c6">if</span> (lock)
+            disable_ctrlc(prev);	<span style="color:#6272a4">/* restore Ctrl-C checking */</span>
+    }
+
+    <span style="color:#ff79c6">if</span> (IS_ENABLED(CONFIG_USE_AUTOBOOT_MENUKEY) <span style="color:#ff79c6">&amp;&amp;</span>
+        menukey <span style="color:#ff79c6">==</span> AUTOBOOT_MENUKEY) {
+        s <span style="color:#ff79c6">=</span> env_get(<span style="color:#f1fa8c">&#34;menucmd&#34;</span>);
+        <span style="color:#ff79c6">if</span> (s)
+            run_command_list(s, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>);
+    }
+}
+
+</code></pre></div><p>我们看一下判断条件<code>stored_bootdelay != -1 &amp;&amp; s &amp;&amp; !abortboot(stored_bootdelay</code></p>
+<ul>
+<li><code>stored_bootdelay</code>：为环境变量的值，或者<code>menuconfig</code>设置的值</li>
+<li><code>s</code>：为环境变量<code>bootcmd</code>的值，为后续运行的指令</li>
+<li><code>abortboot(stored_bootdelay)</code>：主要用于判断是否有按键按下。如果按下，则不执行<code>bootcmd</code>命令，进入<code>cli_loop</code> 命令行模式；如果不按下，则执行<code>bootcmd</code>命令，跳转到加载Linux启动。</li>
+</ul>
+<h3 id="263-cli_loop">
+  2.6.3 cli_loop
+  <a class="anchor" href="#263-cli_loop">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">cli_loop</span>(<span style="color:#8be9fd">void</span>)
+{
+    bootstage_mark(BOOTSTAGE_ID_ENTER_CLI_LOOP);
+<span style="color:#ff79c6">#ifdef CONFIG_HUSH_PARSER
+</span><span style="color:#ff79c6"></span>    parse_file_outer();
+    <span style="color:#6272a4">/* This point is never reached */</span>
+    <span style="color:#ff79c6">for</span> (;;);					<span style="color:#6272a4">//死循环
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">#elif defined(CONFIG_CMDLINE)
+</span><span style="color:#ff79c6"></span>    cli_simple_loop();
+<span style="color:#ff79c6">#else
+</span><span style="color:#ff79c6"></span>    printf(<span style="color:#f1fa8c">&#34;## U-Boot command line is disabled. Please enable CONFIG_CMDLINE</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>);
+<span style="color:#ff79c6">#endif </span><span style="color:#6272a4">/*CONFIG_HUSH_PARSER*/</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6"></span>}
+</code></pre></div><p>如上代码，程序只执行<code>parse_file_outer</code>来处理用户的输入、输出信息。</p>
+<blockquote>
+<p>好啦，基本到这里，我们已经对Uboot的启动流程了然于胸了吧！</p>
+<p>当然，更深层次的不建议去深入了解，有时间可以慢慢去研究。</p>
+</blockquote>
+<p>大家有疑问，可以评论区交流&hellip;&hellip;</p>
+<p><img src="https://cdn.jsdelivr.net/gh/UNIONDONG/Get_Pic_Url/Media202202271147055.png" alt="img" /></p>
+<p><strong>参考文章</strong>：</p>
+<p>[1]：<a href="https://blog.csdn.net/qq_34591581/article/details/104101598">boadr_init_f介绍</a></p>
+<p>[2]：<a href="https://blog.csdn.net/ooonebook/article/details/53070065">启动流程参考</a></p>
+<p>[3]：<a href="https://blog.csdn.net/monkea123/article/details/103148946">main_loop相关</a></p>
+<center><b> <font color ="blue">欢迎关注【嵌入式艺术】，董哥原创！</font></b></center>
+<div align=center><img src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/blog.png" alt="img" width = "60%" height ="10%"/>
+</div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+<div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    👁️Total Views <span id="busuanzi_value_site_pv"></span> |
+  </span>
+  <span id="busuanzi_container_site_uv" >
+    👤Visitors <span id="busuanzi_value_site_uv"></span>
+  </span>
+</div>
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  <!DOCTYPE html>
+<html>
+<body>
+  <div class="card">
+    <img class="image" src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/dxh.jpg" alt="donge">
+    <div class="card-info">
+      <span>Donge</span>
+      <p style="font-size: 13px;">专注高质量嵌入式知识分享</p>
+    </div>
+    <a href="https://t.zsxq.com/14hPUwE8z" class="button">Folow</a>
+  </div>
+</body>
+</html>
+
+
+
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#二uboot启动流程分析">二、uboot启动流程分析</a>
+      <ul>
+        <li><a href="#21程序执行流程图">2.1、程序执行流程图</a></li>
+        <li><a href="#22u-bootldsuboot的入口函数">2.2、u-boot.lds——Uboot的入口函数</a></li>
+        <li><a href="#23board_init_f板级前置初始化">2.3、board_init_f——板级前置初始化</a></li>
+        <li><a href="#24relocate_code重定向">2.4、relocate_code重定向</a>
+          <ul>
+            <li><a href="#241-为什么需要重定向呢">2.4.1 为什么需要重定向呢？</a></li>
+            <li><a href="#242-uboot是如何重定向的">2.4.2 Uboot是如何重定向的？</a></li>
+            <li><a href="#243-uboot重定向作用">2.4.3 Uboot重定向作用</a></li>
+          </ul>
+        </li>
+        <li><a href="#25board_init_r板级后置初始化">2.5、board_init_r——板级后置初始化</a></li>
+        <li><a href="#26main_loopuboot主循环">2.6、main_loop——Uboot主循环</a>
+          <ul>
+            <li><a href="#261-bootdelay_process">2.6.1 bootdelay_process</a></li>
+            <li><a href="#262-autoboot_command">2.6.2 autoboot_command</a></li>
+            <li><a href="#263-cli_loop">2.6.3 cli_loop</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="card-toc-after">
+        <img class="drainage-image-toc-after" src="https://image-1305421143.cos.ap-nanjing.myqcloud.com/image/image-20240120185454193.png" alt="img"/>
+        <div class="bg-toc-after">
+        </div>
+        <div class="blob-toc-after"></div>
+      </div>
+</body>
+</html>
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

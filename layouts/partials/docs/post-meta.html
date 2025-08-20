@@ -1,0 +1,28 @@
+{{ with .Date }}
+  <h5>{{ partial "docs/date" (dict "Date" . "Format" $.Site.Params.BookDateFormat) }}</h5>
+{{ end }}
+
+<!-- busuanzi -->
+{{ if .Site.Params.busuanzi.enable -}}
+  <span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+{{- end }}
+
+{{ range $taxonomy, $_ := .Site.Taxonomies }}
+  {{ with $terms := $.GetTerms $taxonomy }}
+  <div>
+    {{ range $n, $term := $terms }}{{ if $n }}, {{ end }}
+      <a href="{{ $term.RelPermalink }}">{{ $term.Title }}</a>
+    {{- end }}
+  </div>
+  {{ end }}
+{{ end }}
+
+{{ if .Params.image }}
+<p>
+  {{ with .Resources.GetMatch .Params.image }}
+    <img src={{ .RelPermalink }} />
+  {{ else }}
+    <img src={{ .Params.image | relURL }} />
+  {{ end }}
+</p>
+{{ end }}
