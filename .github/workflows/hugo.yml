@@ -44,17 +44,25 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Update submodules
-        run: git submodule update --init --recursive
+      - name: Create themes directory if not exists
+        run: mkdir -p themes
+
+      - name: Clone hugo-book theme if not present
+        run: |
+          if [ ! -d "themes/hugo-book" ]; then
+            git clone https://github.com/alex-shpak/hugo-book.git themes/hugo-book
+          fi
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-      - name: Debug submodule status
+
+      - name: Debug directory structure
         run: |
+          ls -la
           ls -la themes/
-          git submodule status
           echo "Hugo version: $(hugo version)"
 
       - name: Build with Hugo
